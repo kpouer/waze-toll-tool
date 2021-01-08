@@ -62,7 +62,6 @@ public class PriceCatalog {
 
     public void load(Path rootPath) throws IOException {
         logger.info("load {}", rootPath);
-        Collection<PriceItem[]>      priceGridList     = new ArrayList<>();
         Collection<FolderDefinition> folderDefinitions = new ArrayList<>();
         folderDefinitions.add(new FolderDefinition("flat", "tsv", flatPriceParser));
         folderDefinitions.add(new FolderDefinition("triangle/cars", "tsv", trianglePriceParser, Category.Car));
@@ -70,6 +69,7 @@ public class PriceCatalog {
         folderDefinitions.add(new FolderDefinition("onedirmatrix/cars", "tsv", oneDirectionMatrixPriceParser, Category.Car));
         folderDefinitions.add(new FolderDefinition("onedirmatrix/motorcycles", "tsv", oneDirectionMatrixPriceParser, Category.Motorcycle));
 
+        Collection<PriceItem[]> priceGridList = new ArrayList<>();
         for (FolderDefinition folderDefinition : folderDefinitions) {
             try (Stream<Path> files = Files.list(Path.of(rootPath.toString(), folderDefinition.getFolder()))) {
                 files
@@ -84,18 +84,15 @@ public class PriceCatalog {
     private void mergePrices(Iterable<PriceItem[]> priceGridList) {
         for (PriceItem[] priceGrid : priceGridList) {
             for (PriceItem priceItem : priceGrid) {
-                if ("REIMS NORD (ORMES)".equals(priceItem.getEntry()) && "VERDUN".equals(priceItem.getExit())) {
-                    System.out.println();
-                }
                 PriceItem existingPrice = prices.put(priceItem, priceItem);
-                if (null != existingPrice) {
+                if (existingPrice != null) {
                     priceItem.merge(existingPrice);
                 }
             }
         }
     }
 
-    private void loadFolder(Collection<PriceItem[]> priceGridList, FolderDefinition folderDefinition, Path path) {
+    private static void loadFolder(Collection<PriceItem[]> priceGridList, FolderDefinition folderDefinition, Path path) {
         try {
             logger.info("load {}", path);
             PriceParser priceParser = folderDefinition.getPriceParser();
@@ -110,7 +107,7 @@ public class PriceCatalog {
     public PriceResult getPrice(String entry, String exit) {
         PriceItem priceItemForward  = prices.get(new DefaultPriceItem(entry, exit));
         PriceItem priceItemBackward = prices.get(new DefaultPriceItem(exit, entry));
-        if (null == priceItemForward && null == priceItemBackward) {
+        if (priceItemForward == null && priceItemBackward == null) {
             return new PriceResult(entry, exit);
         }
         return new PriceResult(entry, exit, priceItemForward, priceItemBackward);
@@ -128,7 +125,7 @@ public class PriceCatalog {
             this.priceParser = priceParser;
         }
 
-        public FolderDefinition(String folder, String extension, PriceParser priceParser, Category category) {
+        FolderDefinition(String folder, String extension, PriceParser priceParser, Category category) {
             this(folder, extension, priceParser);
             this.category = category;
         }
