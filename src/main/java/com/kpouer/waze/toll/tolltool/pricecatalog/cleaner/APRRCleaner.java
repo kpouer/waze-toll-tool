@@ -133,7 +133,7 @@ public class APRRCleaner {
                   .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> "\t" + matchResult.group(1)))
                   .forEach(x -> {
                       String[] split = x.split("\t");
-                      if (8 != split.length) {
+                      if (split.length != 8) {
                           errors.incrementAndGet();
                           System.err.println(split.length + " " + x);
                       }

@@ -37,10 +37,10 @@ public class DefaultPriceItem implements PriceItem {
 
     public DefaultPriceItem(String path, String entry, String exit, short year, String[] fields, int carIndex, int motorCycleIndex) {
         this(entry, exit);
-        if (-1 != carIndex) {
+        if (carIndex != -1) {
             carPrice = new CategoryPrice(Float.parseFloat(fields[carIndex]), year, path);
         }
-        if (-1 != motorCycleIndex) {
+        if (motorCycleIndex != -1) {
             motorcyclePrice = new CategoryPrice(Float.parseFloat(fields[motorCycleIndex]), year, path);
         }
     }
@@ -64,12 +64,12 @@ public class DefaultPriceItem implements PriceItem {
 
     @Override
     public String getCarPath() {
-        return null == carPrice ? null : carPrice.getPath();
+        return carPrice == null ? null : carPrice.getPath();
     }
 
     @Override
     public String getMotorcyclePath() {
-        return null == motorcyclePrice ? null : motorcyclePrice.getPath();
+        return motorcyclePrice == null ? null : motorcyclePrice.getPath();
     }
 
     @Override
@@ -84,7 +84,7 @@ public class DefaultPriceItem implements PriceItem {
 
     @Override
     public float getCarPrice() {
-        return null == carPrice ? -1 : carPrice.getPrice();
+        return carPrice == null ? -1 : carPrice.getPrice();
     }
 
     @Override
@@ -111,17 +111,17 @@ public class DefaultPriceItem implements PriceItem {
 
     @Override
     public float getMotorcyclePrice() {
-        return null == motorcyclePrice ? -1 : motorcyclePrice.getPrice();
+        return motorcyclePrice == null ? -1 : motorcyclePrice.getPrice();
     }
 
     @Override
     public short getCarYear() {
-        return null == carPrice ? -1 : carPrice.getYear();
+        return carPrice == null ? -1 : carPrice.getYear();
     }
 
     @Override
     public short getMotorcycleYear() {
-        return null == motorcyclePrice ? 0 : motorcyclePrice.getYear();
+        return motorcyclePrice == null ? 0 : motorcyclePrice.getYear();
     }
 
     @Override
@@ -150,12 +150,12 @@ public class DefaultPriceItem implements PriceItem {
         if ("REIMS NORD (ORMES)".equals(priceItem.getEntry()) && "REIMS OUEST (THILLOIS)".equals(priceItem.getExit())) {
             logger.info("Merge {} into {}", priceItem, this);
         }
-        if (null != carPrice) {
+        if (carPrice != null) {
             carPrice.merge(priceItem.getCarCategoryPrice());
         } else {
             carPrice = priceItem.getCarCategoryPrice();
         }
-        if (null != motorcyclePrice) {
+        if (motorcyclePrice != null) {
             motorcyclePrice.merge(priceItem.getMotorcycleCategoryPrice());
         } else {
             motorcyclePrice = priceItem.getMotorcycleCategoryPrice();
@@ -165,7 +165,7 @@ public class DefaultPriceItem implements PriceItem {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (null == o || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         DefaultPriceItem that = (DefaultPriceItem) o;
         return entry.equals(that.entry) &&
             exit.equals(that.exit);

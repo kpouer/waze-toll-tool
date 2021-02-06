@@ -64,13 +64,13 @@ public class PriceResult {
 
     public float getPrice(Category category, Audit audit) {
         float         price;
-        CategoryPrice forwardCategoryPrice  = null == priceItemForward ? null : priceItemForward.getCategoryPrice(category);
-        CategoryPrice backwardCategoryPrice = null == priceItemBackward ? null : priceItemBackward.getCategoryPrice(category);
+        CategoryPrice forwardCategoryPrice  = priceItemForward == null ? null : priceItemForward.getCategoryPrice(category);
+        CategoryPrice backwardCategoryPrice = priceItemBackward == null ? null : priceItemBackward.getCategoryPrice(category);
 
-        assert null != forwardCategoryPrice || null != backwardCategoryPrice;
+        assert forwardCategoryPrice != null || backwardCategoryPrice != null;
 
-        if (null != forwardCategoryPrice) {
-            if (null != backwardCategoryPrice &&
+        if (forwardCategoryPrice != null) {
+            if (backwardCategoryPrice != null &&
                 (backwardCategoryPrice.getYear() > forwardCategoryPrice.getYear() ||
                     (backwardCategoryPrice.getYear() == forwardCategoryPrice.getYear() && backwardCategoryPrice.getPrice() > forwardCategoryPrice.getPrice()))) {
                 price = backwardCategoryPrice.getPrice();
@@ -83,7 +83,7 @@ public class PriceResult {
                 price = forwardCategoryPrice.getPrice();
             }
         } else {
-            if (null != backwardCategoryPrice) {
+            if (backwardCategoryPrice != null) {
                 if (CURRENT_YEAR != backwardCategoryPrice.getYear()) {
                     audit.append(String.format("Backward price is obsolete %s %s\t%s, from file %s", category, entry, exit, backwardCategoryPrice.getPath()));
                     audit.incrementObsoletePrice();

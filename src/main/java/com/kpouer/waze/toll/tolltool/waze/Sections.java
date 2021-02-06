@@ -29,12 +29,12 @@ public class Sections implements Iterable<Section> {
     private Map<String, Section> sectionMap;
 
     public Section get(String sectionId) {
-        if (null == sectionMap) {
+        if (sectionMap == null) {
             sectionMap = new HashMap<>(1000);
             Arrays.stream(sections).forEach(section -> sectionMap.put(section.getSection_id(), section));
         }
         Section section = sectionMap.get(sectionId);
-        if (null == section) {
+        if (section == null) {
             throw new IllegalArgumentException("Section " + sectionId + " doesn't exist");
         }
         return section;

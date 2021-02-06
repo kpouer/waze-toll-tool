@@ -43,7 +43,7 @@ public class CofirouteCleaner {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
             Files
                 .lines(Path.of(filename))
-                .filter(line -> !line.isEmpty() && 'A' == line.charAt(0) && !line.startsWith("AUTOROUTE"))
+                .filter(line -> !line.isEmpty() && line.charAt(0) == 'A' && !line.startsWith("AUTOROUTE"))
                 .map(line -> EURO.matcher(line).replaceAll(""))
                 .map(line -> MINUS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t-\t"))
                 .map(line -> TABS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
@@ -54,7 +54,7 @@ public class CofirouteCleaner {
                 .map(line -> TABS6.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
                 .forEach(x -> {
                     String[] split = x.split("\t");
-                    if (11 != split.length) {
+                    if (split.length != 11) {
                         System.err.println(split.length + " " + x);
                     }
                     writer.println(x);

@@ -35,7 +35,7 @@ public class FixSections {
     public static void main(String[] args) throws FileNotFoundException {
         Sections sections = new Gson().fromJson(new FileReader(new File("data/sections.json")), Sections.class);
         for (Section section : sections) {
-            if (null == section.getLocation() || 40 == section.getLocation()[0] && 0 == section.getLocation()[1]) {
+            if (section.getLocation() == null || section.getLocation()[0] == 40 && section.getLocation()[1] == 0) {
                 Segment  segment     = section.getSegments()[0];
                 String   permalink   = segment.getPermalink();
                 String   queryString = permalink.substring(permalink.indexOf('?'));
@@ -44,11 +44,11 @@ public class FixSections {
                 float    latitude    = 0;
                 for (String argument : arguments) {
                     int lonIndex = argument.indexOf("lon=");
-                    if (-1 < lonIndex) {
+                    if (lonIndex > -1) {
                         longitude = Float.parseFloat(argument.substring(lonIndex + 4));
                     } else {
                         int latIndex = argument.indexOf("lat=");
-                        if (-1 < latIndex) {
+                        if (latIndex > -1) {
                             latitude = Float.parseFloat(argument.substring(latIndex + 4));
                         }
                     }

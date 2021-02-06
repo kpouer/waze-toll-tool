@@ -83,7 +83,7 @@ public class Section {
     }
 
     public void fix() {
-        if (null == location || (2 != location.length) || (0 == location[0] && 0 == location[1])) {
+        if (location == null || (location.length != 2) || (location[0] == 0 && location[1] == 0)) {
             Segment  segment     = segments[0];
             String   permalink   = segment.getPermalink();
             String   queryString = permalink.substring(permalink.indexOf('?'));
@@ -92,11 +92,11 @@ public class Section {
             float    latitude    = 0;
             for (String argument : arguments) {
                 int lonIndex = argument.indexOf("lon=");
-                if (-1 < lonIndex) {
+                if (lonIndex > -1) {
                     longitude = Float.parseFloat(argument.substring(lonIndex + 4));
                 } else {
                     int latIndex = argument.indexOf("lat=");
-                    if (-1 < latIndex) {
+                    if (latIndex > -1) {
                         latitude = Float.parseFloat(argument.substring(latIndex + 4));
                     }
                 }

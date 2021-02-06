@@ -66,7 +66,7 @@ public class CategoryPrice {
     }
 
     public void merge(CategoryPrice categoryPrice) {
-        if (null == categoryPrice) {
+        if (categoryPrice == null) {
             return;
         }
         if (year < categoryPrice.year || (price < categoryPrice.price && year <= categoryPrice.year)) {

@@ -115,7 +115,7 @@ public class Toll {
     }
 
     public boolean hasEntryExitRule() {
-        if (null == rules) {
+        if (rules == null) {
             return false;
         }
         for (String rule : rules) {
@@ -166,7 +166,7 @@ public class Toll {
                 }
             }
         }
-        if (null == entry_exit_matrix) {
+        if (entry_exit_matrix == null) {
             entry_exit_matrix = new ArrayList<>();
         }
         entry_exit_matrix.add(new EntryExitMatrix(category.toString(), fullPrices, "", category.getVehicles()));
@@ -177,7 +177,7 @@ public class Toll {
     }
 
     public void removePriceMatrices() {
-        if (null != entry_exit_matrix) {
+        if (entry_exit_matrix != null) {
             entry_exit_matrix.clear();
         }
     }
