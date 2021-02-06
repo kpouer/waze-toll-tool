@@ -33,11 +33,21 @@ import java.nio.file.Path;
 
 public class PDFExtractor {
     public static String extractText(File pdfFile) throws IOException {
+        return extractText(pdfFile, 1, Integer.MAX_VALUE);
+    }
+
+    public static String extractText(File pdfFile, int startPage) throws IOException {
+        return extractText(pdfFile, startPage, Integer.MAX_VALUE);
+    }
+
+    public static String extractText(File pdfFile, int startPage, int endPage) throws IOException {
         RandomAccessFile randomAccessFile = new RandomAccessFile(pdfFile, "r");
         PDFParser        parser           = new PDFParser(randomAccessFile);
         parser.parse();
         PDDocument      pdDocument  = parser.getPDDocument();
         PDFTextStripper pdfStripper = new PDFTextStripper();
+        pdfStripper.setStartPage(startPage);
+        pdfStripper.setEndPage(endPage);
         String text = pdfStripper.getText(pdDocument);
         pdDocument.close();
         return text;

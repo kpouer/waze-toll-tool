@@ -24,6 +24,8 @@ package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
 public class CofirouteCleaner {
@@ -38,27 +40,43 @@ public class CofirouteCleaner {
 
     public static void main(String[] args) throws IOException {
         String filename    = args[0];
-        String outfilename = filename + ".out";
-        Writer out;
+        File   pdfFile  = new File(filename);
+        String text     = PDFExtractor.extractText(pdfFile, 8);
+        text = text.replaceAll("\r", "");
+        String[] lines       = text.split("\n");
+        String   outfilename = filename + ".tsv";
+        CleanerList cleaner = new CleanerList();
+        cleaner.load(CofirouteCleaner.class.getResourceAsStream("/cleaner.list"));
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
-            Files
-                .lines(Path.of(filename))
-                .filter(line -> !line.isEmpty() && line.charAt(0) == 'A' && !line.startsWith("AUTOROUTE"))
-                .map(line -> EURO.matcher(line).replaceAll(""))
-                .map(line -> MINUS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t-\t"))
-                .map(line -> TABS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                .map(line -> TABS2.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                .map(line -> TABS3.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                .map(line -> TABS4.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                .map(line -> TABS5.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                .map(line -> TABS6.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                .forEach(x -> {
+            AtomicInteger errors = new AtomicInteger();
+            Arrays.stream(lines)
+                 .filter(line -> line.length() > 10)
+                 .filter(line -> line.charAt(0) == 'A')
+                 .filter(line -> !line.startsWith("AUTOROUTE"))
+                 .filter(line -> !line.contains("Avant de partir"))
+                 .filter(line -> !line.contains("Twitter"))
+                 .filter(line -> !line.contains("QUELLE VOIE UTILISER"))
+                 .filter(line -> !line.contains("Attention"))
+                 .filter(line -> !line.contains("chargement"))
+                 .map(line -> EURO.matcher(line).replaceAll(""))
+                 .map(line -> MINUS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t-\t"))
+                 .map(line -> TABS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
+                 .map(line -> TABS2.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
+                 .map(line -> TABS3.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
+                 .map(line -> TABS4.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
+                 .map(line -> TABS5.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
+                 .map(line -> TABS6.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
+                 .map(line -> line.replaceAll(" +", "\t"))
+                 .map(line -> cleaner.clean(line))
+                 .forEach(x -> {
                     String[] split = x.split("\t");
                     if (split.length != 11) {
+                        errors.incrementAndGet();
                         System.err.println(split.length + " " + x);
                     }
                     writer.println(x);
                 });
+            System.out.println(errors + " errors");
         }
     }
 }
