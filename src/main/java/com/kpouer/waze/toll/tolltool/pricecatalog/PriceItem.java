@@ -21,8 +21,10 @@
  */
 package com.kpouer.waze.toll.tolltool.pricecatalog;
 
+import java.time.LocalDate;
+
 public interface PriceItem extends Comparable<PriceItem> {
-    short CURRENT_YEAR = 2020;
+    short CURRENT_YEAR = (short) LocalDate.now().getYear();
 
     CategoryPrice getCategoryPrice(Category category);
 
