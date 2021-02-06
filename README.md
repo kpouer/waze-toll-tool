@@ -91,3 +91,9 @@ Obsolete prices can be fixed by adding more recent price matrix while missing pr
 It can be fixed by adding missing matrix, fixing entry/exit names in your file, or adding aliases in alias.csv.
 
 But some cannot be fixed because in some networks it is possible to go from A to B but not from B to A for a few tolls.
+
+## Extractors
+
+I wrote some extractors to extract prices from pdf to required tsv
+
+- com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.APRRCleaner 
