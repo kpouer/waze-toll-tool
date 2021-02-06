@@ -28,6 +28,8 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class PDFExtractor {
     public static String extractText(File pdfFile) throws IOException {
@@ -39,5 +41,11 @@ public class PDFExtractor {
         String text = pdfStripper.getText(pdDocument);
         pdDocument.close();
         return text;
+    }
+
+    public static void main(String[] args) throws IOException {
+        String text = extractText(new File(args[0]));
+        Files.writeString(Path.of(args[0] + ".txt"), text);
+        System.out.println(text);
     }
 }
