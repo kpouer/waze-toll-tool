@@ -26,20 +26,22 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
-public class CofirouteCleaner {
-    private static final Pattern EURO  = Pattern.compile(" €");
-    private static final Pattern MINUS = Pattern.compile("(A\\d+) - ");
-    private static final Pattern TABS  = Pattern.compile("(\\d) (\\d)");
-    private static final Pattern TABS2 = Pattern.compile("(\\d) ([A-Z])");
-    private static final Pattern TABS3 = Pattern.compile("([A-Z]) (A\\d)");
-    private static final Pattern TABS4 = Pattern.compile("(\\)) (\\d)");
-    private static final Pattern TABS5 = Pattern.compile("(\\)) (A\\d)");
-    private static final Pattern TABS6 = Pattern.compile("([A-Z]) (\\d)");
+public class AREACleaner {
+    private static final Pattern EURO    = Pattern.compile(" €");
+    private static final Pattern MINUS   = Pattern.compile("(A\\d+) - ");
+    private static final Pattern TABS    = Pattern.compile("(\\d) (\\d)");
+    private static final Pattern TABS2   = Pattern.compile("(\\d) ([A-Z])");
+    private static final Pattern TABS3   = Pattern.compile("([A-Z]) (A\\d)");
+    private static final Pattern TABS4   = Pattern.compile("(\\)) (\\d)");
+    private static final Pattern TABS5   = Pattern.compile("(\\)) (A\\d)");
+    private static final Pattern TABS6   = Pattern.compile("([A-Z]) (\\d)");
+    private static final Pattern SPACE   = Pattern.compile(" ");
+    private static final Pattern COMPILE = Pattern.compile(" (\\d)");
 
     public static void main(String[] args) throws IOException {
         String filename = args[0];
         File   pdfFile  = new File(filename);
-        String text     = PDFExtractor.extractText(pdfFile, 8);
+        String text     = PDFExtractor.extractText(pdfFile);
         text = text.replaceAll("\r", "");
         String[]    lines       = text.split("\n");
         String      outfilename = filename + ".tsv";
@@ -48,33 +50,31 @@ public class CofirouteCleaner {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
             AtomicInteger errors = new AtomicInteger();
             Arrays.stream(lines)
+                  .filter(line -> !line.startsWith("Page "))
+                  .filter(line -> !line.contains("Tarifs"))
+                  .filter(line -> !line.startsWith("en vigueu"))
+                  .filter(line -> !line.startsWith("Gare "))
+                  .filter(line -> !line.startsWith("Km"))
+                  .filter(line -> !line.startsWith("Classe 1 Classe"))
+                  .filter(line -> !line.contains("Réseau"))
+                  .filter(line -> !line.contains("vigueur"))
+                  .filter(line -> !line.contains("tarifaire"))
+                  .filter(line -> !line.contains("TARIFS DE PÉAGE"))
+                  .filter(line -> !line.contains("Distance"))
                   .filter(line -> line.length() > 10)
-                  .filter(line -> line.charAt(0) == 'A')
-                  .filter(line -> !line.startsWith("AUTOROUTE"))
-                  .filter(line -> !line.contains("Avant de partir"))
-                  .filter(line -> !line.contains("Twitter"))
-                  .filter(line -> !line.contains("QUELLE VOIE UTILISER"))
-                  .filter(line -> !line.contains("Attention"))
-                  .filter(line -> !line.contains("chargement"))
                   .map(line -> EURO.matcher(line).replaceAll(""))
-                  .map(line -> MINUS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t-\t"))
-                  .map(line -> TABS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS2.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS3.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS4.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS5.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS6.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> line.replaceAll(" +", "\t"))
+                  .map(line -> SPACE.matcher(line).replaceAll("\t"))
+                  .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> '\t' + matchResult.group(1)))
                   .map(line -> cleaner.clean(line))
                   .forEach(x -> {
                       String[] split = x.split("\t");
-                      if (split.length != 11) {
+                      if (split.length != 10) {
                           errors.incrementAndGet();
                           System.err.println(split.length + " " + x);
                       }
                       writer.println(x);
                   });
-            System.out.println(errors + " errors");
+            System.out.println(errors);
         }
     }
 }

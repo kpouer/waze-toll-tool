@@ -24,13 +24,13 @@ package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 import java.util.regex.Pattern;
 
 public class Replacement {
-    private static final Pattern COMPILE = Pattern.compile("\t");
+    private static final Pattern TAB   = Pattern.compile("\t");
     private final Pattern pattern;
     private final String  replacement;
 
     public Replacement(Pattern pattern, String replacement) {
         this.pattern     = pattern;
-        this.replacement = COMPILE.matcher(replacement).replaceAll(" ");
+        this.replacement = TAB.matcher(replacement).replaceAll(" ");
     }
 
     public String replace(String text) {
