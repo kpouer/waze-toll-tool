@@ -194,4 +194,14 @@ public class DefaultPriceItem implements PriceItem {
         }
         throw new IllegalArgumentException("Unknown category " + category);
     }
+
+    @Override
+    public String toString() {
+        return "DefaultPriceItem{" +
+            "entry='" + entry + '\'' +
+            ", exit='" + exit + '\'' +
+            ", carPrice=" + carPrice +
+            ", motorcyclePrice=" + motorcyclePrice +
+            '}';
+    }
 }
