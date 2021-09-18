@@ -25,12 +25,12 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.parser.PriceParser;
 import com.kpouer.waze.toll.tolltool.service.FlatPriceParser;
 import com.kpouer.waze.toll.tolltool.service.OneDirectionMatrixPriceParser;
 import com.kpouer.waze.toll.tolltool.service.TrianglePriceParser;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -107,7 +107,7 @@ public class PriceCatalog {
     public PriceResult getPrice(String entry, String exit) {
         PriceItem priceItemForward  = prices.get(new DefaultPriceItem(entry, exit));
         PriceItem priceItemBackward = prices.get(new DefaultPriceItem(exit, entry));
-        if (priceItemForward == null && priceItemBackward == null) {
+        if (priceItemForward == null || priceItemBackward == null) {
             return new PriceResult(entry, exit);
         }
         return new PriceResult(entry, exit, priceItemForward, priceItemBackward);

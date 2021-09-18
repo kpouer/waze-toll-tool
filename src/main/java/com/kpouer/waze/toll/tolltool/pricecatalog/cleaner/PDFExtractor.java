@@ -54,7 +54,15 @@ public class PDFExtractor {
     }
 
     public static void main(String[] args) throws IOException {
-        String text = extractText(new File(args[0]));
+        String file = args[0];
+
+        String text;
+        if (args.length > 1) {
+            int page = Integer.parseInt(args[1]);
+            text = extractText(new File(args[0]), page, page);
+        } else {
+            text = extractText(new File(args[0]));
+        }
         Files.writeString(Path.of(args[0] + ".txt"), text);
         System.out.println(text);
     }
