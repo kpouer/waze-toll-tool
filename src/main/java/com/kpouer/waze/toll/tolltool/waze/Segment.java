@@ -22,11 +22,11 @@
 package com.kpouer.waze.toll.tolltool.waze;
 
 public class Segment {
+    private String  permalink;
     private long    id;
     private boolean forwards;
     private long    fromNode;
     private long    toNode;
-    private String  permalink;
 
     public long getId() {
         return id;
