@@ -24,6 +24,7 @@ package com.kpouer.waze.toll.tolltool.waze;
 public class EntryExitMatrix {
     private String friendly_name;
     float[][] matrix_prices;
+    private boolean  each_section_is_entry_or_exit;
     private String   permit_id;
     private String[] limit_to_vehicles;
 
@@ -44,6 +45,14 @@ public class EntryExitMatrix {
 
     public void setMatrix_prices(float[][] matrix_prices) {
         this.matrix_prices = matrix_prices;
+    }
+
+    public boolean isEach_section_is_entry_or_exit() {
+        return each_section_is_entry_or_exit;
+    }
+
+    public void setEach_section_is_entry_or_exit(boolean each_section_is_entry_or_exit) {
+        this.each_section_is_entry_or_exit = each_section_is_entry_or_exit;
     }
 
     public String getPermit_id() {
