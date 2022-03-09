@@ -26,15 +26,25 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.DefaultPriceItem;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceItem;
 import com.kpouer.waze.toll.tolltool.pricecatalog.parser.PriceParser;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
+import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
+import java.util.stream.Stream;
 
 @Service
 public class FlatPriceParser implements PriceParser {
+    private static final Logger logger = LoggerFactory.getLogger(FlatPriceParser.class);
+
     private final NameNormalizerService nameNormalizerService;
 
     public FlatPriceParser(NameNormalizerService nameNormalizerService) {
@@ -43,6 +53,7 @@ public class FlatPriceParser implements PriceParser {
 
     @Override
     public PriceItem[] getPriceGrid(Path path) throws IOException {
+        logger.info("Loading {}", path);
         String absolutePath = path.toString();
         StringUtils.split("-");
         String[]     end             = StringUtils.split(absolutePath, "-");
@@ -62,15 +73,26 @@ public class FlatPriceParser implements PriceParser {
             .parallelStream()
             .map(line -> line.trim().replace(',', '.'))
             .map(line -> StringUtils.split(line, SEPARATOR))
-            .map(fields -> new DefaultPriceItem(
+            .map(fields -> getDefaultPriceItem(absolutePath, entryIndex, exitIndex, carIndex, motorcycleIndex, year, fields))
+            .filter(Objects::nonNull)
+            .toArray(DefaultPriceItem[]::new);
+    }
+
+    @Nullable
+    public DefaultPriceItem getDefaultPriceItem(String absolutePath, int entryIndex, int exitIndex, int carIndex, int motorcycleIndex, short year, String[] fields) {
+        try {
+            return new DefaultPriceItem(
                 absolutePath,
                 nameNormalizerService.normalize(fields[entryIndex]),
                 nameNormalizerService.normalize(fields[exitIndex]),
                 year,
                 fields,
                 carIndex,
-                motorcycleIndex))
-            .toArray(DefaultPriceItem[]::new);
+                motorcycleIndex);
+        } catch (Exception e) {
+            logger.error("Error parsing {}", String.join("\t", fields));
+        }
+        return null;
     }
 
     @Override

@@ -34,7 +34,8 @@ public class CofirouteCleaner {
     private static final Pattern TABS3 = Pattern.compile("([A-Z]) (A\\d)");
     private static final Pattern TABS4 = Pattern.compile("(\\)) (\\d)");
     private static final Pattern TABS5 = Pattern.compile("(\\)) (A\\d)");
-    private static final Pattern TABS6 = Pattern.compile("([A-Z]) (\\d)");
+    private static final Pattern TABS6         = Pattern.compile("([A-Z]) (\\d)");
+    private static final Pattern SPACE_PATTERN = Pattern.compile(" +");
 
     public static void main(String[] args) throws IOException {
         String filename = args[0];
@@ -58,14 +59,16 @@ public class CofirouteCleaner {
                   .filter(line -> !line.contains("chargement"))
                   .map(line -> EURO.matcher(line).replaceAll(""))
                   .map(line -> MINUS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t-\t"))
-                  .map(line -> TABS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS2.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS3.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS4.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS5.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> TABS6.matcher(line).replaceAll(matchResult -> matchResult.group(1) + "\t" + matchResult.group(2)))
-                  .map(line -> line.replaceAll(" +", "\t"))
-                  .map(line -> cleaner.clean(line))
+                  .map(line -> TABS.matcher(line).replaceAll(matchResult -> matchResult.group(1) + '\t' + matchResult.group(2)))
+                  .map(line -> TABS2.matcher(line).replaceAll(matchResult -> matchResult.group(1) + '\t' + matchResult.group(2)))
+                  .map(line -> TABS3.matcher(line).replaceAll(matchResult -> matchResult.group(1) + '\t' + matchResult.group(2)))
+                  .map(line -> TABS4.matcher(line).replaceAll(matchResult -> matchResult.group(1) + '\t' + matchResult.group(2)))
+                  .map(line -> TABS5.matcher(line).replaceAll(matchResult -> matchResult.group(1) + '\t' + matchResult.group(2)))
+                  .map(line -> TABS6.matcher(line).replaceAll(matchResult -> matchResult.group(1) + '\t' + matchResult.group(2)))
+                  .map(line -> SPACE_PATTERN.matcher(line).replaceAll("\t"))
+                  .map(cleaner::clean)
+                  .map(line -> line.replaceAll("A4\t- ", "A4\t-\t"))
+                  .map(line -> line.replaceAll("SAINT MAIXENT\t/\tLUSIGNAN", "SAINT MAIXENT / LUSIGNAN"))
                   .forEach(x -> {
                       String[] split = x.split("\t");
                       if (split.length != 11) {
