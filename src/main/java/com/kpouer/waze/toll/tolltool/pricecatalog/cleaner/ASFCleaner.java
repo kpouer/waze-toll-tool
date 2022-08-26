@@ -25,8 +25,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
 
 public class ASFCleaner {
 
@@ -42,10 +40,14 @@ public class ASFCleaner {
             .replaceAll("([a-zéèàA-Z])\n([a-z])", "$1$2")
             .replaceAll("’\n", "'")
             .replaceAll(" \\. ", " 0 ")
+            .replaceAll("-(\\d)", "-\n$1")
+            .replaceAll("(\\d)-", "$1\n-")
+            .replaceAll("-+", "0 ")
             .replaceAll(" {2,}", " ")
             .replaceAll("^ +", "")
             .replaceAll(" +$", "")
             .replaceAll(" ", "\t")
+            .replaceAll("^\\s+", "")
             .split("\n");
         String      outfilename = filename + ".tsv";
         CleanerList cleaner     = new CleanerList();
