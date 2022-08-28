@@ -22,12 +22,13 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.ASFExtractor;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.EscotaExtractor;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.Extractor;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ASFEscotaExtractor {
@@ -44,23 +45,21 @@ public class ASFEscotaExtractor {
     }
 
     private static void extractTollFile(File pdfFile) throws IOException {
-        if (pdfFile.getName().contains("Escota")) {
-            extractEscota(pdfFile);
+        String filename = pdfFile.getName();
+        if (filename.contains("Escota")) {
+            Extractor extractor = new EscotaExtractor();
+            extractor.extract(pdfFile);
+        } else if (filename.startsWith("C1-TARIFS")) {
+            Extractor extractor = new ASFExtractor(Category.Car);
+            extractor.extract(pdfFile);
+        } else if (filename.startsWith("C5-TARIFS")) {
+            Extractor extractor = new ASFExtractor(Category.Motorcycle);
+            extractor.extract(pdfFile);
         }
     }
 
-    private static void extractEscota(File pdfFile) throws IOException {
-        int        currentYear = new GregorianCalendar().get(Calendar.YEAR);
-        String[]   headers     = getHeaders("Escota_A8_A50_A52_A51_A57");
-        File       outputPath  = new File(pdfFile.getParentFile(), "out");
-        outputPath.mkdirs();
-        TSVBuilder tsvBuilder  = new TriangleBuilder(outputPath);
-        tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Car, headers, getPage(pdfFile, 7), 1, List.of(10));
-        tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Motorcycle, headers, getPage(pdfFile, 11), 5, List.of(10));
-    }
-
     @NotNull
-    private static String[] getHeaders(String tollFileName) throws IOException {
+    public static String[] getHeaders(String tollFileName) throws IOException {
         try (InputStream inputStream = ASFEscotaExtractor.class.getResourceAsStream("/samples/" + tollFileName + ".txt")) {
             return new String(inputStream.readAllBytes()).split("\n");
         }
@@ -68,13 +67,13 @@ public class ASFEscotaExtractor {
 
     private static void extractPage(File pdfFile, int page) throws IOException {
         List<String> lines       = getPage(pdfFile, page);
-        String       outfilename = pdfFile.getName() + '-' + page + ".tsv";
+        File       outfilename = new File(pdfFile.getParentFile(), pdfFile.getName() + '-' + page + ".tsv");
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
             lines.forEach(writer::println);
         }
     }
 
-    private static List<String> getPage(File pdfFile, int page) throws IOException {
+    public static List<String> getPage(File pdfFile, int page) throws IOException {
         String text = PDFExtractor.extractText(pdfFile, page, page);
         String[] lines = text
             .replaceAll("\r", "")

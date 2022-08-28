@@ -19,7 +19,7 @@
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
+package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 
@@ -32,11 +32,11 @@ import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class TriangleBuilder implements TSVBuilder {
+public class RectangleBuilder implements TSVBuilder {
     private final File path;
     private final int  currentYear;
 
-    public TriangleBuilder(File path) {
+    public RectangleBuilder(File path) {
         this.path   = path;
         currentYear = new GregorianCalendar().get(Calendar.YEAR);
     }
@@ -44,28 +44,17 @@ public class TriangleBuilder implements TSVBuilder {
     @Override
     public void buildFile(String name, Category category, String[] headers, List<String> lines, int skip, Collection<Integer> clonedColumns) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path, currentYear + "_" + name + '-' + category + ".tsv")))) {
-            // insert an empty line
+            // insert columns header
             writer.write(headers[0]);
             writer.write('\n');
             for (int i = 0; i < headers.length - 1; i++) {
                 String header = headers[i + 1];
-                String[] line   = lines.get(i + skip).trim().split("\t");
-                for (int j = 0; j < line.length; j++) {
-                    String token = line[j];
-                    writer.write(token);
-                    writer.write('\t');
-                    if (clonedColumns.contains(j + 1)) {
-                        writer.write(token);
-                        writer.write('\t');
-                    }
-                }
-                if (clonedColumns.contains(i + 1)) {
-                    writer.write("0\t");
-                }
+                String line      = lines.get(i + skip);
+                line   = line.replaceAll("^.*[^\t^0-9]\\t", ""); // replace beginning as I write my row name myself
                 writer.write(header);
-                if (i < headers.length - 2) {
-                    writer.write('\n');
-                }
+                writer.write('\t');
+                writer.write(line);
+                writer.write('\n');
             }
         }
     }
