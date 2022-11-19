@@ -42,14 +42,17 @@ public class RectangleBuilder implements TSVBuilder {
     }
 
     @Override
-    public void buildFile(String name, Category category, String[] headers, List<String> lines, int skip, Collection<Integer> clonedColumns) throws IOException {
+    public void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLine, int column, Collection<Integer> clonedColumns) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path, currentYear + "_" + name + '-' + category + ".tsv")))) {
             // insert columns header
             writer.write(headers[0]);
             writer.write('\n');
             for (int i = 0; i < headers.length - 1; i++) {
                 String header = headers[i + 1];
-                String line      = lines.get(i + skip);
+                String line      = lines.get(i + skipLine);
+                if (i == 0 && column > 0) {
+                    line = line.substring(column);
+                }
                 line   = line.replaceAll("^.*[^\t^0-9]\\t", ""); // replace beginning as I write my row name myself
                 writer.write(header);
                 writer.write('\t');

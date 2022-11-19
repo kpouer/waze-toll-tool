@@ -25,8 +25,23 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public interface TSVBuilder {
-    void buildFile(String name, Category category, String[] headers, List<String> lines, int skip, Collection<Integer> clonedColumns) throws IOException;
+    default void buildFile(String name, Category category, String[] headers, List<String> lines) throws IOException {
+        buildFile(name, category, headers, lines, 0, 0, Collections.emptyList());
+    }
+    default void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines) throws IOException {
+        buildFile(name, category, headers, lines, skipLines, 0, Collections.emptyList());
+    }
+
+    default void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, int skipOffset) throws IOException {
+        buildFile(name, category, headers, lines, skipLines, skipOffset, Collections.emptyList());
+    }
+    default void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, Collection<Integer> clonedColumns) throws IOException {
+        buildFile(name, category, headers, lines, 0, 0, clonedColumns);
+    }
+
+    void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, int skipOffset, Collection<Integer> clonedColumns) throws IOException;
 }

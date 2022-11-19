@@ -42,13 +42,17 @@ public class TriangleBuilder implements TSVBuilder {
     }
 
     @Override
-    public void buildFile(String name, Category category, String[] headers, List<String> lines, int skip, Collection<Integer> clonedColumns) throws IOException {
+    public void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLine, int column, Collection<Integer> clonedColumns) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(path, currentYear + "_" + name + '-' + category + ".tsv")))) {
             writer.write(headers[0]);
             writer.write('\n');
             for (int i = 0; i < headers.length - 1; i++) {
                 String header = headers[i + 1];
-                String[] line   = lines.get(i + skip).trim().split("\t");
+                String ln      = lines.get(i + skipLine);
+                if (i == 0 && column > 0) {
+                    ln = ln.substring(column);
+                }
+                String[] line   = ln.trim().split("\t");
                 for (int j = 0; j < line.length; j++) {
                     String token = line[j];
                     writer.write(token);

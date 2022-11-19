@@ -48,6 +48,7 @@ public class AREACleaner {
         CleanerList cleaner     = new CleanerList();
         cleaner.load(CofirouteCleaner.class.getResourceAsStream("/cleaner.list"));
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
+            writer.println("Code entrée\tGare d'entrée\tCode Sortie\tGare de sortie\tDistance\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");
             AtomicInteger errors = new AtomicInteger();
             Arrays.stream(lines)
                   .filter(line -> !line.startsWith("Page "))
