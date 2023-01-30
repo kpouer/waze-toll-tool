@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -22,8 +22,7 @@
 package com.kpouer.waze.toll.tolltool.service;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceCatalog;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +33,11 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
+@Slf4j
 public class PriceCatalogs {
-    private static final Logger                    logger = LoggerFactory.getLogger(PriceCatalogs.class);
     private final        ApplicationContext        applicationContext;
     private final        Map<String, PriceCatalog> priceCatalogs;
 
@@ -49,10 +49,12 @@ public class PriceCatalogs {
 
     public void load() throws IOException {
         priceCatalogs.clear();
-        Files.list(new File("prices").toPath())
-             .parallel()
-             .filter(path -> path.toFile().isDirectory())
-             .forEach(this::loadCatalog);
+        try (var prices = Files.list(new File("prices").toPath())) {
+            prices
+                .parallel()
+                .filter(path -> path.toFile().isDirectory())
+                .forEach(this::loadCatalog);
+        }
     }
 
     private void loadCatalog(Path path) {
@@ -61,7 +63,7 @@ public class PriceCatalogs {
             priceCatalog.load(path);
             priceCatalogs.put(path.toFile().getName().toLowerCase(), priceCatalog);
         } catch (IOException e) {
-            logger.error("Error while loading catalog {}", path);
+            log.error("Error while loading catalog {}", path);
         }
     }
 
