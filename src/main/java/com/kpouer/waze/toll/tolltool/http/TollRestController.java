@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -22,15 +22,13 @@
 package com.kpouer.waze.toll.tolltool.http;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
-import com.kpouer.waze.toll.tolltool.pricecatalog.PriceCatalog;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceItem;
 import com.kpouer.waze.toll.tolltool.service.NameNormalizerService;
 import com.kpouer.waze.toll.tolltool.service.PriceCatalogs;
 import com.kpouer.waze.toll.tolltool.waze.Toll;
 import com.kpouer.waze.toll.tolltool.waze.Tolls;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,14 +36,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.function.Function;
 
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 @RestController
+@Slf4j
 public class TollRestController {
-    private static final Logger                logger = LoggerFactory.getLogger(TollRestController.class);
     private final        PriceCatalogs         priceCatalogs;
     private final        NameNormalizerService nameNormalizerService;
 
@@ -73,7 +70,11 @@ public class TollRestController {
 
     private String dumpTolls(@PathVariable String country, Function<PriceItem, String> getter) {
         long         start        = System.currentTimeMillis();
-        PriceCatalog priceCatalog = priceCatalogs.getPriceCatalog(country).get();
+        var priceCatalogOptional = priceCatalogs.getPriceCatalog(country);
+        if (priceCatalogOptional.isEmpty()) {
+            return "Unsupported country " + country;
+        }
+        var priceCatalog = priceCatalogOptional.get();
         String[] tolls = priceCatalog
             .getPrices()
             .keySet()
@@ -83,7 +84,7 @@ public class TollRestController {
             .distinct()
             .toArray(String[]::new);
         long end = System.currentTimeMillis();
-        logger.info("Dumping entries/exits of {} : {} items in {}ms", country, tolls.length, end - start);
+        log.info("Dumping entries/exits of {} : {} items in {}ms", country, tolls.length, end - start);
         Arrays.sort(tolls);
         return String.join("\n", tolls);
     }
@@ -91,20 +92,28 @@ public class TollRestController {
     @GetMapping(value = "getPrices/{country}", produces = "text/plain")
     public String getPrices(@PathVariable String country) {
         long         start        = System.currentTimeMillis();
-        PriceCatalog priceCatalog = priceCatalogs.getPriceCatalog(country).get();
+        var priceCatalogOptional = priceCatalogs.getPriceCatalog(country);
+        if (priceCatalogOptional.isEmpty()) {
+            return "Unsupported country " + country;
+        }
+        var priceCatalog = priceCatalogOptional.get();
         PriceItem[] priceItems = priceCatalog
             .getPrices()
             .keySet()
             .toArray(PriceItem[]::new);
         long end = System.currentTimeMillis();
-        logger.info("Dumping prices of {} : {} items in {}ms", country, priceItems.length, end - start);
+        log.info("Dumping prices of {} : {} items in {}ms", country, priceItems.length, end - start);
         return dumpPriceItems(priceItems);
     }
 
     @GetMapping(value = "getPrices/{country}/from/{entry}", produces = "text/plain")
     public String getPricesEntry(@PathVariable String country, @PathVariable String entry) {
         long         start        = System.currentTimeMillis();
-        PriceCatalog priceCatalog = priceCatalogs.getPriceCatalog(country).get();
+        var priceCatalogOptional = priceCatalogs.getPriceCatalog(country);
+        if (priceCatalogOptional.isEmpty()) {
+            return "Unsupported country " + country;
+        }
+        var priceCatalog = priceCatalogOptional.get();
         PriceItem[] priceItems = priceCatalog
             .getPrices()
             .keySet()
@@ -112,14 +121,18 @@ public class TollRestController {
             .filter(priceItem -> priceItem.getEntry().contains(entry))
             .toArray(PriceItem[]::new);
         long end = System.currentTimeMillis();
-        logger.info("Dumping prices of {}/{} : {} items in {}ms", country, entry, priceItems.length, end - start);
+        log.info("Dumping prices of {}/{} : {} items in {}ms", country, entry, priceItems.length, end - start);
         return dumpPriceItems(priceItems);
     }
 
     @GetMapping(value = "getPrices/{country}/to/{exit}", produces = "text/plain")
     public String getPricesExit(@PathVariable String country, @PathVariable String exit) {
         long         start        = System.currentTimeMillis();
-        PriceCatalog priceCatalog = priceCatalogs.getPriceCatalog(country).get();
+        var priceCatalogOptional = priceCatalogs.getPriceCatalog(country);
+        if (priceCatalogOptional.isEmpty()) {
+            return "Unsupported country " + country;
+        }
+        var priceCatalog = priceCatalogOptional.get();
         PriceItem[] priceItems = priceCatalog
             .getPrices()
             .keySet()
@@ -127,18 +140,18 @@ public class TollRestController {
             .filter(priceItem -> priceItem.getExit().equals(exit))
             .toArray(PriceItem[]::new);
         long end = System.currentTimeMillis();
-        logger.info("Dumping prices of {}/?/{} : {} items in {}ms", country, exit, priceItems.length, end - start);
+        log.info("Dumping prices of {}/?/{} : {} items in {}ms", country, exit, priceItems.length, end - start);
         return dumpPriceItems(priceItems);
     }
 
     private String dumpPriceItems(PriceItem[] priceItems) {
-        StringBuilder builder = new StringBuilder(2000000);
         Arrays.sort(priceItems);
-        Arrays.stream(priceItems).forEach(priceItem -> builder.append(nameNormalizerService.printKey(priceItem.getEntry())).append("\t")
+        var builder = new StringBuilder(2000000);
+        Arrays.stream(priceItems).forEach(priceItem -> builder.append(nameNormalizerService.printKey(priceItem.getEntry())).append('\t')
                                                               .append(nameNormalizerService.printKey(priceItem.getExit()))
-                                                              .append("\t")
+                                                              .append('\t')
                                                               .append(priceItem.getCarPrice())
-                                                              .append("\t")
+                                                              .append('\t')
                                                               .append(priceItem.getMotorcyclePrice())
                                                               .append('\n'));
         return builder.toString();
@@ -155,8 +168,11 @@ public class TollRestController {
     @PostMapping(value = "updateMatrix/{country}", produces = "text/plain")
     public ResponseEntity<TollResponse> updateMatrixGrids(@RequestBody Tolls tolls, @PathVariable String country) {
         tolls.forEach(Toll::removePriceMatrices);
-        Optional<PriceCatalog> catalogsPriceCatalog = priceCatalogs.getPriceCatalog(country);
-        PriceCatalog           priceCatalog         = catalogsPriceCatalog.get();
+        var priceCatalogOptional = priceCatalogs.getPriceCatalog(country);
+        if (priceCatalogOptional.isEmpty()) {
+            throw new IllegalArgumentException("Unsupported country " + country);
+        }
+        var priceCatalog = priceCatalogOptional.get();
         Audit                  audit                = new Audit();
         for (Toll toll : tolls) {
             toll.fixSections();
@@ -174,7 +190,7 @@ public class TollRestController {
 
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<String> handleException(Throwable e) {
-        logger.error("Unexpected exception", e);
+        log.error("Unexpected exception", e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ExceptionUtils.getStackTrace(e));
     }
 }
