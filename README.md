@@ -1,4 +1,7 @@
 # waze-toll-tool
+[![Java CI with Maven](https://github.com/kpouer/waze-toll-tool/actions/workflows/maven.yml/badge.svg)](https://github.com/kpouer/waze-toll-tool/actions/workflows/maven.yml)
+[![CodeQL](https://github.com/kpouer/waze-toll-tool/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/kpouer/waze-toll-tool/actions/workflows/codeql-analysis.yml)
+
 A tool to populate Waze toll prices. If you don't know what it is then you don't need it.
 
 ## Introduction
