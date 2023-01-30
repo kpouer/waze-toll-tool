@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>France</title>
+    <script language="JavaScript">
+
+function submit() {
+    let body = {
+        credencials: {
+            username: $('#username').val(),
+            password: $('#password').val()
+        },
+        data       : JSON.parse($('#textarea_in').val())
+    };
+    $.ajax({
+        type       : "POST",
+        url        : "/checkfile",
+        data       : JSON.stringify(body),
+        contentType: "application/json; charset=utf-8",
+        dataType   : "json",
+        success    : done,
+        error      : fail
+    });
+}
+
+function done(data) {
+    $('#textarea_out').val(JSON.stringify(data.tolls));
+    $('#textarea_audit').val(data.audit);
+}
+
+function fail(data) {
+    $('#textarea_out').val("FAIL");
+    $('#textarea_audit').val(JSON.stringify(data));
+}
+
+    </script>
+</head>
+<body>
+<b>Input your json from http://tolls.waze.com</b><br>
+<label for="username">username: </label><input type="text" id="username"/>
+<label for="password">password: </label><input type="password" name="password" id="password"/>
+<textarea id="textarea_in" cols="240" rows="20"></textarea>
+<br>
+<input type="button" onclick="submit()" value="Go"/><br>
+<b>Output</b><br>
+<textarea id="textarea_out" cols="240" rows="20"></textarea><br/>
+<b>Audit</b><br/>
+<textarea id="textarea_audit" cols="240" rows="20"></textarea>
+</body>
+</html>

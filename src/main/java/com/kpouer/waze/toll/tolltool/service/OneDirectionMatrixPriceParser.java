@@ -82,9 +82,7 @@ public class OneDirectionMatrixPriceParser implements PriceParser {
                 try {
                     value = Float.parseFloat(lineToken[column]);
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Unable to parse value in " +
-                        path + " " + entry + "->" + exit + " " + lineToken[row]);
-                    logger.error("Number format error", e);
+                    logger.error("Unable to parse value in " + path + " " + entry + "->" + exit + " " + lineToken[row], e);
                 }
                 String normalizedEntry = nameNormalizerService.normalize(entry);
                 String normalizedExit  = nameNormalizerService.normalize(exit);

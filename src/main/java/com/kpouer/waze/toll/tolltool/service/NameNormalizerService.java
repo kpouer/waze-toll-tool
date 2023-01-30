@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class NameNormalizerService {
@@ -58,6 +59,7 @@ public class NameNormalizerService {
     }
 
     public String normalize(String key) {
+        Objects.requireNonNull(key);
         String normalized = StringUtils
             .stripAccents(key)
             .toUpperCase()
