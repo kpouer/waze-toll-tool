@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -26,12 +26,12 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.CategoryPrice;
 import com.kpouer.waze.toll.tolltool.pricecatalog.DefaultPriceItem;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceItem;
 import com.kpouer.waze.toll.tolltool.pricecatalog.parser.PriceParser;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,19 +40,12 @@ import java.util.Collection;
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
+@Setter
 public class OneDirectionMatrixPriceParser implements PriceParser {
-    private static final Logger                logger = LoggerFactory.getLogger(OneDirectionMatrixPriceParser.class);
     private final        NameNormalizerService nameNormalizerService;
     private              Category              category;
-
-    public OneDirectionMatrixPriceParser(NameNormalizerService nameNormalizerService) {
-        this.nameNormalizerService = nameNormalizerService;
-    }
-
-    @Override
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     @Override
     public PriceItem[] getPriceGrid(Path path) throws IOException {
@@ -76,13 +69,13 @@ public class OneDirectionMatrixPriceParser implements PriceParser {
                 try {
                     exit = headerLineTokens[column];
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    logger.error("Wrong column count in line {}", row, e);
+                    log.error("Wrong column count in line {}", row, e);
                 }
                 float value = 0;
                 try {
                     value = Float.parseFloat(lineToken[column]);
                 } catch (NumberFormatException e) {
-                    logger.error("Unable to parse value in " + path + " " + entry + "->" + exit + " " + lineToken[row], e);
+                    log.error("Unable to parse value in " + path + ' ' + entry + "->" + exit + ' ' + lineToken[row], e);
                 }
                 String normalizedEntry = nameNormalizerService.normalize(entry);
                 String normalizedExit  = nameNormalizerService.normalize(exit);
