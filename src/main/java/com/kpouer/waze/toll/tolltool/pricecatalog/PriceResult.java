@@ -25,37 +25,9 @@ import com.kpouer.waze.toll.tolltool.http.Audit;
 
 import static com.kpouer.waze.toll.tolltool.pricecatalog.PriceItem.CURRENT_YEAR;
 
-public class PriceResult {
-    private final PriceItem priceItemForward;
-    private final PriceItem priceItemBackward;
-    private final String    entry;
-    private final String    exit;
-
-    public PriceResult(String entry, String exit, PriceItem priceItemForward, PriceItem priceItemBackward) {
-        this.entry             = entry;
-        this.exit              = exit;
-        this.priceItemForward  = priceItemForward;
-        this.priceItemBackward = priceItemBackward;
-    }
-
+public record PriceResult(String entry, String exit, PriceItem priceItemForward, PriceItem priceItemBackward) {
     public PriceResult(String entry, String exit) {
         this(entry, exit, null, null);
-    }
-
-    public PriceItem getPriceItemForward() {
-        return priceItemForward;
-    }
-
-    public PriceItem getPriceItemBackward() {
-        return priceItemBackward;
-    }
-
-    public String getEntry() {
-        return entry;
-    }
-
-    public String getExit() {
-        return exit;
     }
 
     public float getPrice(Category category, Audit audit) {

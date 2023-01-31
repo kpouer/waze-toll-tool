@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,55 +21,13 @@
  */
 package com.kpouer.waze.toll.tolltool.waze;
 
+import lombok.Data;
+
+@Data
 public class Segment {
     private String  permalink;
     private long    id;
     private boolean forwards;
     private long    fromNode;
     private long    toNode;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public boolean isForwards() {
-        return forwards;
-    }
-
-    public void setForwards(boolean forwards) {
-        this.forwards = forwards;
-    }
-
-    public long getFromNode() {
-        return fromNode;
-    }
-
-    public void setFromNode(long fromNode) {
-        this.fromNode = fromNode;
-    }
-
-    public long getToNode() {
-        return toNode;
-    }
-
-    public void setToNode(long toNode) {
-        this.toNode = toNode;
-    }
-
-    public void setPermalink(String permalink) {
-        this.permalink = permalink;
-    }
-
-    public String getPermalink() {
-        return permalink;
-    }
-
-    @Override
-    public String toString() {
-        return "Segment{id=" + id + ", forwards=" + forwards + ", fromNode=" + fromNode + ", toNode=" + toNode + '}';
-    }
 }

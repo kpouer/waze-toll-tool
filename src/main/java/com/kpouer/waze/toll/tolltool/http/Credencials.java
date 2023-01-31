@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,31 +21,10 @@
  */
 package com.kpouer.waze.toll.tolltool.http;
 
-public class Credencials {
+import lombok.Data;
+
+@Data
+class Credencials {
     private String username;
     private String password;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Credencials{" +
-            "username='" + username + '\'' +
-            ", password='" + password + '\'' +
-            '}';
-    }
 }

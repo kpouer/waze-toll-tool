@@ -27,6 +27,7 @@ import com.kpouer.waze.toll.tolltool.service.NameNormalizerService;
 import com.kpouer.waze.toll.tolltool.service.PriceCatalogs;
 import com.kpouer.waze.toll.tolltool.waze.Toll;
 import com.kpouer.waze.toll.tolltool.waze.Tolls;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpHeaders;
@@ -42,14 +43,10 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 @RestController
 @Slf4j
+@AllArgsConstructor
 public class TollRestController {
-    private final        PriceCatalogs         priceCatalogs;
-    private final        NameNormalizerService nameNormalizerService;
-
-    public TollRestController(PriceCatalogs priceCatalogs, NameNormalizerService nameNormalizerService) {
-        this.priceCatalogs         = priceCatalogs;
-        this.nameNormalizerService = nameNormalizerService;
-    }
+    private final PriceCatalogs         priceCatalogs;
+    private final NameNormalizerService nameNormalizerService;
 
     @GetMapping("reload")
     public String getPrices() throws IOException {
@@ -161,7 +158,7 @@ public class TollRestController {
     public float getPrice(@PathVariable String country, @PathVariable String entry, @PathVariable String exit, @PathVariable String category) {
         return priceCatalogs.getPriceCatalog(country).orElseThrow()
                             .getPrice(entry, exit)
-                            .getPriceItemForward()
+                            .priceItemForward()
                             .getPrice(Category.fromString(category));
     }
 

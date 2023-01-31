@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,66 +21,18 @@
  */
 package com.kpouer.waze.toll.tolltool.waze;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
+@Data
+@NoArgsConstructor
 public class Section {
     private String    section_id;
     private String    road_local_name;
     private String    section_local_name;
     private float[]   location;
     private Segment[] segments;
-
-    public Section() {
-    }
-
-    public void setSection_id(String section_id) {
-        this.section_id = section_id;
-    }
-
-    public void setRoad_local_name(String road_local_name) {
-        this.road_local_name = road_local_name;
-    }
-
-    public String getSection_local_name() {
-        return section_local_name;
-    }
-
-    public void setSection_local_name(String section_local_name) {
-        this.section_local_name = section_local_name;
-    }
-
-    public void setSegments(Segment[] segments) {
-        this.segments = segments;
-    }
-
-    public String getSection_id() {
-        return section_id;
-    }
-
-    public String getRoad_local_name() {
-        return road_local_name;
-    }
-
-    @Override
-    public String toString() {
-        return "Section{" +
-            "section_id='" + section_id + '\'' +
-            ", road_local_name='" + road_local_name + '\'' +
-            ", section_local_name='" + section_local_name + '\'' +
-            '}';
-    }
-
-    public float[] getLocation() {
-        return location;
-    }
-
-    public void setLocation(float[] location) {
-        this.location = location;
-    }
-
-    public Segment[] getSegments() {
-        return segments;
-    }
 
     public void fix() {
         if (location == null || (location.length != 2) || (location[0] == 0 && location[1] == 0)) {

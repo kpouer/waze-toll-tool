@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -25,9 +25,9 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.parser.PriceParser;
 import com.kpouer.waze.toll.tolltool.service.FlatPriceParser;
 import com.kpouer.waze.toll.tolltool.service.OneDirectionMatrixPriceParser;
 import com.kpouer.waze.toll.tolltool.service.TrianglePriceParser;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -42,8 +42,8 @@ import java.util.stream.Stream;
 
 @Component
 @Scope("prototype")
+@Slf4j
 public class PriceCatalog {
-    private static final Logger                        logger = LoggerFactory.getLogger(PriceCatalog.class);
     private final        FlatPriceParser               flatPriceParser;
     private final        TrianglePriceParser           trianglePriceParser;
     private final        OneDirectionMatrixPriceParser oneDirectionMatrixPriceParser;
@@ -61,7 +61,7 @@ public class PriceCatalog {
     }
 
     public void load(Path rootPath) throws IOException {
-        logger.info("load {}", rootPath);
+        log.info("load {}", rootPath);
         Collection<FolderDefinition> folderDefinitions = new ArrayList<>();
         folderDefinitions.add(new FolderDefinition("flat", "tsv", flatPriceParser));
         folderDefinitions.add(new FolderDefinition("triangle/cars", "tsv", trianglePriceParser, Category.Car));
@@ -94,12 +94,12 @@ public class PriceCatalog {
 
     private static void loadFolder(Collection<PriceItem[]> priceGridList, FolderDefinition folderDefinition, Path path) {
         try {
-            logger.info("load {}", path);
+            log.info("load {}", path);
             PriceParser priceParser = folderDefinition.getPriceParser();
             priceParser.setCategory(folderDefinition.getCategory());
             priceGridList.add(priceParser.getPriceGrid(path));
         } catch (Exception e) {
-            logger.error("Error while loading prices of {}", path, e);
+            log.error("Error while loading prices of {}", path, e);
         }
     }
 
@@ -113,17 +113,12 @@ public class PriceCatalog {
         return new PriceResult(entry, exit, priceItemForward, priceItemBackward);
     }
 
+    @RequiredArgsConstructor
     private static class FolderDefinition {
         private final String      folder;
         private final String      extension;
         private final PriceParser priceParser;
         private       Category    category;
-
-        private FolderDefinition(String folder, String extension, PriceParser priceParser) {
-            this.folder      = folder;
-            this.extension   = extension;
-            this.priceParser = priceParser;
-        }
 
         FolderDefinition(String folder, String extension, PriceParser priceParser, Category category) {
             this(folder, extension, priceParser);
@@ -144,10 +139,6 @@ public class PriceCatalog {
 
         public Category getCategory() {
             return category;
-        }
-
-        public void setCategory(Category category) {
-            this.category = category;
         }
     }
 }

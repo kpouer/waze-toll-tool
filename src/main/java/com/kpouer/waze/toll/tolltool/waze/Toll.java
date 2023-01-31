@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,22 +21,21 @@
  */
 package com.kpouer.waze.toll.tolltool.waze;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.kpouer.waze.toll.tolltool.http.Audit;
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceCatalog;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceResult;
 import com.kpouer.waze.toll.tolltool.service.NameNormalizerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@JsonNaming(SnakeCaseStrategy.class)
+@NoArgsConstructor
 public class Toll {
-    private static final Logger                logger = LoggerFactory.getLogger(Toll.class);
     private              String                toll_id;
     private              String                road_local_name;
     private              String                currency;
@@ -46,73 +45,6 @@ public class Toll {
     private              String[]              rules;
     private              List<EntryExitMatrix> entry_exit_matrix;
     private              List<Section>         sections;
-
-    public Toll() {
-    }
-
-    public void setToll_id(String toll_id) {
-        this.toll_id = toll_id;
-    }
-
-    public void setRoad_local_name(String road_local_name) {
-        this.road_local_name = road_local_name;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public void setCurrency_code(String currency_code) {
-        this.currency_code = currency_code;
-    }
-
-    public void setPolyline(String polyline) {
-        this.polyline = polyline;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setRules(String[] rules) {
-        this.rules = rules;
-    }
-
-    public void setEntry_exit_matrix(List<EntryExitMatrix> entry_exit_matrix) {
-        this.entry_exit_matrix = entry_exit_matrix;
-    }
-
-    public void setSections(List<Section> sections) {
-        this.sections = sections;
-    }
-
-    public String getToll_id() {
-        return toll_id;
-    }
-
-    public String getRoad_local_name() {
-        return road_local_name;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public String getCurrency_code() {
-        return currency_code;
-    }
-
-    public String getPolyline() {
-        return polyline;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String[] getRules() {
-        return rules;
-    }
 
     public boolean hasEntryExitRule() {
         if (rules == null) {
@@ -124,14 +56,6 @@ public class Toll {
             }
         }
         return false;
-    }
-
-    public List<EntryExitMatrix> getEntry_exit_matrix() {
-        return entry_exit_matrix;
-    }
-
-    public List<Section> getSections() {
-        return sections;
     }
 
     public Toll(String toll_id, String road_local_name, String currency, String currency_code, String polyline, String type, String[] rules) {

@@ -21,32 +21,23 @@
  */
 package com.kpouer.waze.toll.tolltool.waze;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+@JsonNaming(SnakeCaseStrategy.class)
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Tolls implements Iterable<Toll> {
     private Toll[] tolls;
-
-    public Tolls() {
-    }
-
-    public Tolls(Toll[] tolls) {
-        this.tolls = tolls;
-    }
-
-    public Toll[] getTolls() {
-        return tolls;
-    }
-
-    public void setTolls(Toll[] tolls) {
-        this.tolls = tolls;
-    }
 
     @Override
     public Iterator<Toll> iterator() {

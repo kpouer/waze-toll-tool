@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,22 +21,22 @@
  */
 package com.kpouer.waze.toll.tolltool.pricecatalog;
 
+import lombok.Getter;
+
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class PriceGrid {
     private final Path                      path;
-    private       PriceItem[]               priceItemList;
     private final Map<PriceItem, PriceItem> prices;
 
     public PriceGrid(Path path, PriceItem[] priceItemList) {
         this.path          = path;
-        this.priceItemList = priceItemList;
         prices             = new HashMap<>(priceItemList.length);
-        for (PriceItem priceItem : priceItemList) {
-            prices.put(priceItem, priceItem);
-        }
+        Arrays.stream(priceItemList).forEach(priceItem -> prices.put(priceItem, priceItem));
     }
 
     public float getPrice(String entry, String exit, Category category) {
@@ -48,13 +48,5 @@ public class PriceGrid {
         if (priceItem == null)
             return -1;
         return priceItem.getPrice(category);
-    }
-
-    public Map<PriceItem, PriceItem> getPrices() {
-        return prices;
-    }
-
-    public Path getPath() {
-        return path;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -23,20 +23,5 @@ package com.kpouer.waze.toll.tolltool.http;
 
 import com.kpouer.waze.toll.tolltool.waze.Tolls;
 
-public class TollResponse {
-    private final Tolls  tolls;
-    private final String audit;
-
-    public TollResponse(Tolls tolls, String audit) {
-        this.tolls = tolls;
-        this.audit = audit;
-    }
-
-    public Tolls getTolls() {
-        return tolls;
-    }
-
-    public String getAudit() {
-        return audit;
-    }
+public record TollResponse(Tolls tolls, String audit) {
 }
