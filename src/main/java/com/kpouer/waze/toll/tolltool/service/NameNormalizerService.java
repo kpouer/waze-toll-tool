@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,6 +21,7 @@
  */
 package com.kpouer.waze.toll.tolltool.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,9 +35,9 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
+@Slf4j
 public class NameNormalizerService {
-    private static final Logger              logger = LoggerFactory.getLogger(NameNormalizerService.class);
-    private final        Map<String, String> alias;
+    private final Map<String, String> alias;
 
     public NameNormalizerService() throws IOException {
         alias = new HashMap<>(1000);
@@ -45,7 +46,7 @@ public class NameNormalizerService {
 
     public void load() throws IOException {
         alias.clear();
-        logger.info("Load alias");
+        log.info("Load alias");
         File file = new File("prices/alias.csv");
         if (file.exists()) {
             Files.readAllLines(file.toPath())
@@ -55,7 +56,7 @@ public class NameNormalizerService {
                  .map(line -> StringUtils.split(line, ","))
                  .forEach(strings -> alias.put(strings[0], strings[1]));
         }
-        logger.info("{} alias loaded", alias.size());
+        log.info("{} alias loaded", alias.size());
     }
 
     public String normalize(String key) {

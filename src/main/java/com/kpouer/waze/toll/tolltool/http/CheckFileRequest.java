@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -22,24 +22,10 @@
 package com.kpouer.waze.toll.tolltool.http;
 
 import com.kpouer.waze.toll.tolltool.waze.Tolls;
+import lombok.Data;
 
+@Data
 public class CheckFileRequest {
     private Credencials credencials;
     private Tolls       data;
-
-    public Credencials getCredencials() {
-        return credencials;
-    }
-
-    public void setCredencials(Credencials credencials) {
-        this.credencials = credencials;
-    }
-
-    public Tolls getData() {
-        return data;
-    }
-
-    public void setData(Tolls data) {
-        this.data = data;
-    }
 }

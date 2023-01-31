@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -25,35 +25,27 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 import com.kpouer.waze.toll.tolltool.pricecatalog.DefaultPriceItem;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceItem;
 import com.kpouer.waze.toll.tolltool.pricecatalog.parser.PriceParser;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.util.Strings;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.StringJoiner;
-import java.util.stream.Stream;
 
 @Service
+@Slf4j
+@AllArgsConstructor
 public class FlatPriceParser implements PriceParser {
-    private static final Logger logger = LoggerFactory.getLogger(FlatPriceParser.class);
-
     private final NameNormalizerService nameNormalizerService;
-
-    public FlatPriceParser(NameNormalizerService nameNormalizerService) {
-        this.nameNormalizerService = nameNormalizerService;
-    }
 
     @Override
     public PriceItem[] getPriceGrid(Path path) throws IOException {
-        logger.info("Loading {}", path);
+        log.info("Loading {}", path);
         String absolutePath = path.toString();
         StringUtils.split("-");
         String[]     end             = StringUtils.split(absolutePath, "-");
@@ -90,7 +82,7 @@ public class FlatPriceParser implements PriceParser {
                 carIndex,
                 motorcycleIndex);
         } catch (Exception e) {
-            logger.error("Error parsing {}", String.join("\t", fields));
+            log.error("Error parsing {}", String.join("\t", fields));
         }
         return null;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,49 +21,17 @@
  */
 package com.kpouer.waze.toll.tolltool.pricecatalog;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+@AllArgsConstructor
 public class CategoryPrice {
     private float  price;
     private short  year;
     private String path;
-
-    public CategoryPrice(float price, short year, String path) {
-        this.price = price;
-        this.year  = year;
-        this.path  = path;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public short getYear() {
-        return year;
-    }
-
-    public void setYear(short year) {
-        this.year = year;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    @Override
-    public String toString() {
-        return "CategoryPrice{" +
-            "price=" + price +
-            ", year=" + year +
-            ", path='" + path + '\'' +
-            '}';
-    }
 
     public void merge(CategoryPrice categoryPrice) {
         if (categoryPrice == null) {

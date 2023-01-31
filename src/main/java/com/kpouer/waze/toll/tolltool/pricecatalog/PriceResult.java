@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -22,44 +22,12 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog;
 
 import com.kpouer.waze.toll.tolltool.http.Audit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.kpouer.waze.toll.tolltool.pricecatalog.PriceItem.CURRENT_YEAR;
 
-public class PriceResult {
-    private static final Logger logger = LoggerFactory.getLogger(PriceResult.class);
-
-    private final PriceItem priceItemForward;
-    private final PriceItem priceItemBackward;
-    private final String    entry;
-    private final String    exit;
-
-    public PriceResult(String entry, String exit, PriceItem priceItemForward, PriceItem priceItemBackward) {
-        this.entry             = entry;
-        this.exit              = exit;
-        this.priceItemForward  = priceItemForward;
-        this.priceItemBackward = priceItemBackward;
-    }
-
+public record PriceResult(String entry, String exit, PriceItem priceItemForward, PriceItem priceItemBackward) {
     public PriceResult(String entry, String exit) {
         this(entry, exit, null, null);
-    }
-
-    public PriceItem getPriceItemForward() {
-        return priceItemForward;
-    }
-
-    public PriceItem getPriceItemBackward() {
-        return priceItemBackward;
-    }
-
-    public String getEntry() {
-        return entry;
-    }
-
-    public String getExit() {
-        return exit;
     }
 
     public float getPrice(Category category, Audit audit) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -22,11 +22,13 @@
 package com.kpouer.waze.toll.tolltool.http;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Getter(AccessLevel.PACKAGE)
+@Slf4j
 public class Audit {
-    private static final Logger        logger = LoggerFactory.getLogger(Audit.class);
     private              int           failCars;
     private              int           failMotorcycles;
     private              int           obsoletePrices;
@@ -60,7 +62,7 @@ public class Audit {
 
     public void append(String auditLine) {
         builder.append(auditLine).append('\n');
-        logger.warn(auditLine);
+        log.warn(auditLine);
     }
 
     public void newLine() {

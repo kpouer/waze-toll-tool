@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,7 +21,7 @@
  */
 package com.kpouer.waze.toll.tolltool.http;
 
-import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -32,9 +32,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
+@Slf4j
 public class CheckFileController {
     private static final String LOGIN_URL = "http://127.0.0.1:8080/login";
-    private static final String LOGIN_URL2 = "https://tolls.waze.com/login";
 
     private final RestTemplate restClient;
 
@@ -44,24 +44,22 @@ public class CheckFileController {
 
     @PostMapping("checkfile")
     public String checkFile(@RequestBody CheckFileRequest checkFileRequest) {
-        MultiValueMap<String, String> map           = new LinkedMultiValueMap<String, String>();
+        var map = new LinkedMultiValueMap<String, String>();
         map.add("username", checkFileRequest.getCredencials().getUsername());
         map.add("password", checkFileRequest.getCredencials().getPassword());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         HttpEntity<MultiValueMap<String, String>>       requestEntity = new HttpEntity<>(map, headers);
         try {
-            ResponseEntity<String>  result        = restClient.postForEntity(LOGIN_URL, requestEntity, String.class);
+            restClient.postForEntity(LOGIN_URL, requestEntity, String.class);
         } catch (RestClientException e) {
-            e.printStackTrace();
-            System.out.println();
+            log.error(e.getMessage(), e);
         }
         return ";";
     }
 
     @PostMapping(value = "login" ,consumes = "application/x-www-form-urlencoded; charset=UTF-8")
     public String login(@RequestBody String credencials) {
-
         return ";";
     }
 }

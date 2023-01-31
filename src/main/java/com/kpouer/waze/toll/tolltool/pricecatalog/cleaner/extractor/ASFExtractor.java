@@ -1,6 +1,7 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
+import lombok.AllArgsConstructor;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,13 +12,9 @@ import java.util.List;
 import static com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.ASFEscotaExtractor.getHeaders;
 import static com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.ASFEscotaExtractor.getPage;
 
+@AllArgsConstructor
 public class ASFExtractor implements Extractor {
     private final Category category;
-
-    public ASFExtractor(Category category) {
-
-        this.category = category;
-    }
 
     @Override
     public void extract(File pdfFile) throws IOException {
