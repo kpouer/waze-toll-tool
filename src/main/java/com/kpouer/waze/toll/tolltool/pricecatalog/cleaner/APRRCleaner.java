@@ -46,8 +46,9 @@ public class APRRCleaner {
         var lines = text.split("\n");
         var outfilename = filename + ".tsv";
         try (var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
-             var out = new BufferedWriter(new FileWriter("APRR-1,2,4,8.tsv"))) {
+             var out = new PrintWriter(new BufferedWriter(new FileWriter("APRR-1,2,4,8.tsv")))) {
             var errors = new AtomicInteger();
+            out.println("Gare d'entrée\tGare de sortie\tDistance\tCatégorie 1\tCatégorie 2\tCatégorie 3\tCatégorie 4\tCatégorie 5");
             Arrays.stream(lines)
                   .filter(line -> !line.startsWith("Page "))
                   .filter(line -> !line.contains("Tarifs"))
@@ -101,6 +102,7 @@ public class APRRCleaner {
                   .map(line -> line.replaceAll("\tAUX\t", " AUX "))
                   .map(line -> line.replaceAll("\tLES\t", "\tLES "))
                   .map(line -> line.replaceAll("MACON\tCENTRE", "MACON CENTRE"))
+                  .map(line -> line.replaceAll("DEUX\tCHAISES", "DEUX CHAISES"))
                   .map(line -> line.replaceAll("CRIMOLOIS ", "CRIMOLOIS\t"))
                   .map(line -> line.replaceAll("LE\tMIROIR", "LE MIROIR"))
                   .map(line -> line.replaceAll("DIJON SUD ", "DIJON SUD\t"))
@@ -131,17 +133,14 @@ public class APRRCleaner {
                   .map(line -> line.replaceAll("ETIENNE\tAU\tTEMPLE", "ETIENNE AU TEMPLE"))
                   .map(line -> line.replaceAll("LE\tTOURNEAU", "LE TOURNEAU"))
                   .map(line -> line.replaceAll("QUINCIEUX\tBARRIERE\tSystème Ouvert", "QUINCIEUX BARRIERE\tSystème Ouvert"))
-                  .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> "\t" + matchResult.group(1)))
+                  .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> '\t' + matchResult.group(1)))
                   .forEach(line -> {
-                      var split = line.split("\t");
+                      String[] split = line.split("\t");
                       if (split.length != 8) {
                           errors.incrementAndGet();
-                          try {
-                              out.write(split.length + " " + line);
-                              out.newLine();
-                          } catch (IOException e) {
-                              throw new RuntimeException(e);
-                          }
+                          System.err.println(split.length + " " + line);
+                      } else {
+                          out.println(line);
                       }
                       writer.println(line);
                   });

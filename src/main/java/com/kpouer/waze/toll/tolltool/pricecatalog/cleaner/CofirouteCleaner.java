@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -27,27 +27,29 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
 public class CofirouteCleaner {
-    private static final Pattern EURO  = Pattern.compile(" €");
+    private static final Pattern EURO = Pattern.compile(" €");
     private static final Pattern MINUS = Pattern.compile("(A\\d+) - ");
-    private static final Pattern TABS  = Pattern.compile("(\\d) (\\d)");
+    private static final Pattern TABS = Pattern.compile("(\\d) (\\d)");
     private static final Pattern TABS2 = Pattern.compile("(\\d) ([A-Z])");
     private static final Pattern TABS3 = Pattern.compile("([A-Z]) (A\\d)");
     private static final Pattern TABS4 = Pattern.compile("(\\)) (\\d)");
     private static final Pattern TABS5 = Pattern.compile("(\\)) (A\\d)");
-    private static final Pattern TABS6         = Pattern.compile("([A-Z]) (\\d)");
+    private static final Pattern TABS6 = Pattern.compile("([A-Z]) (\\d)");
     private static final Pattern SPACE_PATTERN = Pattern.compile(" +");
 
     public static void main(String[] args) throws IOException {
-        String filename = args[0];
-        File   pdfFile  = new File(filename);
-        String text     = PDFExtractor.extractText(pdfFile, 8);
+        var filename = args[0];
+        var pdfFile = new File(filename);
+        var text = PDFExtractor.extractText(pdfFile, 8);
         text = text.replaceAll("\r", "");
-        String[]    lines       = text.split("\n");
-        String      outfilename = filename + ".tsv";
-        CleanerList cleaner     = new CleanerList();
+        var lines = text.split("\n");
+        var outfilename = filename + ".tsv";
+        var cleaner = new CleanerList();
         cleaner.load(CofirouteCleaner.class.getResourceAsStream("/cleaner.list"));
-        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
-            AtomicInteger errors = new AtomicInteger();
+        try (var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
+             var out = new PrintWriter(new BufferedWriter(new FileWriter("Cofiroute-3,6,7,11.tsv")))) {
+            out.println("Autoroute entrée\tPéage entrée\tVille entrée\tAutoroute sortie\tPéage sortie\tVille sortie\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");
+            var errors = new AtomicInteger();
             Arrays.stream(lines)
                   .filter(line -> line.length() > 10)
                   .filter(line -> line.charAt(0) == 'A')
@@ -69,13 +71,15 @@ public class CofirouteCleaner {
                   .map(cleaner::clean)
                   .map(line -> line.replaceAll("A4\t- ", "A4\t-\t"))
                   .map(line -> line.replaceAll("SAINT MAIXENT\t/\tLUSIGNAN", "SAINT MAIXENT / LUSIGNAN"))
-                  .forEach(x -> {
-                      String[] split = x.split("\t");
+                  .forEach(line -> {
+                      var split = line.split("\t");
                       if (split.length != 11) {
                           errors.incrementAndGet();
-                          System.err.println(split.length + " " + x);
+                          System.err.println(split.length + " " + line);
+                      } else {
+                          out.println(line);
                       }
-                      writer.println(x);
+                      writer.println(line);
                   });
             System.out.println(errors + " errors");
         }
