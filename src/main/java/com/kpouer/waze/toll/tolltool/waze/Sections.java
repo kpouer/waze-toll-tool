@@ -21,9 +21,14 @@
  */
 package com.kpouer.waze.toll.tolltool.waze;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.*;
 import java.util.function.Consumer;
 
+@Data
+@NoArgsConstructor
 public class Sections implements Iterable<Section> {
     private Section[]            sections;
     private Map<String, Section> sectionMap;

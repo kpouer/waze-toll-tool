@@ -22,8 +22,10 @@
 package com.kpouer.waze.toll.tolltool.waze;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class Segment {
     private String  permalink;
     private long    id;
