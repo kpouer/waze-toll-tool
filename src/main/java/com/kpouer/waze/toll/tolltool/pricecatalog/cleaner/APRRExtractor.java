@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
-public class APRRCleaner {
+public class APRRExtractor {
     private static final Pattern EURO = Pattern.compile(" €");
     private static final Pattern MINUS = Pattern.compile("(A\\d+) - ");
     private static final Pattern TABS = Pattern.compile("(\\d) (\\d)");
