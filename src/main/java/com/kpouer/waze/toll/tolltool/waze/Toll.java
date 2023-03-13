@@ -28,11 +28,13 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceCatalog;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceResult;
 import com.kpouer.waze.toll.tolltool.service.NameNormalizerService;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @JsonNaming(SnakeCaseStrategy.class)
 @NoArgsConstructor
 public class Toll {

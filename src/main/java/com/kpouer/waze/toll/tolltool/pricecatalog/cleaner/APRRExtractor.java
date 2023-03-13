@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -26,27 +26,29 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
-public class APRRCleaner {
-    private static final Pattern EURO    = Pattern.compile(" €");
-    private static final Pattern MINUS   = Pattern.compile("(A\\d+) - ");
-    private static final Pattern TABS    = Pattern.compile("(\\d) (\\d)");
-    private static final Pattern TABS2   = Pattern.compile("(\\d) ([A-Z])");
-    private static final Pattern TABS3   = Pattern.compile("([A-Z]) (A\\d)");
-    private static final Pattern TABS4   = Pattern.compile("(\\)) (\\d)");
-    private static final Pattern TABS5   = Pattern.compile("(\\)) (A\\d)");
-    private static final Pattern TABS6   = Pattern.compile("([A-Z]) (\\d)");
-    private static final Pattern SPACE   = Pattern.compile(" ");
+public class APRRExtractor {
+    private static final Pattern EURO = Pattern.compile(" €");
+    private static final Pattern MINUS = Pattern.compile("(A\\d+) - ");
+    private static final Pattern TABS = Pattern.compile("(\\d) (\\d)");
+    private static final Pattern TABS2 = Pattern.compile("(\\d) ([A-Z])");
+    private static final Pattern TABS3 = Pattern.compile("([A-Z]) (A\\d)");
+    private static final Pattern TABS4 = Pattern.compile("(\\)) (\\d)");
+    private static final Pattern TABS5 = Pattern.compile("(\\)) (A\\d)");
+    private static final Pattern TABS6 = Pattern.compile("([A-Z]) (\\d)");
+    private static final Pattern SPACE = Pattern.compile(" ");
     private static final Pattern COMPILE = Pattern.compile(" (\\d)");
 
     public static void main(String[] args) throws IOException {
-        String filename = args[0];
-        File   pdfFile  = new File(filename);
-        String text     = PDFExtractor.extractText(pdfFile);
+        var filename = args[0];
+        var pdfFile = new File(filename);
+        var text = PDFExtractor.extractText(pdfFile);
         text = text.replaceAll("\r", "");
-        String[] lines       = text.split("\n");
-        String   outfilename = filename + ".tsv";
-        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
-            AtomicInteger errors = new AtomicInteger();
+        var lines = text.split("\n");
+        var outfilename = filename + ".tsv";
+        try (var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
+             var out = new PrintWriter(new BufferedWriter(new FileWriter("APRR-1,2,4,8.tsv")))) {
+            var errors = new AtomicInteger();
+            out.println("Gare d'entrée\tGare de sortie\tDistance\tCatégorie 1\tCatégorie 2\tCatégorie 3\tCatégorie 4\tCatégorie 5");
             Arrays.stream(lines)
                   .filter(line -> !line.startsWith("Page "))
                   .filter(line -> !line.contains("Tarifs"))
@@ -100,6 +102,7 @@ public class APRRCleaner {
                   .map(line -> line.replaceAll("\tAUX\t", " AUX "))
                   .map(line -> line.replaceAll("\tLES\t", "\tLES "))
                   .map(line -> line.replaceAll("MACON\tCENTRE", "MACON CENTRE"))
+                  .map(line -> line.replaceAll("DEUX\tCHAISES", "DEUX CHAISES"))
                   .map(line -> line.replaceAll("CRIMOLOIS ", "CRIMOLOIS\t"))
                   .map(line -> line.replaceAll("LE\tMIROIR", "LE MIROIR"))
                   .map(line -> line.replaceAll("DIJON SUD ", "DIJON SUD\t"))
@@ -130,14 +133,16 @@ public class APRRCleaner {
                   .map(line -> line.replaceAll("ETIENNE\tAU\tTEMPLE", "ETIENNE AU TEMPLE"))
                   .map(line -> line.replaceAll("LE\tTOURNEAU", "LE TOURNEAU"))
                   .map(line -> line.replaceAll("QUINCIEUX\tBARRIERE\tSystème Ouvert", "QUINCIEUX BARRIERE\tSystème Ouvert"))
-                  .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> "\t" + matchResult.group(1)))
-                  .forEach(x -> {
-                      String[] split = x.split("\t");
+                  .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> '\t' + matchResult.group(1)))
+                  .forEach(line -> {
+                      String[] split = line.split("\t");
                       if (split.length != 8) {
                           errors.incrementAndGet();
-                          System.err.println(split.length + " " + x);
+                          System.err.println(split.length + " " + line);
+                      } else {
+                          out.println(line);
                       }
-                      writer.println(x);
+                      writer.println(line);
                   });
             System.out.println(errors);
         }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -22,34 +22,42 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
-public class AREACleaner {
-    private static final Pattern EURO    = Pattern.compile(" €");
-    private static final Pattern MINUS   = Pattern.compile("(A\\d+) - ");
-    private static final Pattern TABS    = Pattern.compile("(\\d) (\\d)");
-    private static final Pattern TABS2   = Pattern.compile("(\\d) ([A-Z])");
-    private static final Pattern TABS3   = Pattern.compile("([A-Z]) (A\\d)");
-    private static final Pattern TABS4   = Pattern.compile("(\\)) (\\d)");
-    private static final Pattern TABS5   = Pattern.compile("(\\)) (A\\d)");
-    private static final Pattern TABS6   = Pattern.compile("([A-Z]) (\\d)");
-    private static final Pattern SPACE   = Pattern.compile(" ");
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+public class AREAExtractor {
+    private static final Pattern EURO = Pattern.compile(" €");
+    private static final Pattern MINUS = Pattern.compile("(A\\d+) - ");
+    private static final Pattern TABS = Pattern.compile("(\\d) (\\d)");
+    private static final Pattern TABS2 = Pattern.compile("(\\d) ([A-Z])");
+    private static final Pattern TABS3 = Pattern.compile("([A-Z]) (A\\d)");
+    private static final Pattern TABS4 = Pattern.compile("(\\)) (\\d)");
+    private static final Pattern TABS5 = Pattern.compile("(\\)) (A\\d)");
+    private static final Pattern TABS6 = Pattern.compile("([A-Z]) (\\d)");
+    private static final Pattern SPACE = Pattern.compile(" ");
     private static final Pattern COMPILE = Pattern.compile(" (\\d)");
 
     public static void main(String[] args) throws IOException {
-        String filename = args[0];
-        File   pdfFile  = new File(filename);
-        String text     = PDFExtractor.extractText(pdfFile);
+        var filename = args[0];
+        var pdfFile = new File(filename);
+        var text = PDFExtractor.extractText(pdfFile);
         text = text.replaceAll("\r", "");
-        String[]    lines       = text.split("\n");
-        String      outfilename = filename + ".tsv";
-        CleanerList cleaner     = new CleanerList();
-        cleaner.load(CofirouteCleaner.class.getResourceAsStream("/cleaner.list"));
-        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
-            writer.println("Code entrée\tGare d'entrée\tCode Sortie\tGare de sortie\tDistance\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");
-            AtomicInteger errors = new AtomicInteger();
+        var lines = text.split("\n");
+        var outfilename = filename + ".tsv";
+        var cleaner = new CleanerList();
+        try (var resourceAsStream = CofirouteCleaner.class.getResourceAsStream("/cleaner.list");
+             var writer = new PrintWriter(Files.newBufferedWriter(Paths.get(outfilename), UTF_8));
+             var out = new PrintWriter(Files.newBufferedWriter(Paths.get("AREA-2,4,6,10.tsv"), UTF_8))) {
+            assert resourceAsStream != null;
+            cleaner.load(resourceAsStream);
+            out.println("Code entrée\tGare d'entrée\tCode Sortie\tGare de sortie\tDistance\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");
+            var errors = new AtomicInteger();
             Arrays.stream(lines)
                   .filter(line -> !line.startsWith("Page "))
                   .filter(line -> !line.contains("Tarifs"))
@@ -67,15 +75,17 @@ public class AREACleaner {
                   .map(line -> SPACE.matcher(line).replaceAll("\t"))
                   .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> '\t' + matchResult.group(1)))
                   .map(line -> cleaner.clean(line))
-                  .forEach(x -> {
-                      String[] split = x.split("\t");
+                  .forEach(line -> {
+                      var split = line.split("\t");
                       if (split.length != 10) {
                           errors.incrementAndGet();
-                          System.err.println(split.length + " " + x);
+                          System.err.println(split.length + " " + line);
+                      } else {
+                          out.println(line);
                       }
-                      writer.println(x);
+                      writer.println(line);
                   });
-            System.out.println(errors);
+            System.out.println(errors + " errors");
         }
     }
 }

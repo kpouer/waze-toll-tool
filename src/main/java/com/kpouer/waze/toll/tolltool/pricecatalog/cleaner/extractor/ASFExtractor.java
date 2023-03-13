@@ -18,14 +18,14 @@ public class ASFExtractor implements Extractor {
 
     @Override
     public void extract(File pdfFile) throws IOException {
-        int  currentYear            = new GregorianCalendar().get(Calendar.YEAR);
-        File outputPath             = new File(pdfFile.getParentFile(), "out");
-        File triangleOutputPath     = new File(outputPath, "triangle");
-        File oneDirMatrixOutputPath = new File(outputPath, "onedirmatrix");
+        var currentYear            = new GregorianCalendar().get(Calendar.YEAR);
+        var outputPath             = new File(pdfFile.getParentFile(), "out");
+        var triangleOutputPath     = new File(outputPath, "triangle");
+        var oneDirMatrixOutputPath = new File(outputPath, "onedirmatrix");
         triangleOutputPath.mkdirs();
         oneDirMatrixOutputPath.mkdirs();
-        TSVBuilder triangleBuilder  = new TriangleBuilder(triangleOutputPath);
-        TSVBuilder rectangleBuilder = new RectangleBuilder(oneDirMatrixOutputPath);
+        var triangleBuilder  = new TriangleBuilder(triangleOutputPath);
+        var rectangleBuilder = new RectangleBuilder(oneDirMatrixOutputPath);
         triangleBuilder.buildFile("ASF_A7_A8_A9_A46_A54", category, getHeaders("ASF_A7_A8_A9_A46_A54"), getPage(pdfFile, 1));
         rectangleBuilder.buildFile("ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2", category, getHeaders("ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2"), getPage(pdfFile, 2));
         //strange but the PDF is different for category 5 and 1

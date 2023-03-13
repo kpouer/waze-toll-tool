@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,8 +21,7 @@
  */
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
-import org.apache.pdfbox.io.RandomAccessFile;
-import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
@@ -41,16 +40,14 @@ public class PDFExtractor {
     }
 
     public static String extractText(File pdfFile, int startPage, int endPage) throws IOException {
-        RandomAccessFile randomAccessFile = new RandomAccessFile(pdfFile, "r");
-        PDFParser        parser           = new PDFParser(randomAccessFile);
-        parser.parse();
-        PDDocument      pdDocument  = parser.getPDDocument();
-        PDFTextStripper pdfStripper = new PDFTextStripper();
-        pdfStripper.setStartPage(startPage);
-        pdfStripper.setEndPage(endPage);
-        String text = pdfStripper.getText(pdDocument);
-        pdDocument.close();
-        return text;
+        try (PDDocument pdDocument = Loader.loadPDF(pdfFile)) {
+            PDFTextStripper pdfStripper = new PDFTextStripper();
+            pdfStripper.setStartPage(startPage);
+            pdfStripper.setEndPage(endPage);
+            String text = pdfStripper.getText(pdDocument);
+            pdDocument.close();
+            return text;
+        }
     }
 
     public static void main(String[] args) throws IOException {

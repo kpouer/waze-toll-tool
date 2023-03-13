@@ -25,22 +25,34 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.ASFExtractor;
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.EscotaExtractor;
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.Extractor;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class ASFEscotaExtractor {
 
     public static void main(String[] args) throws IOException {
-        String filename = args[0];
-        File   pdfFile  = new File(filename);
-        if (args.length > 1) {
-            int page = Integer.parseInt(args[1]);
-            extractPage(pdfFile, page);
-        } else {
-            extractTollFile(pdfFile);
+        var currentYear = java.time.Year.now();
+        var downloadFolder = Path.of("download", currentYear.toString());
+        try (var filestream = Files.list(downloadFolder)) {
+            filestream
+                .filter(Files::isRegularFile)
+                .filter(path -> path.getFileName().toString().endsWith(".pdf"))
+                .filter(path -> path.getFileName().toString().contains("Escota") || path.getFileName().toString().startsWith("C1-TARIFS") || path.getFileName().toString().startsWith("C5-TARIFS"))
+                .map(Path::toFile)
+                .forEach(file -> {
+                    try {
+                        extractTollFile(file);
+                    } catch (IOException e) {
+                        log.error("Error while extracting toll file {}", file, e);
+                    }
+                });
         }
     }
 
