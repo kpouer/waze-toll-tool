@@ -22,6 +22,7 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -51,8 +52,8 @@ public class AREAExtractor {
         var outfilename = filename + ".tsv";
         var cleaner = new CleanerList();
         try (var resourceAsStream = CofirouteCleaner.class.getResourceAsStream("/cleaner.list");
-                 var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
-             var out = new PrintWriter(new BufferedWriter(Files.newBufferedWriter(Paths.get("AREA-2,4,6,10.tsv"), UTF_8)))) {
+             var writer = new PrintWriter(Files.newBufferedWriter(Paths.get(outfilename), UTF_8));
+             var out = new PrintWriter(Files.newBufferedWriter(Paths.get("AREA-2,4,6,10.tsv"), UTF_8))) {
             assert resourceAsStream != null;
             cleaner.load(resourceAsStream);
             out.println("Code entrée\tGare d'entrée\tCode Sortie\tGare de sortie\tDistance\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");

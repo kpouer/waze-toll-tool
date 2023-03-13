@@ -22,9 +22,13 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class CofirouteCleaner {
     private static final Pattern EURO = Pattern.compile(" €");
@@ -46,8 +50,8 @@ public class CofirouteCleaner {
         var outfilename = filename + ".tsv";
         var cleaner = new CleanerList();
         try (var resourceAsStream = CofirouteCleaner.class.getResourceAsStream("/cleaner.list");
-            var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
-             var out = new PrintWriter(new BufferedWriter(new FileWriter("Cofiroute-3,6,7,11.tsv")))) {
+             var writer = new PrintWriter(Files.newBufferedWriter(Paths.get(outfilename), UTF_8));
+             var out = new PrintWriter(Files.newBufferedWriter(Paths.get("Cofiroute-3,6,7,11.tsv"), UTF_8))) {
             assert resourceAsStream != null;
             cleaner.load(resourceAsStream);
             out.println("Autoroute entrée\tPéage entrée\tVille entrée\tAutoroute sortie\tPéage sortie\tVille sortie\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");
