@@ -22,9 +22,13 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class AREAExtractor {
     private static final Pattern EURO = Pattern.compile(" €");
@@ -46,9 +50,11 @@ public class AREAExtractor {
         var lines = text.split("\n");
         var outfilename = filename + ".tsv";
         var cleaner = new CleanerList();
-        cleaner.load(CofirouteCleaner.class.getResourceAsStream("/cleaner.list"));
-        try (var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
-             var out = new PrintWriter(new BufferedWriter(new FileWriter("AREA-2,4,6,10.tsv")))) {
+        try (var resourceAsStream = CofirouteCleaner.class.getResourceAsStream("/cleaner.list");
+                 var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
+             var out = new PrintWriter(new BufferedWriter(Files.newBufferedWriter(Paths.get("AREA-2,4,6,10.tsv"), UTF_8)))) {
+            assert resourceAsStream != null;
+            cleaner.load(resourceAsStream);
             out.println("Code entrée\tGare d'entrée\tCode Sortie\tGare de sortie\tDistance\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");
             var errors = new AtomicInteger();
             Arrays.stream(lines)

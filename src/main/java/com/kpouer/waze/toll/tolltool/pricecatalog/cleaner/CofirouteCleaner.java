@@ -45,9 +45,11 @@ public class CofirouteCleaner {
         var lines = text.split("\n");
         var outfilename = filename + ".tsv";
         var cleaner = new CleanerList();
-        cleaner.load(CofirouteCleaner.class.getResourceAsStream("/cleaner.list"));
-        try (var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
+        try (var resourceAsStream = CofirouteCleaner.class.getResourceAsStream("/cleaner.list");
+            var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
              var out = new PrintWriter(new BufferedWriter(new FileWriter("Cofiroute-3,6,7,11.tsv")))) {
+            assert resourceAsStream != null;
+            cleaner.load(resourceAsStream);
             out.println("Autoroute entrée\tPéage entrée\tVille entrée\tAutoroute sortie\tPéage sortie\tVille sortie\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");
             var errors = new AtomicInteger();
             Arrays.stream(lines)
