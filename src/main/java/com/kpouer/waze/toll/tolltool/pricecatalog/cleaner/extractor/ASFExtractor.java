@@ -40,5 +40,6 @@ public class ASFExtractor implements Extractor {
         }
         triangleBuilder.buildFile("ASF-A61-A62-A20-A64-A65-page4", category, getHeaders("ASF-A61-A62-A20-A64-A65-page4"), getPage(pdfFile, 4));
         triangleBuilder.buildFile("ASF-A10-A83-A837-A87-page-6", category, getHeaders("ASF-A10-A83-A837-A87-page-6"), getPage(pdfFile, 6));
+        triangleBuilder.buildFile("ASF-A11-A28-A81-A85-page-7", category, getHeaders("ASF-A11-A28-A81-A85-page-7"), getPage(pdfFile, 7));
     }
 }

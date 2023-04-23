@@ -43,7 +43,8 @@ public class TriangleBuilder implements TSVBuilder {
 
     @Override
     public void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLine, int column, Collection<Integer> clonedColumns) throws IOException {
-        try (var writer = new BufferedWriter(new FileWriter(new File(path, currentYear + "_" + name + '-' + category + ".tsv")))) {
+        var file = new File(path, currentYear + "_" + name + '-' + category + ".tsv");
+        try (var writer = new BufferedWriter(new FileWriter(file))) {
             writer.write(headers[0]);
             writer.write('\n');
             for (var i = 0; i < headers.length - 1; i++) {
@@ -71,5 +72,6 @@ public class TriangleBuilder implements TSVBuilder {
                 }
             }
         }
+        System.out.println("File " + file + " created");
     }
 }
