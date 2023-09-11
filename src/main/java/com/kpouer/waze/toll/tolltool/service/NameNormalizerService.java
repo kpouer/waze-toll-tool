@@ -65,7 +65,11 @@ public class NameNormalizerService {
             .stripAccents(key)
             .toUpperCase()
             .replace(" - ", " ")
-            .replace('-', ' ');
+            .replace(" / ", " ")
+            .replace('-', ' ')
+            .replace('/', ' ')
+            .replace('\'', ' ')
+                ;
         return alias.getOrDefault(normalized, normalized);
     }
 

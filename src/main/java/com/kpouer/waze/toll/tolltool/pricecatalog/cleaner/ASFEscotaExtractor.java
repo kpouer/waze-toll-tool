@@ -39,7 +39,7 @@ public class ASFEscotaExtractor {
 
     public static void main(String[] args) throws IOException {
         var currentYear = java.time.Year.now();
-        var downloadFolder = Path.of("download", currentYear.toString());
+        var downloadFolder = Path.of("download", "2022");
         try (var filestream = Files.list(downloadFolder)) {
             filestream
                 .filter(Files::isRegularFile)

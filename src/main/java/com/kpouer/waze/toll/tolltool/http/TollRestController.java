@@ -145,12 +145,10 @@ public class TollRestController {
         Arrays.sort(priceItems);
         var builder = new StringBuilder(2000000);
         Arrays.stream(priceItems).forEach(priceItem -> builder.append(nameNormalizerService.printKey(priceItem.getEntry())).append('\t')
-                                                              .append(nameNormalizerService.printKey(priceItem.getExit()))
-                                                              .append('\t')
-                                                              .append(priceItem.getCarPrice())
-                                                              .append('\t')
-                                                              .append(priceItem.getMotorcyclePrice())
-                                                              .append('\n'));
+                .append(nameNormalizerService.printKey(priceItem.getExit()))
+                .append('\t').append(priceItem.getCarPrice()).append(" (").append(priceItem.getCarYear()).append(')').append(priceItem.getCarCategoryPrice().getPath())
+                .append('\t').append(priceItem.getMotorcyclePrice()).append(" (").append(priceItem.getMotorcycleYear()).append(')')
+                .append('\n'));
         return builder.toString();
     }
 

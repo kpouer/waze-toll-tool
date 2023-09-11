@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,14 +21,14 @@
  */
 package com.kpouer.waze.toll.tolltool.pricecatalog;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
 
+@Slf4j
+@RequiredArgsConstructor
 public class DefaultPriceItem implements PriceItem {
-    private static final Logger logger = LoggerFactory.getLogger(DefaultPriceItem.class);
-
     private final String entry;
     private final String exit;
 
@@ -45,20 +45,11 @@ public class DefaultPriceItem implements PriceItem {
         }
     }
 
-    public DefaultPriceItem(String entry, String exit) {
-        this.entry = entry;
-        this.exit  = exit;
-    }
-
     public DefaultPriceItem(String entry, String exit, Category category, CategoryPrice categoryPrice) {
         this(entry, exit);
         switch (category) {
-            case Car:
-                carPrice = categoryPrice;
-                break;
-            case Motorcycle:
-                motorcyclePrice = categoryPrice;
-                break;
+            case Car -> carPrice = categoryPrice;
+            case Motorcycle -> motorcyclePrice = categoryPrice;
         }
     }
 
@@ -89,24 +80,18 @@ public class DefaultPriceItem implements PriceItem {
 
     @Override
     public short getYear(Category category) {
-        switch (category) {
-            case Car:
-                return getCarYear();
-            case Motorcycle:
-                return getMotorcycleYear();
-        }
-        throw new IllegalArgumentException("Unexpected category " + category);
+        return switch (category) {
+            case Car -> getCarYear();
+            case Motorcycle -> getMotorcycleYear();
+        };
     }
 
     @Override
     public String getPath(Category category) {
-        switch (category) {
-            case Car:
-                return getCarPath();
-            case Motorcycle:
-                return getMotorcyclePath();
-        }
-        throw new IllegalArgumentException("Unexpected category " + category);
+        return switch (category) {
+            case Car -> getCarPath();
+            case Motorcycle -> getMotorcyclePath();
+        };
     }
 
     @Override
@@ -126,13 +111,10 @@ public class DefaultPriceItem implements PriceItem {
 
     @Override
     public float getPrice(Category category) {
-        switch (category) {
-            case Car:
-                return getCarPrice();
-            case Motorcycle:
-                return getMotorcyclePrice();
-        }
-        return -1.0F;
+        return switch (category) {
+            case Car -> getCarPrice();
+            case Motorcycle -> getMotorcyclePrice();
+        };
     }
 
     @Override
@@ -148,7 +130,7 @@ public class DefaultPriceItem implements PriceItem {
     @Override
     public void merge(PriceItem priceItem) {
         if ("REIMS NORD (ORMES)".equals(priceItem.getEntry()) && "REIMS OUEST (THILLOIS)".equals(priceItem.getExit())) {
-            logger.info("Merge {} into {}", priceItem, this);
+            log.info("Merge {} into {}", priceItem, this);
         }
         if (carPrice != null) {
             carPrice.merge(priceItem.getCarCategoryPrice());

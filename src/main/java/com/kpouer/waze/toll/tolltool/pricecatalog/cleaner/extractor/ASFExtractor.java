@@ -37,7 +37,11 @@ public class ASFExtractor implements Extractor {
         } else {
             triangleBuilder.buildFile("ASF-A9-A61-A62-A66-A75-A709-page3", category, getHeaders("ASF-A9-A61-A62-A66-A75-A709-page3"), getPage(pdfFile, 3), 14, List.of());
             triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 121);
-            rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 290, 26);
+            if (currentYear == 2023) {
+                rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 289, 25);
+            } else {
+                rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 290, 26);
+            }
             triangleBuilder.buildFile("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8", category, getHeaders("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8"), getPage(pdfFile, 8), 143);
         }
         triangleBuilder.buildFile("ASF-A61-A62-A20-A64-A65-page4", category, getHeaders("ASF-A61-A62-A20-A64-A65-page4"), getPage(pdfFile, 4));

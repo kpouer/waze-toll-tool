@@ -64,10 +64,10 @@ public class PriceCatalog {
         log.info("load {}", rootPath);
         Collection<FolderDefinition> folderDefinitions = new ArrayList<>();
         folderDefinitions.add(new FolderDefinition("flat", "tsv", flatPriceParser));
-        folderDefinitions.add(new FolderDefinition("triangle/cars", "tsv", trianglePriceParser, Category.Car));
-        folderDefinitions.add(new FolderDefinition("triangle/motorcycles", "tsv", trianglePriceParser, Category.Motorcycle));
-        folderDefinitions.add(new FolderDefinition("onedirmatrix/cars", "tsv", oneDirectionMatrixPriceParser, Category.Car));
-        folderDefinitions.add(new FolderDefinition("onedirmatrix/motorcycles", "tsv", oneDirectionMatrixPriceParser, Category.Motorcycle));
+        folderDefinitions.add(new FolderDefinition("triangle/car", "tsv", trianglePriceParser, Category.Car));
+        folderDefinitions.add(new FolderDefinition("triangle/motorcycle", "tsv", trianglePriceParser, Category.Motorcycle));
+        folderDefinitions.add(new FolderDefinition("onedirmatrix/car", "tsv", oneDirectionMatrixPriceParser, Category.Car));
+        folderDefinitions.add(new FolderDefinition("onedirmatrix/motorcycle", "tsv", oneDirectionMatrixPriceParser, Category.Motorcycle));
 
         Collection<PriceItem[]> priceGridList = new ArrayList<>();
         for (FolderDefinition folderDefinition : folderDefinitions) {
