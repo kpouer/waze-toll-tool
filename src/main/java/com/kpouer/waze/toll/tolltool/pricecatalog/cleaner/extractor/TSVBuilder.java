@@ -40,7 +40,7 @@ public interface TSVBuilder {
         buildFile(name, category, headers, lines, skipLines, skipOffset, Collections.emptyList());
     }
     default void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, Collection<Integer> clonedColumns) throws IOException {
-        buildFile(name, category, headers, lines, 0, 0, clonedColumns);
+        buildFile(name, category, headers, lines, skipLines, 0, clonedColumns);
     }
 
     void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, int skipOffset, Collection<Integer> clonedColumns) throws IOException;
