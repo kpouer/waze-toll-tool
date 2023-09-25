@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2022 Matthieu Casanova
+ * Copyright 2021-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -31,6 +31,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class ASFEscotaExtractor {
 
     public static void main(String[] args) throws IOException {
         var currentYear = java.time.Year.now();
-        var downloadFolder = Path.of("download", "2022");
+        var downloadFolder = Path.of("download", String.valueOf(LocalDate.now().getYear()));
         try (var filestream = Files.list(downloadFolder)) {
             filestream
                 .filter(Files::isRegularFile)
