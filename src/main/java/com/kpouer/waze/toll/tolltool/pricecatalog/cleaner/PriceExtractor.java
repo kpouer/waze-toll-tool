@@ -22,9 +22,7 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
-import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.ASFExtractor;
-import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.EscotaExtractor;
-import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.Extractor;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.*;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
@@ -34,61 +32,55 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
-public class ASFEscotaExtractor {
-
+public class PriceExtractor {
     public static void main(String[] args) throws IOException {
-        var currentYear = java.time.Year.now();
         var downloadFolder = Path.of("download", String.valueOf(LocalDate.now().getYear()));
         try (var filestream = Files.list(downloadFolder)) {
             filestream
                 .filter(Files::isRegularFile)
                 .filter(path -> path.getFileName().toString().endsWith(".pdf"))
-                .filter(path -> path.getFileName().toString().contains("Escota") || path.getFileName().toString().startsWith("C1-TARIFS") || path.getFileName().toString().startsWith("C5-TARIFS"))
-                .map(Path::toFile)
-                .forEach(file -> {
-                    try {
-                        extractTollFile(file);
-                    } catch (IOException e) {
-                        log.error("Error while extracting toll file {}", file, e);
-                    }
-                });
+                    .map(PriceExtractor::getExtractorForFile)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
+                    .forEach(extractor -> {
+                        try {
+                            extractor.extract();
+                        } catch (IOException e) {
+                            log.error("Error while extracting toll file {}", extractor, e);
+                        }
+                    });
         }
     }
 
-    private static void extractTollFile(File pdfFile) throws IOException {
-        String filename = pdfFile.getName();
+    private static Optional<Extractor> getExtractorForFile(Path path) {
+        var filename = path.getFileName().toString();
         if (filename.contains("Escota")) {
-            Extractor extractor = new EscotaExtractor();
-            extractor.extract(pdfFile);
+            return Optional.of(new EscotaExtractor(path));
         } else if (filename.startsWith("C1-TARIFS")) {
-            Extractor extractor = new ASFExtractor(Category.Car);
-            extractor.extract(pdfFile);
+            return Optional.of(new ASFExtractor(path, Category.Car));
         } else if (filename.startsWith("C5-TARIFS")) {
-            Extractor extractor = new ASFExtractor(Category.Motorcycle);
-            extractor.extract(pdfFile);
+            return Optional.of(new ASFExtractor(path, Category.Motorcycle));
+        } else if (filename.startsWith("tarifs_area")) {
+            return Optional.of(new AREAExtractor(path));
+        } else if (filename.startsWith("tarifs_aprr")) {
+            return Optional.of(new APRRExtractor(path));
         }
+        return Optional.empty();
     }
 
     @NotNull
     public static String[] getHeaders(String tollFileName) throws IOException {
-        try (InputStream inputStream = ASFEscotaExtractor.class.getResourceAsStream("/samples/" + tollFileName + ".txt")) {
+        try (var inputStream = PriceExtractor.class.getResourceAsStream("/samples/" + tollFileName + ".txt")) {
             return new String(inputStream.readAllBytes()).split("\n");
         }
     }
 
-    private static void extractPage(File pdfFile, int page) throws IOException {
-        List<String> lines       = getPage(pdfFile, page);
-        File       outfilename = new File(pdfFile.getParentFile(), pdfFile.getName() + '-' + page + ".tsv");
-        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
-            lines.forEach(writer::println);
-        }
-    }
-
     public static List<String> getPage(File pdfFile, int page) throws IOException {
-        String text = PDFExtractor.extractText(pdfFile, page, page);
-        String[] lines = text
+        var text = PDFExtractor.extractText(pdfFile, page, page);
+        var lines = text
             .replaceAll("\r", "")
             .replaceAll("\n?-\n?", "-")
             .replaceAll("([a-zéèàA-Z])\n([a-z])", "$1$2")
@@ -103,8 +95,8 @@ public class ASFEscotaExtractor {
             .replaceAll(" ", "\t")
             .replaceAll("^\\s+", "")
             .split("\n");
-        CleanerList cleaner = new CleanerList();
-        cleaner.load(ASFEscotaExtractor.class.getResourceAsStream("/cleaner.list"));
+        var cleaner = new CleanerList();
+        cleaner.load(PriceExtractor.class.getResourceAsStream("/cleaner.list"));
         return Arrays.stream(lines)
                      .map(cleaner::clean)
                      .toList();

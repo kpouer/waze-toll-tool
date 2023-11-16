@@ -19,14 +19,24 @@
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
+package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor;
+
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.PDFExtractor;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.Extractor;
+import lombok.RequiredArgsConstructor;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
-public class APRRExtractor {
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+@RequiredArgsConstructor
+public class APRRExtractor implements Extractor {
     private static final Pattern EURO = Pattern.compile(" €");
     private static final Pattern MINUS = Pattern.compile("(A\\d+) - ");
     private static final Pattern TABS = Pattern.compile("(\\d) (\\d)");
@@ -38,15 +48,15 @@ public class APRRExtractor {
     private static final Pattern SPACE = Pattern.compile(" ");
     private static final Pattern COMPILE = Pattern.compile(" (\\d)");
 
-    public static void main(String[] args) throws IOException {
-        var filename = args[0];
-        var pdfFile = new File(filename);
-        var text = PDFExtractor.extractText(pdfFile);
+    private final Path pdf;
+
+    @Override
+    public void extract() throws IOException {
+        var outputPath = Path.of(pdf.getParent().toString(), "out");
+        var text = PDFExtractor.extractText(pdf.toFile());
         text = text.replaceAll("\r", "");
         var lines = text.split("\n");
-        var outfilename = filename + ".tsv";
-        try (var writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)));
-             var out = new PrintWriter(new BufferedWriter(new FileWriter("APRR-1,2,4,8.tsv")))) {
+        try (var out = new PrintWriter(Files.newBufferedWriter(Path.of(outputPath.toString(), Year.now() + "_APRR-1,2,4,8.tsv"), UTF_8))) {
             var errors = new AtomicInteger();
             out.println("Gare d'entrée\tGare de sortie\tDistance\tCatégorie 1\tCatégorie 2\tCatégorie 3\tCatégorie 4\tCatégorie 5");
             Arrays.stream(lines)
@@ -135,16 +145,15 @@ public class APRRExtractor {
                   .map(line -> line.replaceAll("QUINCIEUX\tBARRIERE\tSystème Ouvert", "QUINCIEUX BARRIERE\tSystème Ouvert"))
                   .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> '\t' + matchResult.group(1)))
                   .forEach(line -> {
-                      String[] split = line.split("\t");
+                      var split = line.split("\t");
                       if (split.length != 8) {
                           errors.incrementAndGet();
                           System.err.println(split.length + " " + line);
                       } else {
                           out.println(line);
                       }
-                      writer.println(line);
                   });
-            System.out.println(errors);
+            System.out.println(errors + " errors");
         }
     }
 }

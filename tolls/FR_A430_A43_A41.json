@@ -1,0 +1,768 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_A430_A43_A41",
+      "road_local_name": "A430 A43 A41",
+      "currency": "€",
+      "currency_code": "EUR",
+      "polyline": "LINESTRING (6.471019907226605 45.21651207805777, 6.2094079687500425 45.56707001261121)",
+      "type": "static",
+      "rules": [
+        "entry_exit_price"
+      ],
+      "entry_exit_matrix": [
+        {
+          "friendly_name": "Motorcycle",
+          "matrix_prices": [
+            [
+              0,
+              1,
+              2.2,
+              0,
+              6.5,
+              0,
+              1.7,
+              2.1,
+              2.9,
+              2.4,
+              2.9,
+              4.6,
+              4.1
+            ],
+            [
+              1,
+              0,
+              1.2,
+              1,
+              5.5,
+              0,
+              1,
+              1.4,
+              1.8,
+              1.6,
+              2,
+              3.7,
+              3.3
+            ],
+            [
+              2.2,
+              1.2,
+              0,
+              2.2,
+              0,
+              0,
+              2.2,
+              2.6,
+              3,
+              2.8,
+              3.2,
+              4.9,
+              4.5
+            ],
+            [
+              0,
+              1,
+              2.2,
+              0,
+              6.5,
+              0,
+              1.7,
+              2.1,
+              2.9,
+              2.4,
+              2.9,
+              4.6,
+              4.1
+            ],
+            [
+              6.5,
+              5.5,
+              0,
+              6.5,
+              0,
+              0,
+              6.5,
+              6.9,
+              7.3,
+              7.1,
+              7.5,
+              9.2,
+              8.8
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0.7,
+              1,
+              1.4,
+              1.1,
+              1.5,
+              2.7,
+              2.6
+            ],
+            [
+              1.7,
+              1,
+              2.2,
+              1.7,
+              6.5,
+              0.7,
+              0,
+              0.5,
+              0.9,
+              0.5,
+              1,
+              2.3,
+              2
+            ],
+            [
+              2.1,
+              1.4,
+              2.6,
+              2.1,
+              6.9,
+              1,
+              0.5,
+              0,
+              0,
+              0.7,
+              1.2,
+              1.9,
+              1.8
+            ],
+            [
+              2.9,
+              1.8,
+              3,
+              2.9,
+              7.3,
+              1.4,
+              0.9,
+              0,
+              0,
+              1,
+              1.6,
+              3,
+              2.7
+            ],
+            [
+              2.4,
+              1.6,
+              2.8,
+              2.4,
+              7.1,
+              1.1,
+              0.5,
+              0.7,
+              1,
+              0,
+              0.6,
+              1.5,
+              1.4
+            ],
+            [
+              2.9,
+              2,
+              3.2,
+              2.9,
+              7.5,
+              1.5,
+              1,
+              1.2,
+              1.6,
+              0.6,
+              0,
+              1.1,
+              1
+            ],
+            [
+              4.6,
+              3.7,
+              4.9,
+              4.6,
+              9.2,
+              2.7,
+              2.3,
+              1.9,
+              3,
+              1.5,
+              1.1,
+              0,
+              0
+            ],
+            [
+              4.1,
+              3.3,
+              4.5,
+              4.1,
+              8.8,
+              2.6,
+              2,
+              1.8,
+              2.7,
+              1.4,
+              1,
+              0,
+              0
+            ]
+          ],
+          "permit_id": "",
+          "limit_to_vehicles": [
+            "MOTORCYCLE"
+          ]
+        },
+        {
+          "friendly_name": "Car",
+          "matrix_prices": [
+            [
+              0,
+              1.7,
+              3.6,
+              0,
+              10.6,
+              0,
+              3.2,
+              3.9,
+              5.5,
+              5.4,
+              5.9,
+              9.2,
+              8.4
+            ],
+            [
+              1.7,
+              0,
+              1.9,
+              1.7,
+              8.9,
+              0,
+              1.9,
+              2.5,
+              3.9,
+              3.7,
+              4.1,
+              7.2,
+              6.5
+            ],
+            [
+              3.6,
+              1.9,
+              0,
+              3.6,
+              0,
+              0,
+              3.8,
+              4.4,
+              5.8,
+              5.6,
+              6,
+              9.1,
+              8.4
+            ],
+            [
+              0,
+              1.7,
+              3.6,
+              0,
+              10.6,
+              0,
+              3.2,
+              3.9,
+              5.5,
+              5.4,
+              5.9,
+              9.2,
+              8.4
+            ],
+            [
+              10.6,
+              8.9,
+              0,
+              10.6,
+              0,
+              0,
+              10.8,
+              11.4,
+              12.8,
+              12.6,
+              13,
+              16.1,
+              15.4
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1.1,
+              1.8,
+              2.7,
+              2.3,
+              3.3,
+              5.9,
+              5.3
+            ],
+            [
+              3.2,
+              1.9,
+              3.8,
+              3.2,
+              10.8,
+              1.1,
+              0,
+              0.8,
+              1.6,
+              1,
+              2.1,
+              5.2,
+              4.5
+            ],
+            [
+              3.9,
+              2.5,
+              4.4,
+              3.9,
+              11.4,
+              1.8,
+              0.8,
+              0,
+              0,
+              1.1,
+              2,
+              4.1,
+              3.6
+            ],
+            [
+              5.5,
+              3.9,
+              5.8,
+              5.5,
+              12.8,
+              2.7,
+              1.6,
+              0,
+              0,
+              1.9,
+              3,
+              6,
+              5.4
+            ],
+            [
+              5.4,
+              3.7,
+              5.6,
+              5.4,
+              12.6,
+              2.3,
+              1,
+              1.1,
+              1.9,
+              0,
+              1.1,
+              3.2,
+              2.9
+            ],
+            [
+              5.9,
+              4.1,
+              6,
+              5.9,
+              13,
+              3.3,
+              2.1,
+              2,
+              3,
+              1.1,
+              0,
+              2,
+              1.8
+            ],
+            [
+              9.2,
+              7.2,
+              9.1,
+              9.2,
+              16.1,
+              5.9,
+              5.2,
+              4.1,
+              6,
+              3.2,
+              2,
+              0,
+              0
+            ],
+            [
+              8.4,
+              6.5,
+              8.4,
+              8.4,
+              15.4,
+              5.3,
+              4.5,
+              3.6,
+              5.4,
+              2.9,
+              1.8,
+              0,
+              0
+            ]
+          ],
+          "permit_id": "",
+          "limit_to_vehicles": [
+            "PRIVATE",
+            "TAXI",
+            "EV"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "section_id": "STE HELENE BARRIERE",
+          "road_local_name": "A430",
+          "section_local_name": "Gare de Péage de Saint-Hélène",
+          "location": [
+            6.3097806,
+            45.618965
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.30978038277613&lat=45.6189645608594&zoom=5&segments=295652851",
+              "id": 295652851,
+              "forwards": true,
+              "fromNode": 242907326,
+              "toNode": 61290058
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.3112888&lat=45.6198158&zoom=5&segments=295652929",
+              "id": 295652929,
+              "forwards": false,
+              "fromNode": 242907410,
+              "toNode": 61289960
+            }
+          ]
+        },
+        {
+          "section_id": "AITON",
+          "road_local_name": "A43",
+          "section_local_name": "Gare de Péage d'Aiton",
+          "location": [
+            6.246719,
+            45.55611
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.24671894324393&lat=45.5561086332548&zoom=5&segments=303858699",
+              "id": 303858699,
+              "forwards": true,
+              "fromNode": 248209785,
+              "toNode": 61291340
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.24677863972966&lat=45.556208419955&zoom=5&segments=303858696",
+              "id": 303858696,
+              "forwards": false,
+              "fromNode": 61291890,
+              "toNode": 248209783
+            }
+          ]
+        },
+        {
+          "section_id": "ST PIERRE BELLEVILLE",
+          "road_local_name": "A43",
+          "section_local_name": "Gare de Péage de Saint-Pierre-de-Belleville",
+          "location": [
+            6.2871804,
+            45.46957
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.28718033&lat=45.46956826&zoom=5&segments=64626872",
+              "id": 64626872,
+              "forwards": false,
+              "fromNode": 61281290,
+              "toNode": 61281607
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.28669231477204&lat=45.4713562070836&zoom=5&segments=64626890",
+              "id": 64626890,
+              "forwards": false,
+              "fromNode": 61281605,
+              "toNode": 61281293
+            }
+          ]
+        },
+        {
+          "section_id": "STE HELENE BARRIERE",
+          "road_local_name": "A43",
+          "section_local_name": "Gare de Péage de Sainte-Marie",
+          "location": [
+            6.3054338,
+            45.345997
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.30543356200983&lat=45.3459968673134&zoom=5&segments=328377488",
+              "id": 328377488,
+              "forwards": true,
+              "fromNode": 263806875,
+              "toNode": 61275372
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.30679812612686&lat=45.3446430605546&zoom=5&segments=328377482",
+              "id": 328377482,
+              "forwards": true,
+              "fromNode": 61275155,
+              "toNode": 263806872
+            }
+          ]
+        },
+        {
+          "section_id": "ST MICHEL MAURIENNE BAR",
+          "road_local_name": "A43",
+          "section_local_name": "Barrière de Péage de Saint-Michel-de-Maurienne",
+          "location": [
+            6.461908,
+            45.21863
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.4619077277792&lat=45.218632409723&zoom=5&segments=64615396",
+              "id": 64615396,
+              "forwards": true,
+              "fromNode": 163909398,
+              "toNode": 61171701
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.45911945376647&lat=45.2189242819735&zoom=5&segments=295585933",
+              "id": 295585933,
+              "forwards": true,
+              "fromNode": 242863713,
+              "toNode": 61171701
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.45698321&lat=45.21920444&zoom=5&segments=295585929",
+              "id": 295585929,
+              "forwards": true,
+              "fromNode": 61171283,
+              "toNode": 242863711
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.46121035683323&lat=45.2176324242357&zoom=5&segments=259309277",
+              "id": 259309277,
+              "forwards": false,
+              "fromNode": 61171283,
+              "toNode": 276821833
+            }
+          ]
+        },
+        {
+          "section_id": "SAINT PIERRE D'ALBIGNY",
+          "road_local_name": "A43",
+          "section_local_name": "Garde de Péage de Saint-Pierre-d'Albigny",
+          "location": [
+            6.162407,
+            45.54936
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.16240686&lat=45.5493575&zoom=5&segments=353918186",
+              "id": 353918186,
+              "forwards": false,
+              "fromNode": 182315871,
+              "toNode": 61291908
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.15854449&lat=45.54906414&zoom=5&segments=200137270",
+              "id": 200137270,
+              "forwards": false,
+              "fromNode": 61291835,
+              "toNode": 182316152
+            }
+          ]
+        },
+        {
+          "section_id": "MONTMELIAN",
+          "road_local_name": "A43",
+          "section_local_name": "Gare de péage de Montmélian",
+          "location": [
+            6.057992,
+            45.495174
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.05799213&lat=45.49517384&zoom=5&segments=163166464",
+              "id": 163166464,
+              "forwards": true,
+              "fromNode": 61283665,
+              "toNode": 163271219
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.05792924&lat=45.4949906&zoom=5&segments=64628495",
+              "id": 64628495,
+              "forwards": false,
+              "fromNode": 61282420,
+              "toNode": 61283362
+            }
+          ]
+        },
+        {
+          "section_id": "CHIGNIN LES MARCHES",
+          "road_local_name": "A43",
+          "section_local_name": "Gare de Péage de Chignin les Marches",
+          "location": [
+            6.0111256,
+            45.509293
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.0111253640806&lat=45.5092920796394&zoom=5&segments=326023943",
+              "id": 326023943,
+              "forwards": true,
+              "fromNode": 262360727,
+              "toNode": 262360730
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.01170622&lat=45.50772392&zoom=5&segments=304706268",
+              "id": 304706268,
+              "forwards": false,
+              "fromNode": 61292804,
+              "toNode": 61293568
+            }
+          ]
+        },
+        {
+          "section_id": "CHIGNIN BARRIERE",
+          "road_local_name": "A43",
+          "section_local_name": "Barrière de Péage de Chignin",
+          "location": [
+            6.0022287,
+            45.512535
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=6.00222881558197&lat=45.512534436074&zoom=5&segments=353918369",
+              "id": 353918369,
+              "forwards": true,
+              "fromNode": 242860556,
+              "toNode": 61293568
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=6.00568&lat=45.51182&zoom=6&segments=295581459",
+              "id": 295581459,
+              "forwards": false,
+              "fromNode": 61293828,
+              "toNode": 242860367
+            }
+          ]
+        },
+        {
+          "section_id": "PONTCHARRA",
+          "road_local_name": "A41",
+          "section_local_name": "Gare de Péage de Pontcharra",
+          "location": [
+            5.994453,
+            45.426228
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.99445311205486&lat=45.4262285308293&zoom=5&segments=64501569",
+              "id": 64501569,
+              "forwards": true,
+              "fromNode": 60981131,
+              "toNode": 60981132
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.99441824333758&lat=45.426403598109&zoom=5&segments=64503057",
+              "id": 64503057,
+              "forwards": false,
+              "fromNode": 60982436,
+              "toNode": 60981137
+            }
+          ]
+        },
+        {
+          "section_id": "LE TOUVET",
+          "road_local_name": "A41",
+          "section_local_name": "Gare de Péage de Le Touvet",
+          "location": [
+            5.9638715,
+            45.348198
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.96387162040162&lat=45.348199082203&zoom=5&segments=152750450",
+              "id": 152750450,
+              "forwards": false,
+              "fromNode": 60866905,
+              "toNode": 156701179
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.96375760298134&lat=45.3482202995043&zoom=5&segments=152750451",
+              "id": 152750451,
+              "forwards": true,
+              "fromNode": 156701180,
+              "toNode": 60867456
+            }
+          ]
+        },
+        {
+          "section_id": "CROLLES BARRIERE",
+          "road_local_name": "A41",
+          "section_local_name": "Barrière de Péage de Crolles",
+          "location": [
+            5.9032435,
+            45.274563
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.90055836217503&lat=45.271826723441&zoom=5&segments=295580345",
+              "id": 295580345,
+              "forwards": false,
+              "fromNode": 60865864,
+              "toNode": 242859687
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.89903292425985&lat=45.2700990274636&zoom=5&segments=295580096",
+              "id": 295580096,
+              "forwards": true,
+              "fromNode": 242859551,
+              "toNode": 60865870
+            }
+          ]
+        },
+        {
+          "section_id": "CROLLES BRIGNOUD",
+          "road_local_name": "Sortie 24: Crolles",
+          "section_local_name": "A41",
+          "location": [
+            5.902366,
+            45.273647
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.90236617105109&lat=45.2736482174499&zoom=5&segments=326018880",
+              "id": 326018880,
+              "forwards": true,
+              "fromNode": 60865864,
+              "toNode": 262357652
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.90126110093667&lat=45.2720796597825&zoom=5&segments=64482870",
+              "id": 64482870,
+              "forwards": false,
+              "fromNode": 60864821,
+              "toNode": 60865870
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

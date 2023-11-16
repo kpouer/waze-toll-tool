@@ -1,0 +1,280 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_A50_ouvert",
+      "road_local_name": "A50",
+      "currency": "€",
+      "currency_code": "EUR",
+      "polyline": "LINESTRING (5.779887680802074 43.14515370273082, 5.587626938614574 43.23501575142344)",
+      "type": "static",
+      "rules": [
+        "pay_per_section"
+      ],
+      "sections": [
+        {
+          "section_id": "Cassis-Aubagne",
+          "road_local_name": "A50",
+          "section_local_name": "Péage de Cassis",
+          "location": [
+            5.58254424819549,
+            43.2267553750808
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.58254424819549&lat=43.2267553750808&zoom=5&segments=298272559",
+              "id": 298272559,
+              "forwards": true,
+              "fromNode": 244612229,
+              "toNode": 244612241
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.58316620243467&lat=43.2272262127891&zoom=5&segments=337305390",
+              "id": 337305390,
+              "forwards": false,
+              "fromNode": 269363118,
+              "toNode": 244612130
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.1
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.8
+            }
+          ]
+        },
+        {
+          "section_id": "(Cassis ou Saint-Cyr-Sur-Mer)-La Ciotat",
+          "road_local_name": "A50",
+          "section_local_name": "Gare de Péage de La Ciotat",
+          "location": [
+            5.59464895673753,
+            43.2021442347244
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.59481293756484&lat=43.2026795570791&zoom=5&segments=317020963",
+              "id": 317020963,
+              "forwards": false,
+              "fromNode": 256710969,
+              "toNode": 55623682
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.5940053642823&lat=43.2009405802377&zoom=5&segments=362396773",
+              "id": 362396773,
+              "forwards": false,
+              "fromNode": 55623262,
+              "toNode": 285325542
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.3
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.8
+            }
+          ]
+        },
+        {
+          "section_id": "Cassis-Saint-Cyr-Sur-Mer",
+          "road_local_name": "A50",
+          "section_local_name": "Gare de Péage de La Ciotat",
+          "location": [
+            5.59385553,
+            43.20397736
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.59385553&lat=43.20397736&zoom=5&segments=302759177",
+              "id": 302759177,
+              "forwards": true,
+              "fromNode": 247497800,
+              "toNode": 247497798
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.59059287809639&lat=43.2048800476583&zoom=5&segments=302759174",
+              "id": 302759174,
+              "forwards": false,
+              "fromNode": 55623676,
+              "toNode": 247497799
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.3
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.6
+            }
+          ]
+        },
+        {
+          "section_id": "Bandol bretelle",
+          "road_local_name": "A50",
+          "section_local_name": "Gare de Péage de Bandol",
+          "location": [
+            5.76867563010527,
+            43.1443933266405
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.7687473974321&lat=43.14538242357&zoom=5&segments=337307500",
+              "id": 337307500,
+              "forwards": true,
+              "fromNode": 55617860,
+              "toNode": 269364420
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.76867563010527&lat=43.1443933266405&zoom=5&segments=337307497",
+              "id": 337307497,
+              "forwards": true,
+              "fromNode": 269364416,
+              "toNode": 174965283
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.4
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.8
+            }
+          ]
+        },
+        {
+          "section_id": "Bandol Barrière",
+          "road_local_name": "A50",
+          "section_local_name": "Barrière de Péage de Bandol",
+          "location": [
+            5.7719825795467,
+            43.146616094379
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.7719825795467&lat=43.146616094379&zoom=5&segments=302759827",
+              "id": 302759827,
+              "forwards": false,
+              "fromNode": 55613889,
+              "toNode": 247498163
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.76660992732016&lat=43.1483424608605&zoom=5&segments=302759828",
+              "id": 302759828,
+              "forwards": true,
+              "fromNode": 55614539,
+              "toNode": 247498164
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.2
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.4
+            }
+          ]
+        },
+        {
+          "section_id": "Ollioules 12.1",
+          "road_local_name": "A50 ",
+          "section_local_name": "A50",
+          "location": [
+            5.82453,
+            43.12537
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=43.12537&lon=5.82453&s=18341690871&zoom=5&segments=367599872",
+              "id": 367599872,
+              "forwards": true,
+              "fromNode": 300805972,
+              "toNode": 300805896
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=43.12538&lon=5.82563&s=18341688823&zoom=6&segments=395587645",
+              "id": 395587645,
+              "forwards": true,
+              "fromNode": 306888927,
+              "toNode": 300805805
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 0.8
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
