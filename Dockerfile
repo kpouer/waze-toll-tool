@@ -1,4 +1,4 @@
-ROM docker.io/maven:3.9.6-eclipse-temurin-21-alpine as maven-build
+FROM docker.io/maven:3.9.6-eclipse-temurin-21-alpine as maven-build
 COPY src /src
 COPY pom.xml /pom.xml
 RUN mvn clean package
