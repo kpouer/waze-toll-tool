@@ -25,6 +25,7 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.parser.PriceParser;
 import com.kpouer.waze.toll.tolltool.service.FlatPriceParser;
 import com.kpouer.waze.toll.tolltool.service.OneDirectionMatrixPriceParser;
 import com.kpouer.waze.toll.tolltool.service.TrianglePriceParser;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -47,17 +48,14 @@ public class PriceCatalog {
     private final        FlatPriceParser               flatPriceParser;
     private final        TrianglePriceParser           trianglePriceParser;
     private final        OneDirectionMatrixPriceParser oneDirectionMatrixPriceParser;
+    @Getter
     private final        Map<PriceItem, PriceItem>     prices;
 
     public PriceCatalog(FlatPriceParser flatPriceParser, TrianglePriceParser trianglePriceParser, OneDirectionMatrixPriceParser oneDirectionMatrixPriceParser) {
-        this.flatPriceParser               = flatPriceParser;
-        this.trianglePriceParser           = trianglePriceParser;
+        this.flatPriceParser = flatPriceParser;
+        this.trianglePriceParser = trianglePriceParser;
         this.oneDirectionMatrixPriceParser = oneDirectionMatrixPriceParser;
-        prices                             = new HashMap<>();
-    }
-
-    public Map<PriceItem, PriceItem> getPrices() {
-        return prices;
+        prices = new HashMap<>();
     }
 
     public void load(Path rootPath) throws IOException {
@@ -71,7 +69,12 @@ public class PriceCatalog {
 
         Collection<PriceItem[]> priceGridList = new ArrayList<>();
         for (FolderDefinition folderDefinition : folderDefinitions) {
-            try (Stream<Path> files = Files.list(Path.of(rootPath.toString(), folderDefinition.getFolder()))) {
+            Path dir = Path.of(rootPath.toString(), folderDefinition.getFolder());
+            if (!Files.isDirectory(dir)) {
+                log.warn("{} is not a directory", dir);
+                continue;
+            }
+            try (Stream<Path> files = Files.list(dir)) {
                 files
                     .filter(path -> path.toString().toLowerCase().endsWith(folderDefinition.getExtension()))
                     .forEach(path -> loadFolder(priceGridList, folderDefinition, path));
@@ -84,9 +87,11 @@ public class PriceCatalog {
     private void mergePrices(Iterable<PriceItem[]> priceGridList) {
         for (PriceItem[] priceGrid : priceGridList) {
             for (PriceItem priceItem : priceGrid) {
-                PriceItem existingPrice = prices.put(priceItem, priceItem);
+                var existingPrice = prices.get(priceItem);
                 if (existingPrice != null) {
-                    priceItem.merge(existingPrice);
+                    existingPrice.merge(priceItem);
+                } else {
+                    prices.put(priceItem, priceItem);
                 }
             }
         }

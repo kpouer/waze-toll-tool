@@ -1,29 +1,36 @@
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
-import lombok.AllArgsConstructor;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder.RectangleBuilder;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder.TriangleBuilder;
+import lombok.RequiredArgsConstructor;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
-import static com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.ASFEscotaExtractor.getHeaders;
-import static com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.ASFEscotaExtractor.getPage;
+import static com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.PriceExtractor.getHeaders;
+import static com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.PriceExtractor.getPage;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ASFExtractor implements Extractor {
+    private final Path pdf;
     private final Category category;
 
     @Override
-    public void extract(File pdfFile) throws IOException {
-        var currentYear            = new GregorianCalendar().get(Calendar.YEAR);
-        var outputPath             = new File(pdfFile.getParentFile(), "out");
-        var triangleOutputPath     = new File(outputPath, "triangle");
-        var oneDirMatrixOutputPath = new File(outputPath, "onedirmatrix");
-        triangleOutputPath.mkdirs();
-        oneDirMatrixOutputPath.mkdirs();
+    public void extract() throws IOException {
+        var pdfFile = pdf.toFile();
+        var directory = pdf.getParent();
+        var outputPath = Path.of(directory.toString(), "out");
+        var triangleOutputPath = Path.of(outputPath.toString(), "triangle");
+        var oneDirMatrixOutputPath = Path.of(outputPath.toString(), "onedirmatrix");
+        if (!Files.exists(triangleOutputPath)) {
+            Files.createDirectory(triangleOutputPath);
+        }
+        if (!Files.exists(oneDirMatrixOutputPath)) {
+            Files.createDirectory(oneDirMatrixOutputPath);
+        }
         var triangleBuilder  = new TriangleBuilder(triangleOutputPath);
         var rectangleBuilder = new RectangleBuilder(oneDirMatrixOutputPath);
         triangleBuilder.buildFile("ASF_A7_A8_A9_A46_A54", category, getHeaders("ASF_A7_A8_A9_A46_A54"), getPage(pdfFile, 1));
@@ -37,7 +44,7 @@ public class ASFExtractor implements Extractor {
         } else {
             triangleBuilder.buildFile("ASF-A9-A61-A62-A66-A75-A709-page3", category, getHeaders("ASF-A9-A61-A62-A66-A75-A709-page3"), getPage(pdfFile, 3), 14, List.of());
             triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 121);
-            if (currentYear == 2023) {
+            if (java.time.Year.now().getValue() == 2023) {
                 rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 289, 25);
             } else {
                 rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 290, 26);

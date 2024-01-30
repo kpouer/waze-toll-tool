@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Matthieu Casanova
+ * Copyright 2022-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -19,7 +19,7 @@
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor;
+package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 

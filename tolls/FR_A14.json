@@ -1,0 +1,208 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_A14",
+      "road_local_name": "A14",
+      "currency": "€",
+      "currency_code": "EUR",
+      "polyline": "LINESTRING (1.9817555399125695 48.9291764284678, 1.988536164302218 48.92150679589507)",
+      "type": "static",
+      "rules": [
+        "pay_per_section"
+      ],
+      "sections": [
+        {
+          "section_id": "Péage de Montesson",
+          "road_local_name": "A14",
+          "section_local_name": "Péage de Montesson",
+          "location": [
+            2.16287,
+            48.91287
+          ],
+          "segments": [
+            {
+              "permalink": "https://beta.waze.com/fr/editor?env=row&lon=2.17018&lat=48.91347&zoom=5&segments=295455378",
+              "id": 295455378,
+              "forwards": false,
+              "fromNode": 242775319,
+              "toNode": 242775330
+            },
+            {
+              "permalink": "https://beta.waze.com/fr/editor?env=row&lon=2.16609&lat=48.91361&zoom=5&segments=324452920",
+              "id": 324452920,
+              "forwards": true,
+              "fromNode": 68611574,
+              "toNode": 261419778
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 8.9
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 6.3,
+              "valid_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "valid_minutes": [
+                600,
+                960
+              ]
+            },
+            {
+              "permit_id": "",
+              "price": 6.3,
+              "valid_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "valid_minutes": [
+                1260,
+                1439
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI"
+              ],
+              "price": 6.3,
+              "valid_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "valid_minutes": [
+                0,
+                360
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 4.5
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 3.3,
+              "valid_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "valid_minutes": [
+                600,
+                960
+              ]
+            },
+            {
+              "permit_id": "",
+              "price": 3.3,
+              "valid_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "valid_minutes": [
+                1260,
+                1439
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 3.3,
+              "valid_days": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "valid_minutes": [
+                0,
+                360
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "Péage de Chambourcy",
+          "road_local_name": "A14",
+          "section_local_name": "Péage de Chambourcy",
+          "location": [
+            2.049,
+            48.91178
+          ],
+          "segments": [
+            {
+              "permalink": "https://beta.waze.com/fr/editor?env=row&lon=2.04900&lat=48.91178&zoom=5&segments=345609096",
+              "id": 345609096,
+              "forwards": true,
+              "fromNode": 242775798,
+              "toNode": 274594069
+            },
+            {
+              "permalink": "https://beta.waze.com/fr/editor?env=row&lon=2.04900&lat=48.91178&zoom=5&segments=336398616",
+              "id": 336398616,
+              "forwards": true,
+              "fromNode": 266339492,
+              "toNode": 268794268
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.6
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

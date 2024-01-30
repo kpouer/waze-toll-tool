@@ -63,7 +63,7 @@ public class PriceCatalogs {
             priceCatalog.load(path);
             priceCatalogs.put(path.toFile().getName().toLowerCase(), priceCatalog);
         } catch (IOException e) {
-            log.error("Error while loading catalog {}", path);
+            log.error("Error while loading catalog {}", path, e);
         }
     }
 

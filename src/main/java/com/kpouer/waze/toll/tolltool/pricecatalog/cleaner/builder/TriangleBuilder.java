@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Matthieu Casanova
+ * Copyright 2022-2023 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -19,32 +19,25 @@
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor;
+package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
+import lombok.RequiredArgsConstructor;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class TriangleBuilder implements TSVBuilder {
-    private final File path;
-    private final int  currentYear;
-
-    public TriangleBuilder(File path) {
-        this.path   = path;
-        currentYear = new GregorianCalendar().get(Calendar.YEAR);
-    }
+    private final Path outputPath;
 
     @Override
     public void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLine, int column, Collection<Integer> clonedColumns) throws IOException {
-        var file = new File(path, currentYear + "_" + name + '-' + category + ".tsv");
-        try (var writer = new BufferedWriter(new FileWriter(file))) {
+        var tsvFile = Path.of(outputPath.toString(), java.time.Year.now() + "_" + name + '-' + category + ".tsv");
+        try (var writer = Files.newBufferedWriter(tsvFile)) {
             writer.write(headers[0]);
             writer.write('\n');
             for (var i = 0; i < headers.length - 1; i++) {
@@ -72,6 +65,6 @@ public class TriangleBuilder implements TSVBuilder {
                 }
             }
         }
-        System.out.println("File " + file + " created");
+        System.out.println("File " + tsvFile + " created");
     }
 }
