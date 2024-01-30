@@ -45,8 +45,9 @@ public class PriceGrid {
         }
 
         PriceItem priceItem = prices.get(new DefaultPriceItem(entry, exit));
-        if (priceItem == null)
+        if (priceItem == null) {
             return -1;
+        }
         return priceItem.getPrice(category);
     }
 }

@@ -31,12 +31,12 @@ public record PriceResult(String entry, String exit, PriceItem priceItemForward,
     }
 
     public float getPrice(Category category, Audit audit) {
-        float         price;
         CategoryPrice forwardCategoryPrice  = priceItemForward == null ? null : priceItemForward.getCategoryPrice(category);
         CategoryPrice backwardCategoryPrice = priceItemBackward == null ? null : priceItemBackward.getCategoryPrice(category);
 
         assert forwardCategoryPrice != null || backwardCategoryPrice != null;
 
+        float price;
         if (forwardCategoryPrice != null) {
             if (backwardCategoryPrice != null &&
                 (backwardCategoryPrice.getYear() > forwardCategoryPrice.getYear() ||

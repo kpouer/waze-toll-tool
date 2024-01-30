@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2024 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,6 +21,9 @@
  */
 package com.kpouer.waze.toll.tolltool.pricecatalog;
 
+import lombok.Getter;
+
+@Getter
 public enum Category {
     Car("PRIVATE", "TAXI", "EV"),
     Motorcycle("MOTORCYCLE");
@@ -31,14 +34,11 @@ public enum Category {
         this.vehicles = vehicles;
     }
 
-    public String[] getVehicles() {
-        return vehicles;
-    }
-
     public static Category fromString(String category) {
         for (Category value : values()) {
-            if (value.toString().equalsIgnoreCase(category))
+            if (value.toString().equalsIgnoreCase(category)) {
                 return value;
+            }
         }
         throw new IllegalArgumentException("Unknown category " + category);
     }

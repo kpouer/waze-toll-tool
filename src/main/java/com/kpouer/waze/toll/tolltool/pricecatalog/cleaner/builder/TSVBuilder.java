@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+@FunctionalInterface
 public interface TSVBuilder {
     default void buildFile(String name, Category category, String[] headers, List<String> lines) throws IOException {
         buildFile(name, category, headers, lines, 0, 0, Collections.emptyList());

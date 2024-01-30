@@ -33,7 +33,7 @@ import java.io.FileReader;
 
 public class FixSections {
     public static void main(String[] args) throws FileNotFoundException {
-        Sections sections = new Gson().fromJson(new FileReader(new File("data/sections.json")), Sections.class);
+        Sections sections = new Gson().fromJson(new FileReader("data/sections.json"), Sections.class);
         for (Section section : sections) {
             if (section.getLocation() == null || section.getLocation()[0] == 40 && section.getLocation()[1] == 0) {
                 Segment  segment     = section.getSegments()[0];

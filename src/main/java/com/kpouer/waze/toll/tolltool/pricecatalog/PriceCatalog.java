@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2023 Matthieu Casanova
+ * Copyright 2021-2024 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -25,6 +25,7 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.parser.PriceParser;
 import com.kpouer.waze.toll.tolltool.service.FlatPriceParser;
 import com.kpouer.waze.toll.tolltool.service.OneDirectionMatrixPriceParser;
 import com.kpouer.waze.toll.tolltool.service.TrianglePriceParser;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,11 +46,11 @@ import java.util.stream.Stream;
 @Scope("prototype")
 @Slf4j
 public class PriceCatalog {
-    private final        FlatPriceParser               flatPriceParser;
-    private final        TrianglePriceParser           trianglePriceParser;
-    private final        OneDirectionMatrixPriceParser oneDirectionMatrixPriceParser;
+    private final FlatPriceParser flatPriceParser;
+    private final TrianglePriceParser trianglePriceParser;
+    private final OneDirectionMatrixPriceParser oneDirectionMatrixPriceParser;
     @Getter
-    private final        Map<PriceItem, PriceItem>     prices;
+    private final Map<PriceItem, PriceItem> prices;
 
     public PriceCatalog(FlatPriceParser flatPriceParser, TrianglePriceParser trianglePriceParser, OneDirectionMatrixPriceParser oneDirectionMatrixPriceParser) {
         this.flatPriceParser = flatPriceParser;
@@ -110,7 +111,7 @@ public class PriceCatalog {
 
     @NotNull
     public PriceResult getPrice(String entry, String exit) {
-        PriceItem priceItemForward  = prices.get(new DefaultPriceItem(entry, exit));
+        PriceItem priceItemForward = prices.get(new DefaultPriceItem(entry, exit));
         PriceItem priceItemBackward = prices.get(new DefaultPriceItem(exit, entry));
         if (priceItemForward == null || priceItemBackward == null) {
             return new PriceResult(entry, exit);
@@ -118,32 +119,16 @@ public class PriceCatalog {
         return new PriceResult(entry, exit, priceItemForward, priceItemBackward);
     }
 
+    @Getter
     @RequiredArgsConstructor
+    @AllArgsConstructor
     private static class FolderDefinition {
-        private final String      folder;
-        private final String      extension;
+        private final String folder;
+        private final String extension;
         private final PriceParser priceParser;
-        private       Category    category;
-
-        FolderDefinition(String folder, String extension, PriceParser priceParser, Category category) {
-            this(folder, extension, priceParser);
-            this.category = category;
-        }
-
-        public String getFolder() {
-            return folder;
-        }
-
-        public String getExtension() {
-            return extension;
-        }
-
-        public PriceParser getPriceParser() {
-            return priceParser;
-        }
-
-        public Category getCategory() {
-            return category;
-        }
+        /**
+         * The category is not mandatory depending on the file type
+         */
+        private Category category;
     }
 }

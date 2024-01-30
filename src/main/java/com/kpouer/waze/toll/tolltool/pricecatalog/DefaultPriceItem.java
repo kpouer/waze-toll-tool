@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2023 Matthieu Casanova
+ * Copyright 2021-2024 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -143,8 +143,12 @@ public class DefaultPriceItem implements PriceItem {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         DefaultPriceItem that = (DefaultPriceItem) o;
         return entry.equals(that.entry) &&
             exit.equals(that.exit);
@@ -165,13 +169,10 @@ public class DefaultPriceItem implements PriceItem {
 
     @Override
     public CategoryPrice getCategoryPrice(Category category) {
-        switch (category) {
-            case Car:
-                return carPrice;
-            case Motorcycle:
-                return motorcyclePrice;
-        }
-        throw new IllegalArgumentException("Unknown category " + category);
+        return switch (category) {
+            case Car -> carPrice;
+            case Motorcycle -> motorcyclePrice;
+        };
     }
 
     @Override

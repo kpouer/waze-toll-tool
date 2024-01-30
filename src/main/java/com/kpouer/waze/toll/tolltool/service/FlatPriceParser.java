@@ -59,7 +59,7 @@ public class FlatPriceParser implements PriceParser {
         short        year            = filename.startsWith("202") ? Short.parseShort(filename.substring(0, 4)) : 2019;
         List<String> lines           = Files.readAllLines(path);
         // remove header
-        lines.remove(0);
+        lines.removeFirst();
 
         return lines
             .parallelStream()
