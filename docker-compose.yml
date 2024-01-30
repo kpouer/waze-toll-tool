@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  waze-toll-tool:
+    image: waze-toll-tool:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./prices:/prices"
+      - "./config:/config"
