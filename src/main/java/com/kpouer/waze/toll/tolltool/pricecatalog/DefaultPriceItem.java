@@ -129,9 +129,6 @@ public class DefaultPriceItem implements PriceItem {
 
     @Override
     public void merge(PriceItem priceItem) {
-        if ("REIMS NORD (ORMES)".equals(priceItem.getEntry()) && "REIMS OUEST (THILLOIS)".equals(priceItem.getExit())) {
-            log.info("Merge {} into {}", priceItem, this);
-        }
         if (carPrice != null) {
             carPrice.merge(priceItem.getCarCategoryPrice());
         } else {
