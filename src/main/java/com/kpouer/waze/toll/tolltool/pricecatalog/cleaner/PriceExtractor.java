@@ -63,9 +63,9 @@ public class PriceExtractor {
             return Optional.of(new ASFExtractor(path, Category.Car));
         } else if (filename.startsWith("C5-TARIFS")) {
             return Optional.of(new ASFExtractor(path, Category.Motorcycle));
-        } else if (filename.startsWith("tarifs_area")) {
+        } else if (filename.startsWith("tarifs_area") || filename.startsWith("TARIFS_INTERNES_AREA")) {
             return Optional.of(new AREAExtractor(path));
-        } else if (filename.startsWith("tarifs_aprr")) {
+        } else if (filename.startsWith("tarifs_aprr") || filename.startsWith("TARIFS_INTERNES_APRR")) {
             return Optional.of(new APRRExtractor(path));
         }
         return Optional.empty();

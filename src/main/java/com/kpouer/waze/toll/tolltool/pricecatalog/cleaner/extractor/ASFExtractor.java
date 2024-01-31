@@ -26,10 +26,10 @@ public class ASFExtractor implements Extractor {
         var triangleOutputPath = Path.of(outputPath.toString(), "triangle");
         var oneDirMatrixOutputPath = Path.of(outputPath.toString(), "onedirmatrix");
         if (!Files.exists(triangleOutputPath)) {
-            Files.createDirectory(triangleOutputPath);
+            Files.createDirectories(triangleOutputPath);
         }
         if (!Files.exists(oneDirMatrixOutputPath)) {
-            Files.createDirectory(oneDirMatrixOutputPath);
+            Files.createDirectories(oneDirMatrixOutputPath);
         }
         var triangleBuilder  = new TriangleBuilder(triangleOutputPath);
         var rectangleBuilder = new RectangleBuilder(oneDirMatrixOutputPath);
