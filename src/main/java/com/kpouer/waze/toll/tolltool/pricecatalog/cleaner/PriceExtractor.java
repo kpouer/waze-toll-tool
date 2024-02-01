@@ -56,16 +56,16 @@ public class PriceExtractor {
     }
 
     private static Optional<Extractor> getExtractorForFile(Path path) {
-        var filename = path.getFileName().toString();
-        if (filename.contains("Escota")) {
+        var filename = path.getFileName().toString().toUpperCase();
+        if (filename.contains("ESCOTA")) {
             return Optional.of(new EscotaExtractor(path));
         } else if (filename.startsWith("C1-TARIFS")) {
             return Optional.of(new ASFExtractor(path, Category.Car));
         } else if (filename.startsWith("C5-TARIFS")) {
             return Optional.of(new ASFExtractor(path, Category.Motorcycle));
-        } else if (filename.startsWith("tarifs_area") || filename.startsWith("TARIFS_INTERNES_AREA")) {
+        } else if (filename.startsWith("TARIFS_AREA") || filename.startsWith("TARIFS_INTERNES_AREA")) {
             return Optional.of(new AREAExtractor(path));
-        } else if (filename.startsWith("tarifs_aprr") || filename.startsWith("TARIFS_INTERNES_APRR")) {
+        } else if (filename.startsWith("TARIFS_APRR") || filename.startsWith("TARIFS_INTERNES_APRR")) {
             return Optional.of(new APRRExtractor(path));
         }
         return Optional.empty();
