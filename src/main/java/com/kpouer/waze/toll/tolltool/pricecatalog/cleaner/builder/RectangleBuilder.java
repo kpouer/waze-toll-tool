@@ -42,7 +42,7 @@ public class RectangleBuilder implements TSVBuilder {
             writer.write(headers[0]);
             writer.write('\n');
             for (var i = 0; i < headers.length - 1; i++) {
-                var header = headers[i + 1];
+                var header = headers[i + 1].trim(); // sometimes a \r remains
                 var line = lines.get(i + skipLine);
                 if (i == 0 && column > 0) {
                     line = line.substring(column);

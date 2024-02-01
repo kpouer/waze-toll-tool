@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2024 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -35,5 +35,13 @@ public class Replacement {
 
     public String replace(String text) {
         return pattern.matcher(text).replaceAll(replacement);
+    }
+
+    @Override
+    public String toString() {
+        return "Replacement{" +
+            "pattern=" + pattern +
+            ", replacement='" + replacement + '\'' +
+            '}';
     }
 }
