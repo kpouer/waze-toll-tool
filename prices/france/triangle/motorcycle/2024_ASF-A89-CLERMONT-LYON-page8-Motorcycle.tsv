@@ -1,23 +1,23 @@
 La Fouillouse
-5	Andrézieux-Bouthéon sud
-14	Andrézieux-Bouthéon nord
-12	Péage de Veauchette
-13	Montbrison Montrond
-11	Feurs Lentilly
-10	Tour de Salvagny
-4	Lentilly
-3	Pont de Dorieux
-2	L’Arbresle
-1	Tarare est(péage en systEme ouvert)
-11	BARRIERE DE PEAGE DE SAINT-ROMAIN-DE-POPEY
-12	Tarare est(péage en systEme fermé)
-13	Tarare ouest
-13.1	Balbigny
-14	Saint-Germain-Laval
-15	Noirétable
-16	Thiers est
-17	Thiers ouest
-18	Lezoux
-12.1	BARRIERE DE PEAGE DE MARTRES-D'ARTIERE
-A	Clermont-Ferrand
-7	Pont du Château
+0	Andrézieux-Bouthéon sud
+0	0	Andrézieux-Bouthéon nord
+0	0	0	Péage de Veauchette
+0,7	0	0,7	0,7	Montbrison Montrond
+1,7	0	1,7	1,7	0,6	Feurs Lentilly
+6,5	0	6,5	6,5	5,5	4,8	Tour de Salvagny
+6,5	0	6,5	6,5	5,5	4,8	0	Lentilly
+6,5	0	6,5	6,5	5,5	4,8	0	0	Pont de Dorieux
+6,5	0	6,5	6,5	5,5	4,8	0	0	0	L’Arbresle
+0	0	0	0	0	0	1	1	1	1	Tarare est(péage en systEme ouvert)
+6,5	0	6,5	6,5	5,5	4,8	0	0	0	0	0	BARRIERE DE PEAGE DE SAINT-ROMAIN-DE-POPEY
+4,9	0	4,9	4,9	4	3,2	0	0	0	0	0	0	Tarare est(péage en systEme fermé)
+4,2	0	4,2	4,2	3,3	2,5	1,6	1,6	1,6	1,6	0	1,6	0,5	Tarare ouest
+2,7	0	2,7	2,7	1,4	0,7	3,6	3,6	3,6	3,6	0	3,6	2,3	1,3	Balbigny
+2,5	0	2,5	2,5	1,4	0,8	4,9	4,9	4,9	4,9	0	4,9	3,1	2,7	0,7	Saint-Germain-Laval
+3,6	0	3,6	3,6	3	2,3	6,3	6,3	6,3	6,3	0	6,3	4,5	4,1	2,2	1,2	Noirétable
+4,9	0	4,9	4,9	4,1	3,4	7,4	7,4	7,4	7,4	0	7,4	5,3	5	3,5	2,3	0,8	Thiers est
+6	0	6	6	5,3	4,2	8,2	8,2	8,2	8,2	0	8,2	6,1	5,8	3,9	2,8	1,8	0,7	Thiers ouest
+6	0	6	6	5,3	4,5	8,7	8,7	8,7	8,7	0	8,7	6,6	6,3	4,3	3,6	2,3	1	0,5	Lezoux
+6,4	0	6,4	6,4	6,3	6,2	9,6	9,6	9,6	9,6	0	9,6	8,4	8,2	6,1	5	3,5	2,3	1,8	1	BARRIERE DE PEAGE DE MARTRES-D'ARTIERE
+6,4	0	6,4	6,4	6,3	6,2	9,6	9,6	9,6	9,6	0	9,6	8,4	8,2	6,1	5	3,5	2,3	1,8	1	0	Clermont-Ferrand
+6,4	0	6,4	6,4	6,3	6,2	9,6	9,6	9,6	9,6	0	9,6	8,4	8,2	6,1	5	3,5	2,3	1,8	1	0	0	Pont du Château
