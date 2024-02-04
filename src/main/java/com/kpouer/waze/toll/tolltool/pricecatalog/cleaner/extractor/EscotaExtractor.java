@@ -21,10 +21,13 @@ public class EscotaExtractor implements Extractor {
         var headers = getHeaders("Escota_A8_A50_A52_A51_A57");
         var parent = pdf.getParent();
         var outputPath  = Path.of(parent.toString(), "out");
-        Files.createDirectory(outputPath);
+        var triangleOutputPath = Path.of(outputPath.toString(), "triangle");
+        if (!Files.isDirectory(triangleOutputPath)) {
+            Files.createDirectory(triangleOutputPath);
+        }
         var pdfFile = pdf.toFile();
-        var tsvBuilder = new TriangleBuilder(outputPath);
-        tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Car, headers, getPage(pdfFile, 7), 1, List.of(10));
-        tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Motorcycle, headers, getPage(pdfFile, 11), 5, List.of(10));
+        var tsvBuilder = new TriangleBuilder(triangleOutputPath);
+        tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Car, headers, getPage(pdfFile, 7), 0, List.of(10));
+        tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Motorcycle, headers, getPage(pdfFile, 11), 120, List.of(10));
     }
 }
