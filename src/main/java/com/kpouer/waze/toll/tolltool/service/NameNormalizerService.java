@@ -66,6 +66,7 @@ public class NameNormalizerService {
             .replace(" / ", " ")
             .replace('-', ' ')
             .replace('/', ' ')
+            .replace('’', ' ')
             .replace('\'', ' ')
                 ;
         return alias.getOrDefault(normalized, normalized);

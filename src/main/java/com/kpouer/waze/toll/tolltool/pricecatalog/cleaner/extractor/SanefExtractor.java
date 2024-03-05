@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Matthieu Casanova
+ * Copyright 2021-2024 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -19,14 +19,24 @@
  *  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  *  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
+package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor;
+
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.PDFExtractor;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder.TriangleBuilder;
+import lombok.RequiredArgsConstructor;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
-public class SanefCleaner {
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+@RequiredArgsConstructor
+public class SanefExtractor implements Extractor {
     private static final Pattern EURO    = Pattern.compile(" €");
     private static final Pattern MINUS   = Pattern.compile("(A\\d+) - ");
     private static final Pattern TABS    = Pattern.compile("(\\d) (\\d)");
@@ -38,14 +48,17 @@ public class SanefCleaner {
     private static final Pattern SPACE   = Pattern.compile(" ");
     private static final Pattern COMPILE = Pattern.compile(" (\\d)");
 
-    public static void main(String[] args) throws IOException {
-        String filename = args[0];
-        File   pdfFile  = new File(filename);
-        String text     = PDFExtractor.extractText(pdfFile);
+    private final Path pdf;
+
+    @Override
+    public void extract() throws IOException {
+        var outputPath = Path.of(pdf.getParent().toString(), "out");
+        var triangleOutputPath = Path.of(outputPath.toString(), "triangle");
+        var triangleBuilder  = new TriangleBuilder(triangleOutputPath);
+        String text     = PDFExtractor.extractText(pdf.toFile());
         text = text.replaceAll("\r", "");
         String[] lines       = text.split("\n");
-        String   outfilename = filename + ".tsv";
-        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(outfilename)))) {
+        try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(Path.of(outputPath.toString(), Year.now() + "_SANEF.tsv"), UTF_8))) {
             AtomicInteger errors = new AtomicInteger();
             Arrays.stream(lines)
                   .filter(line -> !line.contains("VEHICULES"))
