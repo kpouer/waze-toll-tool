@@ -77,10 +77,15 @@ public class SanefExtractor implements Extractor {
 
     private void writeFile(Path outputPath, String filename, String[] lines, int startLine, int endLine) {
         var currentYear = LocalDate.now().getYear();
-        Path path = Path.of(outputPath.toString(), currentYear + "_" + filename + ".tsv");
+        var path = Path.of(outputPath.toString(), currentYear + "_" + filename + ".tsv");
         try (var writer = Files.newBufferedWriter(path)) {
             for (var i = startLine; i < endLine; i++) {
-                writer.write(lines[i]);
+                var line = lines[i];
+                if ("VERDUN".equals(line)) {
+                    // verdun is a special entry
+                    writer.write("0\t".repeat(20));
+                }
+                writer.write(line);
                 writer.newLine();
             }
         } catch (IOException e) {
