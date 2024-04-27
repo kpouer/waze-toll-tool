@@ -27,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -68,6 +67,8 @@ public class PriceExtractor {
             return Optional.of(new AREAExtractor(path));
         } else if (filename.startsWith("TARIFS_APRR") || filename.startsWith("TARIFS_INTERNES_APRR")) {
             return Optional.of(new APRRExtractor(path));
+        } else if (filename.startsWith("TARIFS_")) {
+            return Optional.of(new ALIAEExtractor(path));
         } else if (filename.contains("SANEF")) {
             return Optional.of(new SanefExtractor(path));
         }
