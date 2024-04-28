@@ -14,7 +14,7 @@
     <name>toll-tool</name>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>22</java.version>
         <sonar.projectKey>kpouer_waze-toll-tool</sonar.projectKey>
         <sonar.organization>matthieu-casanova</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
