@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2023 Matthieu Casanova
+ * Copyright 2021-2024 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class EntryExitMatrix {
     private String friendly_name;
     private float[][] matrix_prices;
-    private boolean  each_section_is_entry_or_exit;
+    private boolean  each_section_is_entry_or_exit = true;
     private String   permit_id;
     private String[] limit_to_vehicles;
 

@@ -51,16 +51,16 @@ public class SanefExtractor implements Extractor {
     public void extract() throws IOException {
         var outputPath = Path.of(pdf.getParent().toString(), "out");
         var triangleOutputPath = Path.of(outputPath.toString(), "triangle");
-        var triangleBuilder = new TriangleBuilder(triangleOutputPath);
-        extractMatrix(pdf, Category.Car, triangleBuilder, 4);
-        extractMatrix(pdf, Category.Motorcycle, triangleBuilder, 4);
+        extractMatrix(pdf, Category.Car, 4);
+        extractMatrix(pdf, Category.Motorcycle, 8);
     }
 
-    private void extractMatrix(Path pdf, Category category, TriangleBuilder triangleBuilder, int page) throws IOException {
+    private void extractMatrix(Path pdf, Category category, int page) throws IOException {
         var lines = extractText(pdf, page);
         var output = Path.of(pdf.getParent().toString(), "out");
         var triangleOutputPath = Path.of(output.toString(), "triangle");
         var outputPath = Path.of(triangleOutputPath.toString(), category.name());
+        var triangleBuilder = new TriangleBuilder(outputPath);
         if (!Files.exists(outputPath)) {
             Files.createDirectories(outputPath);
         }
