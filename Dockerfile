@@ -4,6 +4,8 @@ COPY pom.xml /pom.xml
 RUN --mount=type=cache,target=/root/.m2 \
     mvn clean package
 FROM docker.io/eclipse-temurin:22-jre-alpine
+RUN adduser -D waze-toll-tool
 COPY --from=maven-build /target/*jar /waze-toll-tool.jar
+USER waze-toll-tool
 EXPOSE 8080
 CMD ["java", "-jar", "waze-toll-tool.jar"]
