@@ -1,0 +1,463 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_A1-A26_o",
+      "road_local_name": "A1-A26",
+      "currency": "€",
+      "currency_code": "EUR",
+      "comments": "Comprend les gares en dehors du système fermé",
+      "type": "static",
+      "rules": [
+        "pay_per_section"
+      ],
+      "sections": [
+        {
+          "section_id": "E2 Licques ouest",
+          "road_local_name": "A26 > nord",
+          "section_local_name": "Gares Licques",
+          "location": [
+            2.0616093900645183,
+            50.819761519335586
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=2.06059&lat=50.81927&zoom=5&segments=354037342",
+              "id": 354037342,
+              "forwards": false,
+              "fromNode": 279883707,
+              "toNode": 73813928
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.8,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "S2 Licques est",
+          "road_local_name": "A26 > sud",
+          "section_local_name": "Gares Licques",
+          "location": [
+            2.0640330179850253,
+            50.82114213193806
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=2.05974&lat=50.81972&zoom=5&segments=146745915",
+              "id": 146745915,
+              "forwards": true,
+              "fromNode": 154101925,
+              "toNode": 73814690
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.8,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "S3 Saint-Omer",
+          "road_local_name": "A26 > sud",
+          "section_local_name": "Gare Saint-Omer",
+          "location": [
+            2.1652681113580456,
+            50.72300118826551
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=2.16645&lat=50.72275&zoom=7&segments=354036188",
+              "id": 354036188,
+              "forwards": true,
+              "fromNode": 279882850,
+              "toNode": 271629409
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.8,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "E3 Saint-Omer",
+          "road_local_name": "A26 > nord",
+          "section_local_name": "Gare Saint-Omer",
+          "location": [
+            2.1675108905178604,
+            50.72291118190901
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=2.16645&lat=50.72276&zoom=7&segments=340907762",
+              "id": 340907762,
+              "forwards": false,
+              "fromNode": 271629415,
+              "toNode": 73807138
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.8,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "S15 La Neuvillette",
+          "road_local_name": "A26",
+          "section_local_name": "Péage de La Neuvillette",
+          "location": [
+            3.997911282995915,
+            49.297922326303855
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=3.99659&lat=49.29854&zoom=5&segments=337211052",
+              "id": 337211052,
+              "forwards": false,
+              "fromNode": 240699981,
+              "toNode": 269303834
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=3.99659&lat=49.29854&zoom=5&segments=337211320",
+              "id": 337211320,
+              "forwards": false,
+              "fromNode": 269303968,
+              "toNode": 240699982
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 0.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "S8 Senlis-Bonsecourt",
+          "road_local_name": "A1",
+          "section_local_name": "Gare de Senlis-Bonsecourt",
+          "location": [
+            2.609367326466554,
+            49.20705821962996
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=2.61087&lat=49.20663&zoom=6&segments=295185904",
+              "id": 295185904,
+              "forwards": true,
+              "fromNode": 242596159,
+              "toNode": 71911459
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=2.61087&lat=49.20663&zoom=6&segments=340433016 ",
+              "id": 340433016,
+              "forwards": false,
+              "fromNode": 271328449,
+              "toNode": 71911164
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.2,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.2,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "E7 Survilliers > Paris",
+          "road_local_name": "A1",
+          "section_local_name": "SurvilliersGare de ",
+          "location": [
+            2.5504497735662426,
+            49.08533533342847
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=2.55156&lat=49.08508&zoom=5&segments=340433620 ",
+              "id": 340433620,
+              "forwards": true,
+              "fromNode": 271328854,
+              "toNode": 71883787
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "MOTORCYCLE",
+                "EV"
+              ],
+              "price": 1,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "S7 Survilliers < Paris",
+          "road_local_name": "A1",
+          "section_local_name": "Gare de Survilliers",
+          "location": [
+            2.5515957473678554,
+            49.08429504419008
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=2.55156&lat=49.08508&zoom=5&segments=345066676",
+              "id": 345066676,
+              "forwards": false,
+              "fromNode": 274250833,
+              "toNode": 71882902
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "MOTORCYCLE",
+                "EV"
+              ],
+              "price": 1,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

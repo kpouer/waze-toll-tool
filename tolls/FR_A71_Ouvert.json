@@ -1,0 +1,79 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_A71_Ouvert",
+      "road_local_name": "A71",
+      "currency": "€",
+      "currency_code": "EUR",
+      "type": "static",
+      "rules": [
+        "pay_per_section"
+      ],
+      "sections": [
+        {
+          "section_id": "Gerzat-Ville",
+          "road_local_name": "A71",
+          "section_local_name": "Gare de Gerzat-Ville",
+          "location": [
+            3.16057,
+            45.84095
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=3.16057&lat=45.84095&s=1144102359&zoom=6&segments=198472523",
+              "id": 198472523,
+              "forwards": true,
+              "fromNode": 181614796,
+              "toNode": 60333561
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=45.84140&lon=3.16272&zoomLevel=18&segments=445227385",
+              "id": 445227385,
+              "forwards": false,
+              "fromNode": 274663404,
+              "toNode": 339548060
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Tarifs 2024",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.1,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "friendly_name": "Tarifs 2024",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

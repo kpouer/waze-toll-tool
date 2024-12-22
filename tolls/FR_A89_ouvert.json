@@ -1,0 +1,301 @@
+{
+  "tolls": [
+    {
+      "toll_id": "A89 ouvert",
+      "road_local_name": "A89",
+      "currency": "€",
+      "currency_code": "EUR",
+      "polyline": "LINESTRING (-0.1893645346922312 44.96910372951155, 1.8046540199952688 45.27530348428325)",
+      "type": "static",
+      "rules": [
+        "pay_per_section"
+      ],
+      "sections": [
+        {
+          "section_id": "Gare de Péage de Tarare-Est",
+          "road_local_name": "A89",
+          "section_local_name": "Gare de Péage de Tarare-Est",
+          "location": [
+            4.52319830941508,
+            45.8760475701103
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=4.52319830941508&lat=45.8760475701103&zoom=5&segments=332451232",
+              "id": 332451232,
+              "forwards": false,
+              "fromNode": 266332777,
+              "toNode": 266332779
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=4.52791715483564&lat=45.8761492987614&zoom=5&segments=368033391",
+              "id": 368033391,
+              "forwards": true,
+              "fromNode": 262715484,
+              "toNode": 235701158
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.8
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1
+            }
+          ]
+        },
+        {
+          "section_id": "Gare de Péage de Mansac Terrasson",
+          "road_local_name": "A89",
+          "section_local_name": "Gare de Péage de Mansac Terrasson",
+          "location": [
+            1.37864472613089,
+            45.15248676743
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=1.37864472613089&lat=45.15248676743&zoom=5&segments=63931914",
+              "id": 63931914,
+              "forwards": false,
+              "fromNode": 59635733,
+              "toNode": 178349569
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=1.38268941&lat=45.15391447&zoom=5&segments=376389030",
+              "id": 376389030,
+              "forwards": true,
+              "fromNode": 294318931,
+              "toNode": 294319067
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Tarifs 2024",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "friendly_name": "Tarifs 2024",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.6
+            }
+          ]
+        },
+        {
+          "section_id": "La Bachellerie",
+          "road_local_name": "A89",
+          "section_local_name": "La Bachellerie",
+          "location": [
+            1.18048,
+            45.14822
+          ],
+          "segments": [
+            {
+              "permalink": "https://beta.waze.com/editor/?env=row&lon=1.18048&lat=45.14822&s=1144126935&zoom=5&segments=63936488",
+              "id": 63936488,
+              "forwards": false,
+              "fromNode": 181526418,
+              "toNode": 59638093
+            },
+            {
+              "permalink": "https://beta.waze.com/editor/?env=row&lon=1.18048&lat=45.14822&s=1144126935&zoom=5&segments=311003585",
+              "id": 311003585,
+              "forwards": false,
+              "fromNode": 252766609,
+              "toNode": 59638093
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Tarifs 2024",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 3.4,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "friendly_name": "Tarifs 2024",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 2,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "Barrière de Thenon",
+          "road_local_name": "A89",
+          "section_local_name": "Barrière de Thenon",
+          "location": [
+            1.1681110837570907,
+            45.151103351433385
+          ],
+          "segments": [
+            {
+              "permalink": "https://beta.waze.com/fr/editor?env=row&lat=45.14997&lon=1.16964&marker=true&s=70639063&zoomLevel=17&segments=315784245",
+              "id": 315784245,
+              "forwards": false,
+              "fromNode": 255909954,
+              "toNode": 59638545
+            },
+            {
+              "permalink": "https://beta.waze.com/fr/editor?env=row&lat=45.14997&lon=1.16964&marker=true&s=70639063&zoomLevel=17&segments=315784500",
+              "id": 315784500,
+              "forwards": true,
+              "fromNode": 255910129,
+              "toNode": 154774587
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 8.6,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 5.2,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "Gare de Thenon Est",
+          "road_local_name": "A89",
+          "section_local_name": "Gare de Thenon Est",
+          "location": [
+            1.1681110837570907,
+            45.151103351433385
+          ],
+          "segments": [
+            {
+              "permalink": "https://beta.waze.com/fr/editor?env=row&lat=45.14997&lon=1.16964&marker=true&s=70639063&zoomLevel=17&segments=311003947",
+              "id": 311003947,
+              "forwards": false,
+              "fromNode": 252766799,
+              "toNode": 59638545
+            },
+            {
+              "permalink": "https://beta.waze.com/fr/editor?env=row&lat=45.14997&lon=1.16964&marker=true&s=70639063&zoomLevel=17&segments=345788488",
+              "id": 345788488,
+              "forwards": false,
+              "fromNode": 154774508,
+              "toNode": 274708392
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 4.6,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 2.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

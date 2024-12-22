@@ -1,0 +1,471 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_A79_freeflow",
+      "road_local_name": "A79",
+      "currency": "€",
+      "currency_code": "EUR",
+      "polyline": "LINESTRING (2.968353638309136 46.3272696227504, 3.9262241217075733 46.45608774967672)",
+      "type": "static",
+      "rules": [
+        "pay_per_section"
+      ],
+      "sections": [
+        {
+          "section_id": "Le Montet - Ouest",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Le Montet - Ouest",
+          "location": [
+            3.042995,
+            46.398271
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.39727&lon=3.04537&marker=true&zoomLevel=17&segments=421363826",
+              "id": 421363826,
+              "forwards": true,
+              "fromNode": 323820036,
+              "toNode": 324759586
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.39891&lon=3.04485&marker=true&zoomLevel=17&segments=264450919",
+              "id": 264450919,
+              "forwards": false,
+              "fromNode": 335026533,
+              "toNode": 319955458
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 0.1
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.1
+            }
+          ]
+        },
+        {
+          "section_id": "Le Montet - Est",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Le Montet - Est",
+          "location": [
+            3.047523,
+            46.400283
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.39967&lon=3.04587&marker=true&zoomLevel=17&segments=308164761",
+              "id": 308164761,
+              "forwards": true,
+              "fromNode": 319836874,
+              "toNode": 317003476
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.39967&lon=3.04587&marker=true&zoomLevel=17&segments=421363746",
+              "id": 421363746,
+              "forwards": true,
+              "fromNode": 323819996,
+              "toNode": 335026536
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.4
+            },
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI"
+              ],
+              "price": 0.8
+            },
+            {
+              "friendly_name": "EV",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "EV"
+              ],
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "section_id": "Montbeugny - Ouest",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Montbeugny - Ouest",
+          "location": [
+            3.457051,
+            46.511772
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.51212&lon=3.45609&marker=true&zoomLevel=18&segments=407346616",
+              "id": 407346616,
+              "forwards": true,
+              "fromNode": 320326439,
+              "toNode": 317772375
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.51165&lon=3.45492&marker=true&zoomLevel=18&segments=422175941",
+              "id": 422175941,
+              "forwards": true,
+              "fromNode": 324340100,
+              "toNode": 321630034
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Voitures",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI"
+              ],
+              "price": 0.8
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.4
+            },
+            {
+              "friendly_name": "EV",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "EV"
+              ],
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "section_id": "Montbeugny - Est",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Montbeugny - Est",
+          "location": [
+            3.458403,
+            46.513861
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.51334&lon=3.45989&marker=true&zoomLevel=18&segments=407346731",
+              "id": 407346731,
+              "forwards": true,
+              "fromNode": 321630031,
+              "toNode": 321046036
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.51334&lon=3.45989&marker=true&zoomLevel=18&segments=426174502",
+              "id": 426174502,
+              "forwards": true,
+              "fromNode": 327061405,
+              "toNode": 320326439
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI"
+              ],
+              "price": 0.9
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5
+            },
+            {
+              "friendly_name": "EV",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "EV"
+              ],
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "section_id": "Molinet - Ouest",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Molinet - Ouest",
+          "location": [
+            3.914807,
+            46.455575
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.45581&lon=3.91541&marker=true&zoomLevel=18&segments=307972646",
+              "id": 307972646,
+              "forwards": false,
+              "fromNode": 250865298,
+              "toNode": 62779300
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.45490&lon=3.91585&marker=true&zoomLevel=18&segments=300125641",
+              "id": 300125641,
+              "forwards": true,
+              "fromNode": 62779298,
+              "toNode": 245812692
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI"
+              ],
+              "price": 0.9
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5
+            },
+            {
+              "friendly_name": "EV",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "EV"
+              ],
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "section_id": "Molinet - Est",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Molinet - Est",
+          "location": [
+            3.91661,
+            46.455656
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.45490&lon=3.91585&marker=true&zoomLevel=18&segments=300125636",
+              "id": 300125636,
+              "forwards": true,
+              "fromNode": 245812688,
+              "toNode": 62779300
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.45510&lon=3.91652&zoomLevel=18&segments=447119156",
+              "id": 447119156,
+              "forwards": true,
+              "fromNode": 340714446,
+              "toNode": 317174142
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 0.3
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.2
+            }
+          ]
+        },
+        {
+          "section_id": "Le Montet - Transit",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Le Montet - Ouest+Est",
+          "location": [
+            3.046107,
+            46.399588
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.40014&lon=3.04762&marker=true&zoomLevel=17&segments=415425892",
+              "id": 415425892,
+              "forwards": false,
+              "fromNode": 317003493,
+              "toNode": 317003476
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.39820&lon=3.04486&marker=true&zoomLevel=17&segments=421363692",
+              "id": 421363692,
+              "forwards": false,
+              "fromNode": 323819949,
+              "toNode": 319955458
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI"
+              ],
+              "price": 1
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5
+            },
+            {
+              "friendly_name": "EV",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "EV"
+              ],
+              "price": 0.7
+            }
+          ]
+        },
+        {
+          "section_id": "Montbeugny - Transit",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Montbeugny Ouest+Est",
+          "location": [
+            3.458403,
+            46.513093
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.51262&lon=3.45848&marker=true&zoomLevel=18&segments=412000484",
+              "id": 412000484,
+              "forwards": false,
+              "fromNode": 317772471,
+              "toNode": 317772375
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.51242&lon=3.45795&marker=true&zoomLevel=18&segments=417102586",
+              "id": 417102586,
+              "forwards": false,
+              "fromNode": 315504580,
+              "toNode": 321046036
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Voitures",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI"
+              ],
+              "price": 1.7
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1
+            },
+            {
+              "friendly_name": "EV",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "EV"
+              ],
+              "price": 1.4
+            }
+          ]
+        },
+        {
+          "section_id": "Molinet - Transit",
+          "road_local_name": "A79",
+          "section_local_name": "Portique Flux-Libre - Molinet - Ouest+Est",
+          "location": [
+            3.916116,
+            46.455937
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.45563&lon=3.91713&marker=true&zoomLevel=18&segments=417102320",
+              "id": 417102320,
+              "forwards": false,
+              "fromNode": 321045886,
+              "toNode": 321045703
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=46.45563&lon=3.91713&marker=true&zoomLevel=18&segments=411082152",
+              "id": 411082152,
+              "forwards": true,
+              "fromNode": 317174120,
+              "toNode": 317174142
+            }
+          ],
+          "prices": [
+            {
+              "friendly_name": "Cars",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI"
+              ],
+              "price": 1.2
+            },
+            {
+              "friendly_name": "Moto",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.7
+            },
+            {
+              "friendly_name": "EV",
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "EV"
+              ],
+              "price": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

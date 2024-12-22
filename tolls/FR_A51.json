@@ -1,0 +1,545 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_A51",
+      "road_local_name": "A51",
+      "currency": "€",
+      "currency_code": "EUR",
+      "polyline": "LINESTRING (5.499455050758129 43.613876067713285, 6.054264621070629 44.47462653645757)",
+      "type": "static",
+      "rules": [
+        "entry_exit_price"
+      ],
+      "entry_exit_matrix": [
+        {
+          "friendly_name": "Motorcycle",
+          "matrix_prices": [
+            [
+              0,
+              1.7,
+              2.2,
+              2.8,
+              3.5,
+              4.1,
+              5.1,
+              6.1,
+              8.5,
+              7.3
+            ],
+            [
+              1.7,
+              0,
+              0.5,
+              1.3,
+              1.9,
+              2.8,
+              4.2,
+              5.1,
+              8,
+              6.7
+            ],
+            [
+              2.2,
+              0.5,
+              0,
+              0.5,
+              1.2,
+              2.2,
+              3,
+              4.3,
+              6.3,
+              5.6
+            ],
+            [
+              2.8,
+              1.3,
+              0.5,
+              0,
+              0.7,
+              1.8,
+              2.6,
+              3.8,
+              5.6,
+              4.9
+            ],
+            [
+              3.5,
+              1.9,
+              1.2,
+              0.7,
+              0,
+              1,
+              1.8,
+              3,
+              5.1,
+              4.2
+            ],
+            [
+              4.1,
+              2.8,
+              2.2,
+              1.8,
+              1,
+              0,
+              0.9,
+              1.9,
+              4.1,
+              3.2
+            ],
+            [
+              5.1,
+              4.2,
+              3,
+              2.6,
+              1.8,
+              0.9,
+              0,
+              1,
+              3.5,
+              2.3
+            ],
+            [
+              6.1,
+              5.1,
+              4.3,
+              3.8,
+              3,
+              1.9,
+              1,
+              0,
+              2.3,
+              1.4
+            ],
+            [
+              8.5,
+              8,
+              6.3,
+              5.6,
+              5.1,
+              4.1,
+              3.5,
+              2.3,
+              0,
+              0.8
+            ],
+            [
+              7.3,
+              6.7,
+              5.6,
+              4.9,
+              4.2,
+              3.2,
+              2.3,
+              1.4,
+              0.8,
+              0
+            ]
+          ],
+          "each_section_is_entry_or_exit": true,
+          "permit_id": "",
+          "limit_to_vehicles": [
+            "MOTORCYCLE"
+          ]
+        },
+        {
+          "friendly_name": "Car",
+          "matrix_prices": [
+            [
+              0,
+              2.8,
+              3.7,
+              4.5,
+              5.7,
+              7.5,
+              9.4,
+              11.1,
+              14.7,
+              13.1
+            ],
+            [
+              2.8,
+              0,
+              0.9,
+              1.7,
+              3.1,
+              5,
+              7.2,
+              9.4,
+              13.6,
+              11.8
+            ],
+            [
+              3.7,
+              0.9,
+              0,
+              0.6,
+              1.8,
+              3.9,
+              5.5,
+              7.2,
+              10.9,
+              9.7
+            ],
+            [
+              4.5,
+              1.7,
+              0.6,
+              0,
+              1.2,
+              2.9,
+              4.8,
+              6.4,
+              10.6,
+              8.9
+            ],
+            [
+              5.7,
+              3.1,
+              1.8,
+              1.2,
+              0,
+              1.6,
+              3.4,
+              5.2,
+              9.1,
+              7.7
+            ],
+            [
+              7.5,
+              5,
+              3.9,
+              2.9,
+              1.6,
+              0,
+              1.6,
+              3.4,
+              7.1,
+              5.8
+            ],
+            [
+              9.4,
+              7.2,
+              5.5,
+              4.8,
+              3.4,
+              1.6,
+              0,
+              1.6,
+              5.4,
+              3.8
+            ],
+            [
+              11.1,
+              9.4,
+              7.2,
+              6.4,
+              5.2,
+              3.4,
+              1.6,
+              0,
+              4,
+              2.4
+            ],
+            [
+              14.7,
+              13.6,
+              10.9,
+              10.6,
+              9.1,
+              7.1,
+              5.4,
+              4,
+              0,
+              1.3
+            ],
+            [
+              13.1,
+              11.8,
+              9.7,
+              8.9,
+              7.7,
+              5.8,
+              3.8,
+              2.4,
+              1.3,
+              0
+            ]
+          ],
+          "each_section_is_entry_or_exit": true,
+          "permit_id": "",
+          "limit_to_vehicles": [
+            "PRIVATE",
+            "TAXI",
+            "EV"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "section_id": "LA SAULCE",
+          "road_local_name": "A51",
+          "section_local_name": "Gare de Péage de La Saulce",
+          "location": [
+            6.0268545,
+            44.436226
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=44.43947&lon=6.02884&s=18341690871&zoom=5&segments=298613377",
+              "id": 298613377,
+              "forwards": true,
+              "fromNode": 306444078,
+              "toNode": 187378143
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.90118093&lat=44.29289447&zoom=5&segments=303777366",
+              "id": 303777366,
+              "forwards": false,
+              "fromNode": 187378141,
+              "toNode": 248157131
+            }
+          ]
+        },
+        {
+          "section_id": "SISTERON NORD",
+          "road_local_name": "A51",
+          "section_local_name": "Gare de péage de Sisteron Nord",
+          "location": [
+            5.915621,
+            44.22384
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.91562067222494&lat=44.2238389950522&zoom=5&segments=236246544",
+              "id": 236246544,
+              "forwards": false,
+              "fromNode": 58343605,
+              "toNode": 203371001
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.9166801447858&lat=44.222701085519&zoom=5&segments=318582263",
+              "id": 318582263,
+              "forwards": false,
+              "fromNode": 257708021,
+              "toNode": 58344060
+            }
+          ]
+        },
+        {
+          "section_id": "SISTERON SUD",
+          "road_local_name": "A51",
+          "section_local_name": "Gare de Péage de Sisteron Sud",
+          "location": [
+            5.9560595,
+            44.17036
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.95605930520989&lat=44.1703587586588&zoom=5&segments=364651213",
+              "id": 364651213,
+              "forwards": false,
+              "fromNode": 205519226,
+              "toNode": 58344991
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.95525048870531&lat=44.1719776225465&zoom=5&segments=326486793",
+              "id": 326486793,
+              "forwards": false,
+              "fromNode": 58345190,
+              "toNode": 262625051
+            }
+          ]
+        },
+        {
+          "section_id": "AUBIGNOSC",
+          "road_local_name": "A51",
+          "section_local_name": "Gare de Péage d'Aubignosc Ouest",
+          "location": [
+            5.9806576,
+            44.125355
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.98065751597812&lat=44.1253549661023&zoom=5&segments=362756428",
+              "id": 362756428,
+              "forwards": true,
+              "fromNode": 285560551,
+              "toNode": 248599941
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.97856041523223&lat=44.1251362412131&zoom=5&segments=313582767",
+              "id": 313582767,
+              "forwards": true,
+              "fromNode": 254545146,
+              "toNode": 58331197
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.98518833574066&lat=44.1232916492755&zoom=5&segments=313573484",
+              "id": 313573484,
+              "forwards": false,
+              "fromNode": 254539102,
+              "toNode": 58331199
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.98437904134902&lat=44.1245810062683&zoom=5&segments=313573648",
+              "id": 313573648,
+              "forwards": true,
+              "fromNode": 254539208,
+              "toNode": 58344884
+            }
+          ]
+        },
+        {
+          "section_id": "PEYRUIS",
+          "road_local_name": "A51",
+          "section_local_name": "Gare de péage de Peyruis",
+          "location": [
+            5.9632483,
+            44.038963
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.96324831&lat=44.03896252&zoom=5&segments=63546874",
+              "id": 63546874,
+              "forwards": false,
+              "fromNode": 58332609,
+              "toNode": 58332562
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.9635189340503&lat=44.0390989079776&zoom=5&segments=318582033",
+              "id": 318582033,
+              "forwards": true,
+              "fromNode": 257707836,
+              "toNode": 58332563
+            }
+          ]
+        },
+        {
+          "section_id": "LA BRILLANNE",
+          "road_local_name": "A51",
+          "section_local_name": "Sortie 19: Forcalquier",
+          "location": [
+            5.893845,
+            43.923916
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.89406882&lat=43.92417492&zoom=5&segments=381514595",
+              "id": 381514595,
+              "forwards": false,
+              "fromNode": 55935199,
+              "toNode": 55935198
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.89373196187502&lat=43.9239835970047&zoom=5&segments=318481012",
+              "id": 318481012,
+              "forwards": true,
+              "fromNode": 257644802,
+              "toNode": 55935204
+            }
+          ]
+        },
+        {
+          "section_id": "MANOSQUE",
+          "road_local_name": "A51",
+          "section_local_name": "Gare de Péage de Manosque",
+          "location": [
+            5.81474,
+            43.80651
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.81474&lat=43.80651&zoom=5&segments=336835370",
+              "id": 336835370,
+              "forwards": true,
+              "fromNode": 151749171,
+              "toNode": 269069197
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.81293196176974&lat=43.8077970382869&zoom=5&segments=336835374",
+              "id": 336835374,
+              "forwards": true,
+              "fromNode": 269069199,
+              "toNode": 55822165
+            }
+          ]
+        },
+        {
+          "section_id": "SAINT PAUL LEZ DURANCE",
+          "road_local_name": "A51",
+          "section_local_name": "Gare de Péage de Cadarache",
+          "location": [
+            5.7330136,
+            43.703266
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.7330134126856&lat=43.7032646040414&zoom=5&segments=336836021",
+              "id": 336836021,
+              "forwards": true,
+              "fromNode": 250562002,
+              "toNode": 269069655
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.73473313&lat=43.70257798&zoom=5&segments=336836029",
+              "id": 336836029,
+              "forwards": true,
+              "fromNode": 269069659,
+              "toNode": 205523861
+            }
+          ]
+        },
+        {
+          "section_id": "AIX (A51)",
+          "road_local_name": "A51",
+          "section_local_name": "Barrière de Péage de Meyrargues",
+          "location": [
+            5.504746,
+            43.661423
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.50678057803525&lat=43.661916725417&zoom=5&segments=62641873",
+              "id": 62641873,
+              "forwards": true,
+              "fromNode": 55805478,
+              "toNode": 55804904
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.50035778283315&lat=43.6602492022794&zoom=5&segments=298615670",
+              "id": 298615670,
+              "forwards": true,
+              "fromNode": 244833558,
+              "toNode": 55805474
+            }
+          ]
+        },
+        {
+          "section_id": "PERTUIS",
+          "road_local_name": "A51",
+          "section_local_name": "Sortie 15: Pertuis",
+          "location": [
+            5.5067806,
+            43.661915
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.50678057803525&lat=43.661916725417&zoom=5&segments=336836738",
+              "id": 336836738,
+              "forwards": true,
+              "fromNode": 55805478,
+              "toNode": 269070138
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=5.50363749519077&lat=43.6611070758321&zoom=5&segments=336836807",
+              "id": 336836807,
+              "forwards": true,
+              "fromNode": 269070184,
+              "toNode": 55805474
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

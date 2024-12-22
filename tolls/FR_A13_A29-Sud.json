@@ -1,0 +1,1115 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_A13_A29-Sud",
+      "road_local_name": "A13",
+      "currency": "€",
+      "currency_code": "EUR",
+      "polyline": "LINESTRING(-0.2911091558311618 49.1683208970913,0.18542282659071319 49.28043261509741,0.3831767328407132 49.34220934899958,0.5987834222938382 49.381562761622725,0.8775614984657132 49.36010116802336,1.0881566165534995 49.330351997189005,1.3738011478034995 49.15193086458651,1.5935277103034995 49.01791698319381,1.8366002200691245 48.96925888701723,1.9794224856941245 48.986384747470765,2.0467137454597495 48.938597923695454)",
+      "type": "static",
+      "rules": [
+        "pay_per_section"
+      ],
+      "sections": [
+        {
+          "section_id": "GAGNY",
+          "road_local_name": "A13xA813",
+          "section_local_name": "Gare de Cagny",
+          "location": [
+            -0.24723596059709507,
+            49.16817466077543
+          ],
+          "segments": [
+            {
+              "permalink": "www.waze.com/fr/editor/?env=row&lon=-0.24783&lat=49.16601&zoom=5&segments=342962568",
+              "id": 342962568,
+              "forwards": true,
+              "fromNode": 272907700,
+              "toNode": 269520882
+            },
+            {
+              "permalink": "www.waze.com/fr/editor/?env=row&lon=-0.24462&lat=49.16703&zoom=5&segments=337562716",
+              "id": 337562716,
+              "forwards": false,
+              "fromNode": 242938543,
+              "toNode": 269520880
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 0.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "TROARN S31",
+          "road_local_name": "A13 ",
+          "section_local_name": "Gare de Troarn",
+          "location": [
+            -0.20166171892526563,
+            49.178198572815425
+          ],
+          "segments": [
+            {
+              "permalink": "www.waze.com/fr/editor/?env=row&lon=-0.20217&lat=49.17855&zoom=7&segments=355640248",
+              "id": 355640248,
+              "forwards": false,
+              "fromNode": 280934129,
+              "toNode": 276862241
+            },
+            {
+              "permalink": "www.waze.com/fr/editor/?env=row&lon=-0.20217&lat=49.17855&zoom=7&segments=349219424",
+              "id": 349219424,
+              "forwards": true,
+              "fromNode": 276862245,
+              "toNode": 73141278
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 0.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "DOZULÉ S30",
+          "road_local_name": "A13",
+          "section_local_name": "Gare de Dozulé",
+          "location": [
+            -0.07398512478891917,
+            49.23024812508812
+          ],
+          "segments": [
+            {
+              "permalink": "www.waze.com/fr/editor/?env=row&lon=-0.08053&lat=49.22957&zoom=5&segments=337562781",
+              "id": 337562781,
+              "forwards": false,
+              "fromNode": 269520934,
+              "toNode": 73140778
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=-0.08331&lat=49.22979&zoom=7&segments=337562785",
+              "id": 337562785,
+              "forwards": false,
+              "fromNode": 73140787,
+              "toNode": 269520936
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.1,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.4,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "DOZULÉ BARRIERE",
+          "road_local_name": "A13",
+          "section_local_name": "Barrière de Dozulé",
+          "location": [
+            -0.07643171657343828,
+            49.2297057776458
+          ],
+          "segments": [
+            {
+              "permalink": "www.waze.com/fr/editor/?env=row&lon=-0.08053&lat=49.22956&zoom=5&segments=367447076",
+              "id": 367447076,
+              "forwards": false,
+              "fromNode": 243844893,
+              "toNode": 243844889
+            },
+            {
+              "permalink": "www.waze.com/fr/editor/?env=row&lon=-0.07315&lat=49.22917&zoom=6&segments=297088082",
+              "id": 297088082,
+              "forwards": false,
+              "fromNode": 243844734,
+              "toNode": 243844888
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 4,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 2.8,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "BEUZEVILLE BARRIERE",
+          "road_local_name": "A13",
+          "section_local_name": "Barrière de Beuzeville",
+          "location": [
+            0.36457161687576445,
+            49.33785431273018
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.36496&lat=49.33868&zoom=5&segments=297078142",
+              "id": 297078142,
+              "forwards": true,
+              "fromNode": 243838701,
+              "toNode": 243838699
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.36496&lat=49.33868&zoom=5&segments=297083620",
+              "id": 297083620,
+              "forwards": true,
+              "fromNode": 243842145,
+              "toNode": 243838700
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 6.2,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 3.3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "BEUZEVILLE S28 Caen",
+          "road_local_name": "A13",
+          "section_local_name": "Gare de Beuzeville ",
+          "location": [
+            0.37092490267752964,
+            49.34052200298322
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.37011&lat=49.33846&zoom=6&segments=337563542",
+              "id": 337563542,
+              "forwards": false,
+              "fromNode": 269521410,
+              "toNode": 71431608
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.37011&lat=49.33846&zoom=6&segments=337563534",
+              "id": 337563534,
+              "forwards": true,
+              "fromNode": 267867113,
+              "toNode": 269521406
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "BEUZEVILLE S28 Paris",
+          "road_local_name": "A13",
+          "section_local_name": "Gare de Beuzeville ",
+          "location": [
+            0.37092490267752964,
+            49.34052200298322
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=49.33995&lon=0.37100&s=1144110583&zoom=6&segments=337563537",
+              "id": 337563537,
+              "forwards": true,
+              "fromNode": 71431251,
+              "toNode": 269521408
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.37017&lat=49.33834&zoom=6&segments=316417754",
+              "id": 316417754,
+              "forwards": true,
+              "fromNode": 256318967,
+              "toNode": 256318969
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 4.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 2.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "BOURNEVILLE S26",
+          "road_local_name": "Échangeur A13XA131",
+          "section_local_name": "A131",
+          "location": [
+            0.47394526604705334,
+            49.46370438772785
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.60609&lat=49.38624&zoom=5&segments=304109471",
+              "id": 304109471,
+              "forwards": false,
+              "fromNode": 304841503,
+              "toNode": 248372064
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.60609&lat=49.38624&zoom=5&segments=337303491",
+              "id": 337303491,
+              "forwards": true,
+              "fromNode": 269361884,
+              "toNode": 269361886
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 3.3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 2.1,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "BOURG-ACHARD S25",
+          "road_local_name": "A13",
+          "section_local_name": "Gare de Bourg-Achard",
+          "location": [
+            0.8169355369219602,
+            49.3667205090495
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.81848&lat=49.36564&zoom=6&segments=337563690",
+              "id": 337563690,
+              "forwards": false,
+              "fromNode": 269521525,
+              "toNode": 254839430
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.81848&lat=49.36564&zoom=6&segments=313510349",
+              "id": 313510349,
+              "forwards": true,
+              "fromNode": 254500234,
+              "toNode": 254500260
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "TOUTAINVILLE S27",
+          "road_local_name": "A13",
+          "section_local_name": "Gare deToutainville",
+          "location": [
+            0.4679223294149324,
+            49.36455874169753
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=0.47356&lat=49.36486&zoom=5&segments=371978223",
+              "id": 371978223,
+              "forwards": true,
+              "fromNode": 291534595,
+              "toNode": 291534599
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor?env=row&lon=0.47356&lat=49.36486&zoom=5&segments=371978222",
+              "id": 371978222,
+              "forwards": true,
+              "fromNode": 291534597,
+              "toNode": 291534594
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 4,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 2.4,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": " INCARVILLE S19",
+          "road_local_name": "A13xA154",
+          "section_local_name": "Gare d'Incarville Sud / Nord",
+          "location": [
+            1.1828753538831052,
+            49.24653135343383
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=1.18304&lat=49.24655&zoom=6&segments=167741033",
+              "id": 167741033,
+              "forwards": false,
+              "fromNode": 71604777,
+              "toNode": 71603925
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=1.18304&lat=49.24655&zoom=6&segments=273907186",
+              "id": 273907186,
+              "forwards": false,
+              "fromNode": 228353535,
+              "toNode": 202842031
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.4,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "HEUDEBOUVILLE BARRIERE",
+          "road_local_name": "A13",
+          "section_local_name": "Barrière d'Heudbouville",
+          "location": [
+            1.2324182390850638,
+            49.19143710572153
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=1.23277&lat=49.19074&zoom=5&segments=296261975",
+              "id": 296261975,
+              "forwards": false,
+              "fromNode": 152246938,
+              "toNode": 243305664
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=1.23277&lat=49.19074&zoom=5&segments=337199010",
+              "id": 337199010,
+              "forwards": true,
+              "fromNode": 269296245,
+              "toNode": 243305663
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 4.4,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 2.7,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "HEUDEBOUVILLE S18 ECHANGEUR",
+          "road_local_name": "A13",
+          "section_local_name": "Barriére d'Heudebouville",
+          "location": [
+            1.2324182390850638,
+            49.19143710572153
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=1.23174&lat=49.19171&zoom=5&segments=320584186",
+              "id": 320584186,
+              "forwards": true,
+              "fromNode": 258973624,
+              "toNode": 178528857
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=1.22870&lat=49.19260&zoom=5&segments=337199015",
+              "id": 337199015,
+              "forwards": false,
+              "fromNode": 255973638,
+              "toNode": 269296247
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "BUCHELAY BARRIERE",
+          "road_local_name": "A13",
+          "section_local_name": "Barrière de Buchelay",
+          "location": [
+            1.6811705817974598,
+            48.983602860188874
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=1.67920&lat=48.98384&zoom=6&segments=329321115",
+              "id": 329321115,
+              "forwards": false,
+              "fromNode": 264373986,
+              "toNode": 308507372
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=1.67920&lat=48.98384&zoom=6&segments=273921236",
+              "id": 273921236,
+              "forwards": true,
+              "fromNode": 308507236,
+              "toNode": 308507291
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.8,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "BOURNEVILLE S26",
+          "road_local_name": "A13",
+          "section_local_name": "Gare de Bourneville",
+          "location": [
+            0.6254244828714945,
+            49.37753628343084
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/editor?lon=0.632674369677207&lat=49.3768061919895&zoom=5&segments=364333300",
+              "id": 364333300,
+              "forwards": true,
+              "fromNode": 286571094,
+              "toNode": 286555035
+            },
+            {
+              "permalink": "https://www.waze.com/editor?lon=0.641999196621396&lat=49.375433758445&zoom=5&segments=367478387",
+              "id": 367478387,
+              "forwards": false,
+              "fromNode": 288596857,
+              "toNode": 304786748
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 3,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.8,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "QUETEVILLE",
+          "road_local_name": "A29",
+          "section_local_name": "Barrière de Quetteville",
+          "location": [
+            0.3080956851108567,
+            49.322023030825626
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=49.32139&lon=0.30786&s=1144108535&zoom=5&segments=337563501",
+              "id": 337563501,
+              "forwards": false,
+              "fromNode": 269210400,
+              "toNode": 269521382
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.30558&lat=49.32253&zoom=6&segments=349213721",
+              "id": 349213721,
+              "forwards": true,
+              "fromNode": 125049757,
+              "toNode": 164646641
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 1.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "LE PLATEAU",
+          "road_local_name": "A29",
+          "section_local_name": "Gare Le Plateau",
+          "location": [
+            0.25107843623607096,
+            49.391530215573034
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.25219&lat=49.39135&zoom=6&segments=337062523",
+              "id": 337062523,
+              "forwards": false,
+              "fromNode": 269210462,
+              "toNode": 185071343
+            },
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.25219&lat=49.39135&zoom=6&segments=337062567",
+              "id": 337062567,
+              "forwards": true,
+              "fromNode": 185071342,
+              "toNode": 269210493
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 0.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "HEUDEBOUVILLE S18 FL ECA",
+          "road_local_name": "A13",
+          "section_local_name": "Portique d'Heudebouville",
+          "location": [
+            1.2324182390850638,
+            49.19143710572153
+          ],
+          "segments": [
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=49.19599&lon=1.23196&marker=true&zoomLevel=17&segments=444207554",
+              "id": 444207554,
+              "forwards": true,
+              "fromNode": 338910931,
+              "toNode": 338910932
+            },
+            {
+              "permalink": "https://waze.com/fr/editor?env=row&lat=49.19599&lon=1.23196&marker=true&zoomLevel=17&segments=444207897",
+              "id": 444207897,
+              "forwards": true,
+              "fromNode": 338911094,
+              "toNode": 338910884
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 2.4,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 1.5,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "tolls": [
+    {
+      "toll_id": "FR_Normandie",
+      "road_local_name": "Pont de Normandie",
+      "currency": "€",
+      "currency_code": "EUR",
+      "comments": "https://www.pontsnormandietancarville.fr/informations-pratiques/tarifs-et-abonnements-2019.html",
+      "polyline": "LINESTRING(0.27171706810668184 49.44890489122612,0.27138447418883516 49.45141586084188)",
+      "type": "static",
+      "rules": [
+        "pay_per_section"
+      ],
+      "sections": [
+        {
+          "section_id": "Sens nord - sud",
+          "road_local_name": "N1029",
+          "section_local_name": "Péage Pont de Normandie",
+          "location": [
+            0.27395,
+            49.45068
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.27333&lat=49.45007&zoom=5&segments=298176153",
+              "id": 298176153,
+              "forwards": true,
+              "fromNode": 163078298,
+              "toNode": 244550170
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 5.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "section_id": "sens sud - nord",
+          "road_local_name": "N1029",
+          "section_local_name": "Péage Pont de Normandie",
+          "location": [
+            0.2715775932379074,
+            49.44999299385087
+          ],
+          "segments": [
+            {
+              "permalink": "https://www.waze.com/fr/editor/?env=row&lon=0.27333&lat=49.45007&segments=298176155",
+              "id": 298176155,
+              "forwards": true,
+              "fromNode": 244550006,
+              "toNode": 244550172
+            }
+          ],
+          "prices": [
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "PRIVATE",
+                "TAXI",
+                "EV"
+              ],
+              "price": 5.9,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "permit_id": "",
+              "limit_to_vehicles": [
+                "MOTORCYCLE"
+              ],
+              "price": 0,
+              "valid_days": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
