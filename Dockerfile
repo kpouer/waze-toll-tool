@@ -1,9 +1,9 @@
-FROM docker.io/maven:3.9.6-eclipse-temurin-22-alpine as maven-build
+FROM docker.io/maven:3.9.9-eclipse-temurin-23-alpine as maven-build
 COPY src /src
 COPY pom.xml /pom.xml
 RUN --mount=type=cache,target=/root/.m2 \
     mvn clean package
-FROM docker.io/eclipse-temurin:22-jre-alpine
+FROM docker.io/eclipse-temurin:23-alpine
 RUN adduser -D waze-toll-tool
 COPY --from=maven-build /target/*jar /waze-toll-tool.jar
 USER waze-toll-tool
