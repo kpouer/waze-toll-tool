@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2023 Matthieu Casanova
+ * Copyright 2021-2025 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -21,16 +21,23 @@
  */
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
-import java.io.*;
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.Extractor;
+import lombok.RequiredArgsConstructor;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-public class CofirouteCleaner {
+@RequiredArgsConstructor
+public class CofirouteCleaner implements Extractor {
     private static final Pattern EURO = Pattern.compile(" €");
     private static final Pattern MINUS = Pattern.compile("(A\\d+) - ");
     private static final Pattern TABS = Pattern.compile("(\\d) (\\d)");
@@ -41,17 +48,20 @@ public class CofirouteCleaner {
     private static final Pattern TABS6 = Pattern.compile("([A-Z]) (\\d)");
     private static final Pattern SPACE_PATTERN = Pattern.compile(" +");
 
-    public static void main(String[] args) throws IOException {
-        var filename = args[0];
-        var pdfFile = new File(filename);
-        var text = PDFExtractor.extractText(pdfFile, 8);
+    private final Path pdf;
+
+    @Override
+    public void extract() throws IOException {
+        var outputPath = Path.of(pdf.getParent().toString(), "out");
+        var text = PDFExtractor.extractText(pdf.toFile(), 8);
         text = text.replaceAll("\r", "");
         var lines = text.split("\n");
-        var outfilename = filename + ".tsv";
+        var currentYear = LocalDate.now().getYear();
+        var outfilename = currentYear + "_Cofiroute-3,6,7,11.tsv";
         var cleaner = new CleanerList();
         try (var resourceAsStream = CofirouteCleaner.class.getResourceAsStream("/cleaner.list");
-             var writer = new PrintWriter(Files.newBufferedWriter(Paths.get(outfilename), UTF_8));
-             var out = new PrintWriter(Files.newBufferedWriter(Paths.get("Cofiroute-3,6,7,11.tsv"), UTF_8))) {
+            var writer = new PrintWriter(Files.newBufferedWriter(Paths.get(outfilename), UTF_8));
+            var out = new PrintWriter(Files.newBufferedWriter(Path.of(outputPath.toString(), currentYear + "_Cofiroute-3,6,7,11.tsv")))) {
             assert resourceAsStream != null;
             cleaner.load(resourceAsStream);
             out.println("Autoroute entrée\tPéage entrée\tVille entrée\tAutoroute sortie\tPéage sortie\tVille sortie\tClasse 1\tClasse 2\tClasse 3\tClasse 4\tClasse 5");

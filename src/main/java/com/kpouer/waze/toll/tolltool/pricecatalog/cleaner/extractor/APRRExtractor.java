@@ -21,6 +21,7 @@
  */
 package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor;
 
+import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.CleanerList;
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.PDFExtractor;
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.Extractor;
 import lombok.RequiredArgsConstructor;
@@ -58,6 +59,7 @@ public class APRRExtractor implements Extractor {
         var lines = text.split("\n");
         try (var out = new PrintWriter(Files.newBufferedWriter(Path.of(outputPath.toString(), Year.now() + "_APRR-1,2,4,8.tsv"), UTF_8))) {
             var errors = new AtomicInteger();
+            var cleaner = new CleanerList();
             out.println("Gare d'entrée\tGare de sortie\tDistance\tCatégorie 1\tCatégorie 2\tCatégorie 3\tCatégorie 4\tCatégorie 5");
             Arrays.stream(lines)
                   .filter(line -> !line.startsWith("Page "))
@@ -143,6 +145,8 @@ public class APRRExtractor implements Extractor {
                   .map(line -> line.replaceAll("ETIENNE\tAU\tTEMPLE", "ETIENNE AU TEMPLE"))
                   .map(line -> line.replaceAll("LE\tTOURNEAU", "LE TOURNEAU"))
                   .map(line -> line.replaceAll("QUINCIEUX\tBARRIERE\tSystème Ouvert", "QUINCIEUX BARRIERE\tSystème Ouvert"))
+                  .map(line -> line.replaceAll("CHALON\tCENTRE", "CHALON CENTRE"))
+                  .map(cleaner::clean)
                   .map(line -> COMPILE.matcher(line).replaceAll(matchResult -> '\t' + matchResult.group(1)))
                   .forEach(line -> {
                       var split = line.split("\t");

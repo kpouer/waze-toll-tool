@@ -71,6 +71,8 @@ public class PriceExtractor {
             return Optional.of(new ALIAEExtractor(path));
         } else if (filename.contains("SANEF")) {
             return Optional.of(new SanefExtractor(path));
+        } else if (filename.contains("COFIROUTE")) {
+            return Optional.of(new CofirouteCleaner(path));
         }
         return Optional.empty();
     }

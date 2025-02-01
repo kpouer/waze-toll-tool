@@ -82,7 +82,7 @@ public class FlatPriceParser implements PriceParser {
                 carIndex,
                 motorcycleIndex);
         } catch (Exception e) {
-            log.error("Error parsing {}", String.join("\t", fields));
+            log.error("Error parsing {}", String.join("\t", fields), e);
         }
         return null;
     }
