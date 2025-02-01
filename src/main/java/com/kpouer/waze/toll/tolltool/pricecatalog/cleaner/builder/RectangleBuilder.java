@@ -45,7 +45,11 @@ public class RectangleBuilder implements TSVBuilder {
                 var header = headers[i + 1].trim(); // sometimes a \r remains
                 var line = lines.get(i + skipLine);
                 if (i == 0 && column > 0) {
-                    line = line.substring(column);
+                    try {
+                        line = line.substring(column);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 line   = line.replaceAll("^.*[^\t^0-9]\\t", ""); // replace beginning as I write my row name myself
                 writer.write(header);
