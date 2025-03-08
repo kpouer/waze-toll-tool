@@ -50,8 +50,8 @@ public class SanefExtractor implements Extractor {
     @Override
     public void extract() throws IOException {
         var outputPath = Path.of(pdf.getParent().toString(), "out");
-        extractMatrix(pdf, Category.Car, 4);
-        extractMatrix(pdf, Category.Motorcycle, 8);
+        extractMatrix(pdf, Category.Car, 2);
+        extractMatrix(pdf, Category.Motorcycle, 6);
     }
 
     private void extractMatrix(Path pdf, Category category, int page) throws IOException {
