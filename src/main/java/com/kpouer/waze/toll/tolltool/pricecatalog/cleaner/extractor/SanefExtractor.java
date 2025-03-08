@@ -80,12 +80,15 @@ public class SanefExtractor implements Extractor {
     private void writeFileA4A26Sud(Path outputPath, String filename, String[] lines, int startLine, int endLine) {
         var currentYear = LocalDate.now().getYear();
         var path = Path.of(outputPath.toString(), currentYear + "_" + filename + ".tsv");
+        boolean puttelangePassed = false;
+        boolean montreuilAuxLionsPassed = false;
         try (var writer = Files.newBufferedWriter(path)) {
             writer.write("PARIS / NOISY-LE-GRAND (peage de Coutevroult)");
             writer.newLine();
             writer.write("0\t");
             for (var i = startLine; i < endLine; i++) {
                 var line = lines[i];
+
                 if ("VERDUN".equals(line)) {
                     // verdun is a special entry
                     writer.write("0\t".repeat(22));
@@ -96,14 +99,24 @@ public class SanefExtractor implements Extractor {
                         tokens.add(tokens.size() - 1, "0");
                     } else if (line.endsWith("ST-JEAN-LES-DEUX-JUMEAUX")) {
                         tokens.add(tokens.size() - 1, "0");
-                    } else if (line.endsWith("MONTREUIL-AUX-LIONS A4")) {
-                        tokens.add(tokens.size() - 1, "0");
-                        tokens.add(tokens.size() - 1, "0");
+                    } else if (line.contains("MONTREUIL-AUX-LIONS")) {
+                        montreuilAuxLionsPassed = true;
+                        tokens.add(tokens.size() - 1, "0\t0");
                     } else if (tokens.size() > 3) {
                         tokens.add(2, tokens.get(2));
-                        if (line.endsWith("REIMS NORD (péage d'Ormes)")) {
+
+                        if (montreuilAuxLionsPassed) {
+                            tokens.add(3, tokens.get(3));
+                        }
+                        if (line.contains("REIMS NORD")) {
                             tokens.add(tokens.size() - 1, "0");
                         }
+                        if (puttelangePassed) {
+                            tokens.add(30, "0");
+                        }
+                    }
+                    if (line.endsWith("PUTTELANGE")) {
+                        puttelangePassed = true;
                     }
                     writer.write(String.join("\t", tokens));
                 }

@@ -74,6 +74,8 @@ public class TrianglePriceParser implements PriceParser {
                 float    value       = 0;
                 try {
                     value = Float.parseFloat(lineTokens2[row]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    log.error("Wrong column count in tokens {} line {} of file {}", lineTokens2, row, path, e);
                 } catch (NumberFormatException e) {
                     log.error("Unable to parse value in {} {}\t{} {}", path, entry, exit, lineTokens2[row]);
                 }
