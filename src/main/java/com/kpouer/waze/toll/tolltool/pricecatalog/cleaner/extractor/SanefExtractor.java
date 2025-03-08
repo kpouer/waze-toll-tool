@@ -30,6 +30,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
 import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
@@ -66,11 +69,49 @@ public class SanefExtractor implements Extractor {
         if (category == Category.Car) {
             writeFile(outputPath, "Sanef-A16-A29", lines, 1, 23);
             writeFile(outputPath, "Sanef-A1-A2-A26-NORD-A29", lines, 24, 57);
-            writeFile(outputPath, "Sanef-A4-A26-SUD", lines, 59, 96);
+            writeFileA4A26Sud(outputPath, "Sanef-A4-A26-SUD", lines, 59, 96);
         } else {
             writeFile(outputPath, "Sanef-A16-A29", lines, 1, 23);
             writeFile(outputPath, "Sanef-A1-A2-A26-NORD-A29", lines, 24, 57);
-            writeFile(outputPath, "Sanef-A4-A26-SUD", lines, 59, 96);
+            writeFileA4A26Sud(outputPath, "Sanef-A4-A26-SUD", lines, 59, 96);
+        }
+    }
+
+    private void writeFileA4A26Sud(Path outputPath, String filename, String[] lines, int startLine, int endLine) {
+        var currentYear = LocalDate.now().getYear();
+        var path = Path.of(outputPath.toString(), currentYear + "_" + filename + ".tsv");
+        try (var writer = Files.newBufferedWriter(path)) {
+            writer.write("PARIS / NOISY-LE-GRAND (peage de Coutevroult)");
+            writer.newLine();
+            writer.write("0\t");
+            for (var i = startLine; i < endLine; i++) {
+                var line = lines[i];
+                if ("VERDUN".equals(line)) {
+                    // verdun is a special entry
+                    writer.write("0\t".repeat(22));
+                    writer.write(line);
+                } else {
+                    var tokens = new ArrayList<>(Arrays.stream(line.split("\t")).toList());
+                    if (line.endsWith("MEAUX (A140) / CRECY")) {
+                        tokens.add(tokens.size() - 1, "0");
+                    } else if (line.endsWith("ST-JEAN-LES-DEUX-JUMEAUX")) {
+                        tokens.add(tokens.size() - 1, "0");
+                    } else if (line.endsWith("MONTREUIL-AUX-LIONS A4")) {
+                        tokens.add(tokens.size() - 1, "0");
+                        tokens.add(tokens.size() - 1, "0");
+                    } else if (tokens.size() > 3) {
+                        tokens.add(2, tokens.get(2));
+                        if (line.endsWith("REIMS NORD (péage d'Ormes)")) {
+                            tokens.add(tokens.size() - 1, "0");
+                        }
+                    }
+                    writer.write(String.join("\t", tokens));
+                }
+
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
