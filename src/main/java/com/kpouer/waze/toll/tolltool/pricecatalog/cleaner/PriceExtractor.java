@@ -36,7 +36,7 @@ import java.util.Optional;
 
 @Slf4j
 public class PriceExtractor {
-    public static void main(String[] args) throws IOException {
+    static void main() throws IOException {
         var downloadFolder = Path.of("download", String.valueOf(LocalDate.now().getYear()));
         try (var filestream = Files.list(downloadFolder)) {
             filestream
