@@ -24,7 +24,7 @@ package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.*;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -77,7 +77,7 @@ public class PriceExtractor {
         return Optional.empty();
     }
 
-    @NotNull
+    @NonNull
     public static String[] getHeaders(String tollFileName) throws IOException {
         try (var inputStream = PriceExtractor.class.getResourceAsStream("/samples/" + tollFileName + ".txt")) {
             return new String(inputStream.readAllBytes()).split("\n");

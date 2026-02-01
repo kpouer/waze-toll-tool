@@ -29,7 +29,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -109,7 +109,7 @@ public class PriceCatalog {
         }
     }
 
-    @NotNull
+    @NonNull
     public PriceResult getPrice(String entry, String exit) {
         PriceItem priceItemForward = prices.get(new DefaultPriceItem(entry, exit));
         PriceItem priceItemBackward = prices.get(new DefaultPriceItem(exit, entry));

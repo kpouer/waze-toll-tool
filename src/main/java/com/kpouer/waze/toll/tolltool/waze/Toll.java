@@ -21,8 +21,6 @@
  */
 package com.kpouer.waze.toll.tolltool.waze;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.kpouer.waze.toll.tolltool.http.Audit;
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 import com.kpouer.waze.toll.tolltool.pricecatalog.PriceCatalog;
@@ -30,6 +28,8 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.PriceResult;
 import com.kpouer.waze.toll.tolltool.service.NameNormalizerService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tools.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import tools.jackson.databind.annotation.JsonNaming;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,16 +5,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.4</version>
+        <version>4.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kpouer.waze.toll</groupId>
     <artifactId>toll-tool</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.15</version>
     <name>toll-tool</name>
 
     <properties>
-        <java.version>23</java.version>
+        <java.version>25</java.version>
         <sonar.projectKey>kpouer_waze-toll-tool</sonar.projectKey>
         <sonar.organization>matthieu-casanova</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -44,7 +44,7 @@
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
-            <version>3.0.2</version>
+            <version>3.0.6</version>
         </dependency>
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
@@ -52,10 +52,9 @@
             <version>3.0.0-alpha3</version>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>24.1.0</version>
-            <scope>provided</scope>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -81,7 +80,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <version>3.15.0</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -97,7 +96,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.12</version>
+                <version>0.8.14</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
