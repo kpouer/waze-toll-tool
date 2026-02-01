@@ -1,4 +1,4 @@
-FROM docker.io/maven:3.9-eclipse-temurin-25-alpine as maven-build
+FROM docker.io/maven:3.9-eclipse-temurin-25-alpine AS maven-build
 COPY src /src
 COPY pom.xml /pom.xml
 RUN --mount=type=cache,target=/root/.m2 \
