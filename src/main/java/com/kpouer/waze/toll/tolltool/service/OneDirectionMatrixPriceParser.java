@@ -49,6 +49,7 @@ public class OneDirectionMatrixPriceParser implements PriceParser {
 
     @Override
     public PriceItem[] getPriceGrid(Path path) throws IOException {
+        log.info("Loading {}", path);
         String                absolutePath = path.toString();
         List<String>          lines        = Files.readAllLines(path);
         String                filename     = path.getFileName().toString();
