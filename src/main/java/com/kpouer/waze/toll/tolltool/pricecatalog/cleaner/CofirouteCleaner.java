@@ -23,6 +23,7 @@ package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner;
 
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.extractor.Extractor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,6 +38,7 @@ import java.util.regex.Pattern;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @RequiredArgsConstructor
+@Slf4j
 public class CofirouteCleaner implements Extractor {
     private static final Pattern EURO = Pattern.compile(" €");
     private static final Pattern MINUS = Pattern.compile("(A\\d+) - ");
@@ -52,6 +54,7 @@ public class CofirouteCleaner implements Extractor {
 
     @Override
     public void extract() throws IOException {
+        log.info("Extracting {}", pdf);
         var outputPath = Path.of(pdf.getParent().toString(), "out");
         var text = PDFExtractor.extractText(pdf.toFile(), 8);
         text = text.replaceAll("\r", "");

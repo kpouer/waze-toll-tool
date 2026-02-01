@@ -38,6 +38,7 @@ import java.util.Optional;
 public class PriceExtractor {
     static void main() throws IOException {
         var downloadFolder = Path.of("download", String.valueOf(LocalDate.now().getYear()));
+        log.info("Looking for files in {}", downloadFolder);
         try (var filestream = Files.list(downloadFolder)) {
             filestream
                 .filter(Files::isRegularFile)
@@ -56,6 +57,7 @@ public class PriceExtractor {
     }
 
     private static Optional<Extractor> getExtractorForFile(Path path) {
+        log.info("Looking for extractor for {}", path);
         var filename = path.getFileName().toString().toUpperCase();
         if (filename.contains("ESCOTA")) {
             return Optional.of(new EscotaExtractor(path));
@@ -71,9 +73,10 @@ public class PriceExtractor {
             return Optional.of(new ALIAEExtractor(path));
         } else if (filename.contains("SANEF")) {
             return Optional.of(new SanefExtractor(path));
-        } else if (filename.contains("COFIROUTE")) {
-            return Optional.of(new CofirouteCleaner(path));
+//        } else if (filename.contains("COFIROUTE")) {
+//            return Optional.of(new CofirouteCleaner(path));
         }
+        log.warn("No extractor found for {}", path);
         return Optional.empty();
     }
 
