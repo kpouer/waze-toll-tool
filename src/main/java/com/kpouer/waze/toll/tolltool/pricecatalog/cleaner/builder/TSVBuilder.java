@@ -24,6 +24,7 @@ package com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder;
 import com.kpouer.waze.toll.tolltool.pricecatalog.Category;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -38,7 +39,7 @@ public interface TSVBuilder {
     }
 
     default void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, int skipOffset) throws IOException {
-        List<String> newLines = lines.subList(skipLines, lines.size());
+        List<String> newLines = new ArrayList<>(lines.subList(skipLines, lines.size()));
         var firstLine = newLines.removeFirst();
         newLines.addFirst(firstLine.substring(skipOffset));
         doBuildFile(name, category, headers, newLines, Collections.emptyList());
