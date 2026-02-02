@@ -50,7 +50,7 @@ public class PDFExtractor {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
         String file = args[0];
 
         String text;
