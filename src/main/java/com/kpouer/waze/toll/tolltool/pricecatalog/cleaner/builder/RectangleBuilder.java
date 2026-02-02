@@ -35,7 +35,7 @@ public class RectangleBuilder implements TSVBuilder {
     private final Path outputPath;
 
     @Override
-    public void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLine, int column, Collection<Integer> clonedColumns) throws IOException {
+    public void doBuildFile(String name, Category category, String[] headers, List<String> lines, int column, Collection<Integer> clonedColumns) throws IOException {
         var tsvPath = Path.of(outputPath.toString(), java.time.Year.now() + "_" + name + '-' + category + ".tsv");
         try (var writer = Files.newBufferedWriter(tsvPath)) {
             // insert columns header
@@ -43,7 +43,7 @@ public class RectangleBuilder implements TSVBuilder {
             writer.write('\n');
             for (var i = 0; i < headers.length - 1; i++) {
                 var header = headers[i + 1].trim(); // sometimes a \r remains
-                var line = lines.get(i + skipLine);
+                var line = lines.get(i);
                 if (i == 0 && column > 0) {
                     try {
                         line = line.substring(column);

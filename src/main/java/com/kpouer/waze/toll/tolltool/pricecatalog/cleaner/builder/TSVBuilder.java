@@ -31,18 +31,18 @@ import java.util.List;
 @FunctionalInterface
 public interface TSVBuilder {
     default void buildFile(String name, Category category, String[] headers, List<String> lines) throws IOException {
-        buildFile(name, category, headers, lines, 0, 0, Collections.emptyList());
+        doBuildFile(name, category, headers, lines, 0, Collections.emptyList());
     }
     default void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines) throws IOException {
-        buildFile(name, category, headers, lines, skipLines, 0, Collections.emptyList());
+        doBuildFile(name, category, headers, lines.subList(skipLines, lines.size()), 0, Collections.emptyList());
     }
 
     default void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, int skipOffset) throws IOException {
-        buildFile(name, category, headers, lines, skipLines, skipOffset, Collections.emptyList());
+        doBuildFile(name, category, headers, lines.subList(skipLines, lines.size()), skipOffset, Collections.emptyList());
     }
     default void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, Collection<Integer> clonedColumns) throws IOException {
-        buildFile(name, category, headers, lines, skipLines, 0, clonedColumns);
+        doBuildFile(name, category, headers, lines.subList(skipLines, lines.size()), 0, clonedColumns);
     }
 
-    void buildFile(String name, Category category, String[] headers, List<String> lines, int skipLines, int skipOffset, Collection<Integer> clonedColumns) throws IOException;
+    void doBuildFile(String name, Category category, String[] headers, List<String> lines, int skipOffset, Collection<Integer> clonedColumns) throws IOException;
 }
