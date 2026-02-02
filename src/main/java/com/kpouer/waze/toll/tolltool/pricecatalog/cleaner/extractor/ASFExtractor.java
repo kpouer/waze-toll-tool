@@ -64,7 +64,7 @@ public class ASFExtractor implements Extractor {
             switch (currentYear) {
                 case 2023 -> rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 289, 25);
                 case 2025 -> rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 32, 25);
-                case 2026 -> rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 32, 25);
+                case 2026 -> rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 3, 0);
                 default ->    rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 290, 26);
             }
             switch (currentYear) {
