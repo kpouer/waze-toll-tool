@@ -5,6 +5,7 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder.RectangleBuild
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder.TriangleBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -34,7 +35,7 @@ public class ASFExtractor implements Extractor {
         if (!Files.exists(oneDirMatrixOutputPath)) {
             Files.createDirectories(oneDirMatrixOutputPath);
         }
-        var triangleBuilder  = new TriangleBuilder(triangleOutputPath);
+        var triangleBuilder = new TriangleBuilder(triangleOutputPath);
         var rectangleBuilder = new RectangleBuilder(oneDirMatrixOutputPath);
         triangleBuilder.buildFile("ASF_A7_A8_A9_A46_A54", category, getHeaders("ASF_A7_A8_A9_A46_A54"), getPage(pdfFile, 1));
         rectangleBuilder.buildFile("ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2", category, getHeaders("ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2"), getPage(pdfFile, 2));
@@ -53,23 +54,46 @@ public class ASFExtractor implements Extractor {
                     triangleBuilder.buildFile("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8", category, getHeaders("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8"), getPage(pdfFile, 8), 56);
                 }
             }
-            rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9));
+            {
+                var name = "ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9";
+                var headers = getHeaders(name);
+                var text = getPage(pdfFile, 9);
+                switch (currentYear) {
+                    case 2026 ->
+                        rectangleBuilder.buildFile(name, category, headers, text, 292, 19);
+                    default -> rectangleBuilder.buildFile(name, category, headers, text);
+                }
+            }
         } else {
             triangleBuilder.buildFile("ASF-A9-A61-A62-A66-A75-A709-page3", category, getHeaders("ASF-A9-A61-A62-A66-A75-A709-page3"), getPage(pdfFile, 3), 14, List.of());
             switch (currentYear) {
-                case 2025 ->    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 15);
-                default ->    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 49);
+                case 2025 ->
+                    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 15);
+                default ->
+                    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 49);
             }
 
-            switch (currentYear) {
-                case 2023 -> rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 289, 25);
-                case 2025 -> rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 32, 25);
-                case 2026 -> rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 3, 0);
-                default ->    rectangleBuilder.buildFile("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9", category, getHeaders("ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9"), getPage(pdfFile, 9), 290, 26);
+            {
+                var name = "ASF-A89-A10-A19-A6-A77-A5-A26-A4-A31-A36-A39-A40-A42_page9";
+                var headers = getHeaders(name);
+                var text = getPage(pdfFile, 9);
+                switch (currentYear) {
+                    case 2023 -> rectangleBuilder.buildFile(name, category, headers, text, 289, 25);
+                    case 2025 -> rectangleBuilder.buildFile(name, category, headers, text, 32, 25);
+                    case 2026 -> rectangleBuilder.buildFile(name, category, headers, text, 3, 0);
+                    default -> rectangleBuilder.buildFile(name, category, headers, text, 290, 26);
+                }
             }
-            switch (currentYear) {
-                case 2025 -> triangleBuilder.buildFile("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8", category, getHeaders("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8"), getPage(pdfFile, 8), 37);
-                default -> triangleBuilder.buildFile("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8", category, getHeaders("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8"), getPage(pdfFile, 8), 71);
+            {
+                var name = "ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8";
+                var headers = getHeaders(name);
+                var text = getPage(pdfFile, 8);
+                switch (currentYear) {
+                    case 2025 ->
+                        triangleBuilder.buildFile(name, category, headers, text, 37);
+                    default ->
+                        triangleBuilder.buildFile(name, category, headers, text, 71);
+                }
             }
 
         }
