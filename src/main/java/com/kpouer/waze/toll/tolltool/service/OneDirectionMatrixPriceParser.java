@@ -76,7 +76,7 @@ public class OneDirectionMatrixPriceParser implements PriceParser {
                 try {
                     value = Float.parseFloat(lineToken[column]);
                 } catch (NumberFormatException e) {
-                    log.error("Unable to parse value in " + path + " row " + row + ' ' + entry + "->" + exit + ' ' + lineToken[column], e);
+                    log.error("Unable to parse value in {} row {} {}->{} {}", path, row, entry, exit, lineToken[column], e);
                 }
                 String normalizedEntry = nameNormalizerService.normalize(entry);
                 String normalizedExit  = nameNormalizerService.normalize(exit);
