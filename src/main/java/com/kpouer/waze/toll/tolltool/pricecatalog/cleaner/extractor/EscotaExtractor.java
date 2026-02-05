@@ -25,9 +25,20 @@ public class EscotaExtractor implements Extractor {
         if (!Files.isDirectory(triangleOutputPath)) {
             Files.createDirectory(triangleOutputPath);
         }
+        var currentYear = java.time.Year.now().getValue();
         var pdfFile = pdf.toFile();
         var tsvBuilder = new TriangleBuilder(triangleOutputPath);
-        tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Car, headers, getPage(pdfFile, 7), 0, List.of(10));
-        tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Motorcycle, headers, getPage(pdfFile, 11), 120, List.of(10));
+        var pageCars = getPage(pdfFile, 7);
+        var pageMotorcycle = getPage(pdfFile, 11);
+        switch (currentYear) {
+            case 2026 -> {
+                tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Car, headers, pageCars, 123, List.of(10));
+                tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Motorcycle, headers, pageMotorcycle, 120, List.of(10));
+            }
+            default -> {
+                tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Car, headers, pageCars, 0, List.of(10));
+                tsvBuilder.buildFile("Escota_A8_A50_A52_A51_A57", Category.Motorcycle, headers, pageMotorcycle, 120, List.of(10));
+            }
+        }
     }
 }
