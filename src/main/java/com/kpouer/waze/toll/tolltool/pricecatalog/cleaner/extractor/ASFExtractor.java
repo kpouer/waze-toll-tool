@@ -5,8 +5,8 @@ import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder.RectangleBuild
 import com.kpouer.waze.toll.tolltool.pricecatalog.cleaner.builder.TriangleBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jspecify.annotations.NonNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,17 +41,26 @@ public class ASFExtractor implements Extractor {
         rectangleBuilder.buildFile("ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2", category, getHeaders("ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2"), getPage(pdfFile, 2));
         //strange but the PDF is different for category 5 and 1
         var currentYear = java.time.Year.now().getValue();
+        var page8 = getPage(pdfFile, 8);
         if (category == Category.Car) {
             triangleBuilder.buildFile("ASF-A9-A61-A62-A66-A75-A709-page3", category, getHeaders("ASF-A9-A61-A62-A66-A75-A709-page3"), getPage(pdfFile, 3));
 
-            switch (currentYear) {
-                case 2025 -> {
-                    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 0);
-                    triangleBuilder.buildFile("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8", category, getHeaders("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8"), getPage(pdfFile, 8), 22);
+            {
+                var name = "ASF-A89-CLERMONT-LYON-page8";
+                var headers = getHeaders(name);
+                switch (currentYear) {
+                    case 2025 -> triangleBuilder.buildFile(name, category, headers, page8, 0);
+                    case 2026 -> triangleBuilder.buildFile(name, category, headers, page8, 131);
+                    default -> triangleBuilder.buildFile(name, category, headers, page8, 34);
                 }
-                default -> {
-                    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 34);
-                    triangleBuilder.buildFile("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8", category, getHeaders("ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8"), getPage(pdfFile, 8), 56);
+            }
+            {
+                var name = "ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8";
+                var headers = getHeaders(name);
+                switch (currentYear) {
+                    case 2025 -> triangleBuilder.buildFile(name, category, headers, page8, 22);
+                    case 2026 -> triangleBuilder.buildFile(name, category, headers, page8, 153);
+                    default -> triangleBuilder.buildFile(name, category, headers, page8, 56);
                 }
             }
             {
@@ -68,9 +77,9 @@ public class ASFExtractor implements Extractor {
             triangleBuilder.buildFile("ASF-A9-A61-A62-A66-A75-A709-page3", category, getHeaders("ASF-A9-A61-A62-A66-A75-A709-page3"), getPage(pdfFile, 3), 14, List.of());
             switch (currentYear) {
                 case 2025 ->
-                    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 15);
+                    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), page8, 15);
                 default ->
-                    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), getPage(pdfFile, 8), 49);
+                    triangleBuilder.buildFile("ASF-A89-CLERMONT-LYON-page8", category, getHeaders("ASF-A89-CLERMONT-LYON-page8"), page8, 49);
             }
 
             {
@@ -84,21 +93,17 @@ public class ASFExtractor implements Extractor {
                     default -> rectangleBuilder.buildFile(name, category, headers, text, 290, 26);
                 }
             }
-            {
-                var name = "ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8";
-                var headers = getHeaders(name);
-                var text = getPage(pdfFile, 8);
-                switch (currentYear) {
-                    case 2025 ->
-                        triangleBuilder.buildFile(name, category, headers, text, 37);
-                    default ->
-                        triangleBuilder.buildFile(name, category, headers, text, 71);
-                }
-            }
-
+            extractASF_A89_MANZAT_ST_GERMAIN_LES_VERGNES_page_8(pdfFile, triangleBuilder, page8);
         }
         triangleBuilder.buildFile("ASF-A61-A62-A20-A64-A65-page4", category, getHeaders("ASF-A61-A62-A20-A64-A65-page4"), getPage(pdfFile, 4));
         triangleBuilder.buildFile("ASF-A10-A83-A837-A87-page-6", category, getHeaders("ASF-A10-A83-A837-A87-page-6"), getPage(pdfFile, 6));
         triangleBuilder.buildFile("ASF-A11-A28-A81-A85-page-7", category, getHeaders("ASF-A11-A28-A81-A85-page-7"), getPage(pdfFile, 7));
+    }
+
+    private void extractASF_A89_MANZAT_ST_GERMAIN_LES_VERGNES_page_8(File pdfFile, TriangleBuilder triangleBuilder, List<String> page8) throws IOException {
+        var name = "ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8";
+        var headers = getHeaders(name);
+        var index = page8.indexOf("Manzat") + 2;
+        triangleBuilder.buildFile(name, category, headers, page8, index);
     }
 }
