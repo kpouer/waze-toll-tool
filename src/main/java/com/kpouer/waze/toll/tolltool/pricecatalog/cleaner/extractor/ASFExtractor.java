@@ -39,12 +39,20 @@ public class ASFExtractor implements Extractor {
         var triangleBuilder = new TriangleBuilder(triangleOutputPath);
         var rectangleBuilder = new RectangleBuilder(oneDirMatrixOutputPath);
         triangleBuilder.buildFile("ASF_A7_A8_A9_A46_A54", category, getHeaders("ASF_A7_A8_A9_A46_A54"), getPage(pdfFile, 1));
-        rectangleBuilder.buildFile("ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2", category, getHeaders("ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2"), getPage(pdfFile, 2));
         //strange but the PDF is different for category 5 and 1
         var currentYear = java.time.Year.now().getValue();
+        var page2 = getPage(pdfFile, 2);
         var page3 = getPage(pdfFile, 3);
         var page8 = getPage(pdfFile, 8);
         if (category == Category.Car) {
+            {
+                var name = "ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2";
+                var headers = getHeaders(name);
+                switch (currentYear) {
+                    case 2026 -> rectangleBuilder.buildFile(name, category, headers, page2, 1);
+                    default -> rectangleBuilder.buildFile(name, category, headers, page2);
+                }
+            }
             {
                 var name = "ASF-A9-A61-A62-A66-A75-A709-page3";
                 var headers = getHeaders(name);
@@ -109,6 +117,14 @@ public class ASFExtractor implements Extractor {
             }
         } else {
             {
+                var name = "ASF-A7-A9-A46-A54-A61-A62-A66-A75-page2";
+                var headers = getHeaders(name);
+                switch (currentYear) {
+                    case 2026 -> rectangleBuilder.buildFile(name, category, headers, page2, 1);
+                    default -> rectangleBuilder.buildFile(name, category, headers, page2);
+                }
+            }
+            {
                 var name = "ASF-A9-A61-A62-A66-A75-A709-page3";
                 var headers = getHeaders(name);
                 switch (currentYear) {
@@ -139,6 +155,16 @@ public class ASFExtractor implements Extractor {
                 var headers = getHeaders(name);
                 switch (currentYear) {
                     case 2025 -> triangleBuilder.buildFile(name, category, headers, page8, 15);
+                    case 2026 -> triangleBuilder.buildFile(name, category, headers, page8, 90);
+                    default -> triangleBuilder.buildFile(name, category, headers, page8, 49);
+                }
+            }
+            {
+                var name = "ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8";
+                var headers = getHeaders(name);
+                switch (currentYear) {
+                    case 2025 -> triangleBuilder.buildFile(name, category, headers, page8, 15);
+                    case 2026 -> triangleBuilder.buildFile(name, category, headers, page8, 112);
                     default -> triangleBuilder.buildFile(name, category, headers, page8, 49);
                 }
             }
@@ -162,14 +188,6 @@ public class ASFExtractor implements Extractor {
                     default -> triangleBuilder.buildFile(name, category, headers, page4);
                 }
             }
-            extractASF_A89_MANZAT_ST_GERMAIN_LES_VERGNES_page_8(pdfFile, triangleBuilder, page8);
         }
-    }
-
-    private void extractASF_A89_MANZAT_ST_GERMAIN_LES_VERGNES_page_8(File pdfFile, TriangleBuilder triangleBuilder, List<String> page8) throws IOException {
-        var name = "ASF-A89-MANZAT-ST GERMAIN LES VERGNES-page-8";
-        var headers = getHeaders(name);
-        var index = page8.indexOf("Manzat") + 2;
-        triangleBuilder.buildFile(name, category, headers, page8, index);
     }
 }
