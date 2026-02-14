@@ -27,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,7 +45,12 @@ public class TriangleBuilder implements TSVBuilder {
             for (var i = 0; i < headers.length - 1; i++) {
                 var header = headers[i + 1];
                 var ln = lines.get(i);
-                var line = ln.trim().split("\t");
+                var line = ln.trim().replace(',', '.').split("\t");
+                try {
+                    Arrays.stream(line).forEach(Float::parseFloat);
+                } catch (NumberFormatException e) {
+                    throw new IOException("File " + name + " Unable to parse line number " + i + "content " + ln, e);
+                }
                 for (var j = 0; j < line.length; j++) {
                     var token = line[j];
                     writer.write(token);
