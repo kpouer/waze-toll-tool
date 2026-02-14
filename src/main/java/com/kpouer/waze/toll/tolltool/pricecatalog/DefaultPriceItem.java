@@ -38,10 +38,12 @@ public class DefaultPriceItem implements PriceItem {
     public DefaultPriceItem(String path, String entry, String exit, short year, String[] fields, int carIndex, int motorCycleIndex) {
         this(entry, exit);
         if (carIndex != -1) {
-            carPrice = new CategoryPrice(Float.parseFloat(fields[carIndex]), year, path);
+            var value = fields[carIndex];
+            carPrice = new CategoryPrice(Float.parseFloat(value), year, path);
         }
         if (motorCycleIndex != -1) {
-            motorcyclePrice = new CategoryPrice(Float.parseFloat(fields[motorCycleIndex]), year, path);
+            var value = fields[motorCycleIndex];
+            motorcyclePrice = new CategoryPrice(Float.parseFloat(value), year, path);
         }
     }
 
