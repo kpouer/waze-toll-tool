@@ -1,5 +1,5 @@
 /*
- * Copyright 2021-2023 Matthieu Casanova
+ * Copyright 2021-2026 Matthieu Casanova
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the "Software"),
@@ -77,7 +77,7 @@ public class TrianglePriceParser implements PriceParser {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     log.error("Wrong column count in tokens {} line {} of file {}", lineTokens2, row, path, e);
                 } catch (NumberFormatException e) {
-                    log.error("Unable to parse value in {} {}\t{} {}", path, entry, exit, lineTokens2[row]);
+                    log.error("Unable to parse value in {} {}\t{} token='{}'", path, entry, exit, lineTokens2[row]);
                 }
                 entry = nameNormalizerService.normalize(entry);
                 exit  = nameNormalizerService.normalize(exit);
